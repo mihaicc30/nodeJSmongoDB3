@@ -6,4 +6,43 @@ font-family: 'Lora', serif; */
 /* font-family: 'Dancing Script', cursive; */
 * {
     font-family: 'Josefin Sans', sans-serif;
+    color: black;
+}
+
+#faqbody {
+    max-width: 80vh;
+    margin: 0 auto;
+}
+.faqli {
+    font-weight: bold;
+    color: black;
+    list-style: none;
+    padding: 1em;
+}
+.faqp {
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+.otherhalf {
+    font-size: 2em;
+    font-weight: bold;
+    z-index: 2;
+
+}
+.hotelimg > img{
+    filter: grayscale(60%);
+    transform: rotate(10deg) translateX(-20%);
+    max-height: 70vh;
+    width:100%;
+    border: 2px solid black;
+    box-shadow: 11px 11px 3px rgb(80, 80, 80);
+}
+.motto {
+    font-family: 'Grand Hotel', cursive;
+    font-size: 2em;
+}
+.bigletter {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5em;
+    line-height: 0;
 }

@@ -59,4 +59,4 @@ app.use('/config',express.static('./config'));
 const PORT = process.env.PORT || 5555;
 app.listen(PORT, console.log(`Server running on ${PORT}`));
 
-if (dev_mode != true) { require('child_process').exec('start http://localhost:'+PORT);}
+// if (dev_mode == true) { require('child_process').exec('start http://localhost:'+PORT);}

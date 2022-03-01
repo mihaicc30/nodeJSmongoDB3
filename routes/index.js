@@ -11,6 +11,12 @@ router.get('/index', (req, res) =>
     user: req.user
   }) 
 );
+// Index
+router.get('/contactform', (req, res) =>
+  res.render('contactform', {
+    user: req.user
+  }) 
+);
 
 // Find a Room
 router.get('/findaroom', ensureAuthenticated, (req, res) =>

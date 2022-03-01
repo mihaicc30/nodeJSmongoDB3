@@ -1,7 +1,27 @@
 <% include ./partials/header %> 
 
-<div class="card card-body text-center">
-  contact
+<div class="card card-body d-flex text-center">
+  <form action="/contactform" method="post">
+      <div class="card mt-1 container-sm fs-5 ">
+        <div class="the mt-1">
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" id="" required autocomplete="off" minlength="5"></div>
+
+        <div class="the">
+        <label for="email">Email:</label><br>
+        <input type="text" name="email" id="" required autocomplete="off" minlength="5"></div>
+
+        <div class="the">
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" name="phone" id="" required autocomplete="off" minlength="5"></div>
+
+        <div class="the">
+        <label for="message">Message</label><br>
+        <textarea name="message" id="message" cols="21" rows="10" required autocomplete="off" minlength="5"></textarea>
+
+        <div class="my-1"><button type="submit">Submit</button></div>
+    </div>
+  </form>
 </div>
 
 <% include ./partials/footer %>

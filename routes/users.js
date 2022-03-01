@@ -9,8 +9,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 // Load User model
-const User = require('../models/User');
-const London = require('../models/London');
+const User = require('../models/User')
 const { forwardAuthenticated } = require('../config/auth');
 const { db } = require('../models/User');
 
@@ -105,7 +104,6 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-
 // Update
 router.post('/update', (req, res) => {
   const { email2, created2, name, email, car, password } = req.body;
@@ -168,6 +166,8 @@ router.post('/delete', (req, res) => {
   res.redirect('/users/login');
 })
 
+
+// checkbookings
 router.post('/checkbookings', (req, res) => {
   var { city, date } = req.body;
   city = city.toLowerCase();

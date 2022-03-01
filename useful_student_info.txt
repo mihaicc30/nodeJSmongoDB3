@@ -13,3 +13,21 @@ var dbdata = [
           <strong><%= data.name %></strong> is living at <%= data.address %>, born in <%= data.age %>  looping over a list 
         </li>
       <% }); %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //////////////
+      ////////////////
+      npm install -g nodemon
+      ////////////
