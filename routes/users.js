@@ -179,7 +179,7 @@ router.post('/checkbookings', (req, res) => {
     var query = { date_in: {$gte: date} };
     dbo.collection("london").find(query).toArray(function(err, result) {
       if (err) throw err;
-      console.log(result);
+      console.log(result[0]["date_in"]);
       db.close();
     });
   });
