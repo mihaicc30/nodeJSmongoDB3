@@ -1,0 +1,15 @@
+To echo a single variable, you can use <%= tagline %>.
+
+// looping through a list with ejs
+
+var dbdata = [
+    { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
+    { name: 'Tux', organization: "Linux", birth_year: 1996},
+    { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
+  ];
+
+<% dbdata.forEach(function(data) { %>
+        <li>
+          <strong><%= data.name %></strong> is living at <%= data.address %>, born in <%= data.age %>  looping over a list 
+        </li>
+      <% }); %>

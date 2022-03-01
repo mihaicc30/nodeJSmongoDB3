@@ -1,0 +1,78 @@
+<% include ./partials/header %>
+
+    <div class="card card-body">
+        <div class="card card-body text-center d-flex flex-column align-items-center">
+            <i class="fa fa-user bg-dark p-3 rounded d-flex flex-row align-items-center" style="font-size: 3em;"></i>
+
+            <form action="/users/update" method="POST">
+                <br>
+                <h2>Profile details</h2>
+                <div class="card card-body mt-2 py-2 px-1 bg-dark ">
+                    <label for="name2">Name</label>
+                    <input type="text" name="name2" placeholder="changing name?" value="<%- user.name %>" readonly>
+                </div>
+                <div class="card card-body mt-2 py-2 px-1 bg-dark ">
+                    <label for="email2">Email</label>
+                    <input type="email" name="email2" placeholder="changing email?" value="<%-user.email %>" readonly>
+                </div>
+                <div class="card card-body mt-2 py-2 px-1 bg-dark ">
+                    <label for="car2">Car</label>
+                    <input type="text" name="car2" placeholder="changing car?" value="<%-user.car %>" readonly>
+                </div>
+                <div class="card card-body mt-2 py-2 px-1 bg-dark visually-hidden">
+                    <label for="created2">Car</label>
+                    <input type="text" name="created2" placeholder="changing car?" value="<%-user.date %>" readonly>
+                </div>
+
+                <p>-----</p>
+                <h2>Change details?</h2>
+
+                <div class="card card-body mt-2 py-2 px-1 bg-dark ">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" placeholder="changing name?" value="<%-user.name %>" required minlength="6">
+                </div>
+                <div class="card card-body mt-2 py-2 px-1 bg-dark ">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" placeholder="changing email?" value="<%-user.email %>" required minlength="6" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                </div>
+                <div class="card card-body mt-2 py-2 px-1 bg-dark ">
+                    <label for="car">Car</label>
+                    <input type="text" name="car" placeholder="changing car?" value="<%-user.car %>" required minlength="2">
+                </div>
+                <div class="card card-body mt-2 py-2 px-1 bg-dark ">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="changing password?" required minlength="6">
+                </div>
+                <button class="py-3 px-4 mt-1 bg-success" type="submit">Update</button>
+
+            </form>
+
+            <p>-----</p>
+            <h2>Delete account?</h2>
+
+            <button class="py-3 px-4 mt-1" type="button" style="background: rgb(240, 64, 64);"
+                onclick="tog()">DELETE!</button>
+            <div id="confirmDelete" class="card card-body mt-2 py-2 px-1" style=" visibility: hidden;">
+                <form action="/users/delete" method="POST">
+
+                    <div class="card card-body mt-2 py-2 px-1 bg-dark visually-hidden">
+                        <label for="email">Car</label>
+                        <input type="text" name="email" placeholder="changing car?" value="<%-user.email %>" readonly>
+                    </div>
+
+                    <button class="py-3 px-4 mt-1 " type="submit"
+                        style="background: rgb(201, 28, 28); font-size: 2em;">Click again to confirm!
+                        <br> Action can not be undone! </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script defer>
+        function tog() {
+            document.getElementById("confirmDelete").style.visibility = "visible";
+        };
+    </script>
+
+    <% include ./partials/footer %>

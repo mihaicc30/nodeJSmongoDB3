@@ -1,0 +1,14 @@
+Hi! This is a guide on how to connect remotely to my database.
+
+The main database is based on a non-relationship db like mongodb
+
+To connect/manage it:
+
+Step 1: Visit https://account.mongodb.com/account/login
+Step 2: Login with email address "alemihai25@gmail.com" password "MyDBpassMihai123"
+
+
+
+For Database Access (that i use from nodeJS) i have created a separate user to connect with:
+username: mihaiapp
+pass: MyDBpassMihai123

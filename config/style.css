@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Dela+Gothic+One&family=Festive&family=Grand+Hotel&family=Josefin+Sans:wght@300&family=Lora:ital@1&display=swap');/* font-family: 'Dela Gothic One', cursive;
+font-family: 'Festive', cursive;
+font-family: 'Grand Hotel', cursive;
+font-family: 'Lora', serif; */
+/* font-family: 'Josefin Sans', sans-serif; */
+/* font-family: 'Dancing Script', cursive; */
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}

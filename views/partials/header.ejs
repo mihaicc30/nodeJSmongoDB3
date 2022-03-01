@@ -1,0 +1,31 @@
+
+<% const x = typeof user;%>
+
+<div class="container mb-4 ">
+  <div class="row">
+    <div class="col mt-3">
+      <div class="d-flex flex-row-reverse bd-highlight gap-1">
+        <% if (x === "object" && user.name != "ADMIN") {   %>   <a href="/users/logout" class="btn btn-secondary btn-info d-flex align-items-center px-4">Logout</a>
+                                        <a href="/myprofile" class="btn btn-secondary btn-info d-flex align-items-center px-4">My Profile</a>      <%   } %>
+
+        <% if (x != "object") {   %>   <a href="/users/register" class="btn btn-primary btn-secondary btn-block mb-2 px-4">Register</a>
+                                                            <a href="/users/login" class="btn btn-secondary btn-info btn-block mb-2 px-4">Login</a>      <%   } %>  
+
+        <% if (x === "object" && user.name === "ADMIN") {   %>  <a href="/users/logout" class="btn btn-secondary btn-info d-flex align-items-center mb-2 px-4">Logout</a> 
+                                                                <a href="/bookings" class="btn btn-primary btn-info btn-block mb-2 px-4">Bookings</a>
+                                                                 <%   } %>  
+      </div>
+    </div>     
+  </div>
+  <h1>QualityB&B</h1>
+  <div class="col mt-3 d-flex justify-content-start">
+    <div class="d-flex justify-content-start gap-1 ">
+      <a href="/" class="btn btn-secondary btn-success d-flex align-items-center">Home</a>
+      <a href="/findaroom" class="btn btn-secondary d-flex align-items-center">Find a Room</a>
+      <a href="/about" class="btn btn-secondary d-flex align-items-center">About</a>
+      <a href="/faq" class="btn btn-secondary d-flex align-items-center">FAQ</a>
+      <a href="/contact" class="btn btn-secondary d-flex align-items-center  btn-dark">Contact</a>
+    </div>
+  </div> 
+</div>
+

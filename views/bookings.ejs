@@ -1,0 +1,31 @@
+<% include ./partials/header %>
+
+<div class="card d-flex flex-column align-items-center" style="height:60vh;">
+<form action="/users/checkbookings" method="post">
+  <div class="dropdown">
+    <select name="city" id="city">
+      <option disabled selected value> -- select city -- </option>
+      <option value="Gloucester">Gloucester</option>
+      <option value="London">London</option>
+      <option value="Birmingham">Birmingham</option>
+      <option value="Manchester">Manchester</option>
+    </select>
+    <input type="date" name="date" id="date">
+    <button type="submit" id="xxx">Search</button>
+  </div>
+<!-- db.["101"].find() db use gloucester -->
+</form>
+
+
+  
+
+</div>
+
+
+<script>
+  function zzz() {
+    console.log(document.getElementById("city").value,
+                document.getElementById("date").value);
+  }
+</script>
+  <% include ./partials/footer %>
