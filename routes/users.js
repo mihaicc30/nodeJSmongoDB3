@@ -1,9 +1,9 @@
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb+srv://mihaiapp:MyDBpassMihai123@mihai.ch81p.mongodb.net/user?retryWrites=true&w=majority";
+var url = "mongodb+srv://mihaiapp:MyDBpassMihai123@mihai.ch81p.mongodb.net/user?retryWrites=true&w=majority&";
 
 
-
+const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -173,11 +173,11 @@ router.post('/checkbookings', (req, res) => {
   city = city.toLowerCase();
   console.log("capturing data", city, date )
 
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(url,{ useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("location");
     var query = { date_in: {$gte: date} };
-    dbo.collection("london").find(query).toArray(function(err, result) {
+    dbo.collection(city).find(query).toArray(function(err, result) {
       if (err) throw err;
       console.log(result[0]["date_in"]);
       db.close();
