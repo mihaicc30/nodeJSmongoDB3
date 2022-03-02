@@ -1,29 +1,24 @@
-<% include ./partials/header %> 
+<% include ./partials/header %>
 
-<div class="card card-body d-flex text-center ">
-  <form action="/contactform" method="post" autocomplete="off">
+  <div class="card card-body d-flex">
+    <form action="/contactform" method="post" autocomplete="off">
       <div class="card mt-1" style="max-width: 50vh; margin: 0 auto;">
-        
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" placeholder="name">
-          <label for="floatingInput">Name</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="email">
-          <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
-        </div>
-        <div class="form-floating">
-          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-          <label for="floatingTextarea">Comments</label>
-        </div>
 
-        <div class="my-1"><button type="submit">Submit</button></div>
-    </div>
-  </form>
-</div>
+        <label for="name" class="cfl name mx-1 px-1" id="cflname">Name</label> <!-- cfl = contact form label -->
+        <input name="name" type="text" class="cfi m-1 p-1">                     <!-- cfi = contact form label -->
 
-<% include ./partials/footer %>
+        <label for="email" class="cfl email mx-1 px-1" id="cflemail">Email</label>
+        <input name="email" type="text" class="cfi m-1 p-1">
+
+        <label for="telephone" class="cfl telephone mx-1 px-1" id="cfltelephone">Telephone</label>
+        <input name="telephone" type="text" class="cfi m-1 p-1">
+
+        <label for="comment" class="cfl textarea mx-1 px-1" id="cfltextarea">Comment</label>
+        <textarea name="comment" class="cfi m-1 p-1" id="" cols="30" rows="10"></textarea>
+
+        <div class="m-1 p-1"><button type="submit">Submit</button></div>
+      </div>
+    </form>
+  </div>
+
+  <% include ./partials/footer %>
