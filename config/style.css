@@ -27,6 +27,7 @@ font-family: 'Lora', serif; */
     font-size: 2em;
     font-weight: bold;
     z-index: 2;
+    color: black;
 
 }
 .hotelimg > img{
