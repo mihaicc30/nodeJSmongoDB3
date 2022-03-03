@@ -6,9 +6,17 @@ const db = require('../config/key-contactform').mongoURI;
 
 
 
+// Admin - Bookings
+router.get('/bookings', (req, res) => // , ensureAuthenticated
+  res.render('bookings', {
+    user: req.user
+  })
+);
+
+
+
 // Home Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('landing'));
-
 
 // Contact Form
 router.post('/contact', function (req, res) {
@@ -16,20 +24,26 @@ router.post('/contact', function (req, res) {
 
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     if (err) { console.log(err) }
-    db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment })
-  });
-  res.redirect('/contact');
-});
+
+    if (!name || !email || !telephone || !comment || !city) {
+      req.flash('error_msg', 'Please enter all fields')
+      res.redirect('/contact') }
+
+    if (name.length < 1 || email.length < 1 || telephone.length < 1 || comment.length < 1) { 
+      req.flash('error_msg', 'Please enter all fields')
+      res.redirect('/contact') }
+
+    else {
+      db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment, date: new Date() } )
+        req.flash('success_msg', 'Thank you for contacting us. You message has been successfully sent to QualityB&B in ' + city + '!');
+        res.redirect('/contact')
+        }
+    })
+})
 
 // Index
-router.get('/index', (req, res) =>
+router.get('/index', (req, res) => //, ensureAuthenticated
   res.render('index', {
-    user: req.user
-  })
-);
-// Index
-router.get('/contactform', (req, res) =>
-  res.render('contactform', {
     user: req.user
   })
 );
@@ -37,12 +51,6 @@ router.get('/contactform', (req, res) =>
 // Find a Room
 router.get('/findaroom', ensureAuthenticated, (req, res) =>
   res.render('findaroom', {
-    user: req.user
-  })
-);
-// Admin - Bookings
-router.get('/bookings', (req, res) => // , ensureAuthenticated
-  res.render('bookings', {
     user: req.user
   })
 );
@@ -59,7 +67,7 @@ router.get('/faq', ensureAuthenticated, (req, res) =>
   })
 );
 // Contact
-router.get('/contact', ensureAuthenticated, (req, res) =>
+router.get('/contact', ensureAuthenticated, (req, res) => 
   res.render('contact', {
     user: req.user
   })

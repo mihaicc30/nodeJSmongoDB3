@@ -2,21 +2,23 @@
 
   <div class="card card-body d-flex">
     <form method="post" action="/contact" autocomplete="off">
+      <% include ./partials/messages %>
       <div class="card mt-1" style="max-width: 50vh; margin: 0 auto;">
 
         <label for="name" class="cfl name mx-1 px-1" id="cflname">Name</label> <!-- cfl = contact form label -->
-        <input name="name" type="text" class="cfi m-1 p-1">                     <!-- cfi = contact form label -->
+        <input name="name" type="text" class="cfi m-1 p-1">                     <!-- cfi = contact form input -->
 
         <label for="email" class="cfl email mx-1 px-1" id="cflemail">Email</label>
         <input name="email" type="text" class="cfi m-1 p-1">
 
-        <select name="city" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-          <option selected>Where is the hotel located?</option>
+        <select name="city" id="city" class="m-1 py-2 fs-2" style="background-color: transparent;">
+          <option disabled selected value > -- select hotel -- </option>
+          <option value="test" >test</option>
+          <option value="Gloucester" >Gloucester</option>
           <option value="London">London</option>
           <option value="Birmingham">Birmingham</option>
-          <option value="Gloucester">Gloucester</option>
+          <option value="Manchester">Manchester</option>
         </select>
-
 
         <label for="telephone" class="cfl telephone mx-1 px-1" id="cfltelephone">Telephone</label>
         <input name="telephone" type="text" class="cfi m-1 p-1">

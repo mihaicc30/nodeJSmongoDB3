@@ -57,3 +57,28 @@ font-family: 'Lora', serif; */
     font-size: 2em;
     background-color: transparent;
 }
+.findaRoomHotelCardList > li {
+    /* list-style: none; */
+    text-align: left;
+}
+.findaRoomHotelCardList2 > li {
+    list-style: none;
+    text-align: left;
+}
+@media (max-width: 767px) {
+    .head1 {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 991px) {
+    .findaRoomHotelCard {
+        display: flex;
+        flex-direction: column;
+    }
+    .findaRoomHotelCardList {
+        padding-left: 2.6em;
+    }
+}
+

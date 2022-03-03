@@ -1,23 +1,21 @@
 <% include ./partials/header %>
 
-  <div class="card d-flex flex-column align-items-center" style="height:60vh;">
+  <div class="card d-flex flex-column align-items-center text-center" style="height:60vh;">
     <form action="/users/checkbookings" method="post">
       <div class="dropdown">
-        <select name="city" id="city">
-          <option disabled selected value> -- select city -- </option>
+        <select name="city" id="city" class="m-1 fs-3" style="padding: 18px">
+          <!-- <option disabled selected value> -- select city -- </option> -->
           <option value="gloucester">Gloucester</option>
           <option value="london">London</option>
           <option value="birmingham">Birmingham</option>
           <option value="manchester">Manchester</option>
         </select>
-        <input type="date" name="date" id="date">
-        <button type="submit" id="xxx">Search</button>
+        <input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px">
+
+        <button type="submit" id="xxx" class="m-1 px-4 py-1 fs-2">Search</button>
       </div>
       <!-- db.["101"].find() db use gloucester -->
     </form>
-
   </div>
-
-
 
   <% include ./partials/footer %>

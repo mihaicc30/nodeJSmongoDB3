@@ -13,17 +13,17 @@ const bookings = require('../config/key-gloucester-bookings').mongoURI;
 // checkbookings
 router.post('/checkbookings', function (req, res) {
   var { city, date } = req.body;
+  theDate = new Date()
+  thedate1 = theDate.getFullYear()
+  thedate2 = theDate.getMonth()
+  thedate3 = theDate.getDate()
   console.log(city, date)
+  console.log(thedate1,thedate2,thedate3)
+
   mongoose.createConnection(bookings, { useNewUrlParser: true, useUnifiedTopology: true }, (err, bookings) => {
     if (err) { console.log(err) }
     bookings.collection("101").find().toArray(function(err, result) {
       if (err) throw err;
-
-      var dbdata = [
-        { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
-        { name: 'Tux', organization: "Linux", birth_year: 1996},
-        { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
-      ];
       
       console.log(result);
       db.close();

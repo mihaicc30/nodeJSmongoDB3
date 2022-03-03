@@ -1,15 +1,114 @@
 <% include ./partials/header %> 
 
 <div class="card card-body text-center">
-        <label for="exampleDataList" class="form-label">Datalist example</label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-        <datalist id="datalistOptions">
-            <option value="San Francisco">
-            <option value="New York">
-            <option value="Seattle">
-            <option value="Los Angeles">
-            <option value="Chicago">
-        </datalist>
-</div>
+    <h2 class="mt-2">1. Pick your hotel</h2>
+    <div class="hotels card card-body flex-wrap flex-md-row gap-2 justify-content-center p-3">
+        <div class="card">
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <h2>Test</h2>
+                <img src="/imgs/1.jpg" alt="" style="height:200px">
+            </div>
+        </div>  
+        <div class="card">
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <h2>London</h2>
+                <img src="/imgs/1.jpg" alt="" style="height:200px">
+            </div>
+        </div>  
+        <div class="card">
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <h2>Gloucester</h2>
+                <img src="/imgs/1.jpg" alt="" style="height:200px">
+            </div>
+        </div>  
+        <div class="card">
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <h2>Birmingham</h2>
+                <img src="/imgs/1.jpg" alt="" style="height:200px">
+            </div>
+        </div>
+        <div class="card">
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <h2>Manchester</h2>
+                <img src="/imgs/1.jpg" alt="" style="height:200px">
+            </div>
+        </div>
+        
+    </div>
+
+    
+    <h2 class="mt-2">2. Pick your dates</h2>    
+    
+    <div class="card card-body d-flex flex-row justify-content-center p-2">
+        <div>
+            <label for="start">Start date:</label>
+            <input type="date" id="start" name="trip-start"></div>
+        <div>
+            <label for="start">End date:</label>
+            <input type="date" id="end" name="trip-end"></div>
+
+    </div>
+
+    
+    <h2 class="mt-2">3. Choose your options</h2>    
+
+    <div class="card card-body d-flex flex-column justify-content-center p-2 gap-2">
+        <div class="card d-flex flex-row fs-5">
+            <div class="findaRoomHotelCard p-2 d-flex flex-grow-1 bd-highlight justify-content-center text-center gap-2">
+                
+                <img src="/imgs/1.jpg" alt="" class="m-auto" style="max-height:200px; max-width: 300px;">
+                <ul class="findaRoomHotelCardList">
+                    <h2>Single Room</h2>
+                    <li>Free Toiletries</li>
+                    <li>In room kettle</li>
+                    <li>Daily change of towels</li>
+                    <li>attribute#</li>
+                    <li>attribute#</li>
+                </ul>
+                <ul class="findaRoomHotelCardList2">
+                    <li><input type="checkbox" name="breakfast" id="breakfast"> Add breakfast?</li>
+                    <li><input type="checkbox" name="champagne" id="breakfast"> Champagne & chocolate?</li>
+                    <li><input type="checkbox" name="rentcar" id="breakfast"> Rent a car options?</li>
+                    <li><input type="checkbox" name="champagne" id="breakfast"> Champagne & chocolate?</li>
+                    <li><h3>Price of the day: £99.95</h2></li>
+                    <button type="submit" value="submit" class="py-2 px-4">Choose!</button>
+                </ul>
+                <ul>
+                </ul>
+            </div>
+        </div>  
+        <!-- -- -->
+        <div class="card d-flex flex-row fs-5">
+            <div class="findaRoomHotelCard p-2 d-flex flex-grow-1 bd-highlight justify-content-center text-center gap-2">
+                
+                <img src="/imgs/1.jpg" alt="" class="m-auto" style="max-height:200px; max-width: 300px;">
+                <ul class="findaRoomHotelCardList">
+                    <h2>Double Room</h2>
+                    <li>attribute#</li>
+                    <li>attribute#</li>
+                    <li>attribute#</li>
+                    <li>attribute#</li>
+                    <li>attribute#</li>
+                </ul>
+                <ul class="findaRoomHotelCardList2">
+                    <li><input type="checkbox" name="breakfast" id="breakfast"> Add breakfast?</li>
+                    <li><input type="checkbox" name="champagne" id="breakfast"> Champagne & chocolate?</li>
+                    <li><input type="checkbox" name="rentcar" id="breakfast"> Rent a car options?</li>
+                    <li><input type="checkbox" name="champagne" id="breakfast"> Champagne & chocolate?</li>
+                    <li><h3 class="mt-3">Price of the day: £129.95</h2></li>
+                    <button type="submit" value="submit" class="py-2 px-4">Choose!</button>
+                </ul>
+                <ul>
+                    
+                </ul>
+            </div>
+        </div>  
+        <!-- -- -->
+        
+        
+        
+        
+
+    </div>
 
 <% include ./partials/footer %>
