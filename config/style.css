@@ -48,10 +48,12 @@ font-family: 'Lora', serif; */
     line-height: 0;
 }
 .cfl {
+    margin-top: 1em;
+    z-index: -1;
     font-size: 1.5em;
-    transform: translateY(150%);
+    transform:translate(-2%, 40%);
 }
-.cfl:hover{
-    transition: 1s ease-in-out;
-    transform: translateY(-10%);
+.cfi {
+    font-size: 2em;
+    background-color: transparent;
 }

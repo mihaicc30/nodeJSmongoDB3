@@ -13,6 +13,7 @@ const User = require('../models/User')
 const { forwardAuthenticated } = require('../config/auth');
 const { db } = require('../models/User');
 
+
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
@@ -125,8 +126,8 @@ router.post('/update', (req, res) => {
     });
   } else {
 
-      // maybe i will update to db.collection("users").updateOne({ name:name2}, {$set:{name:name} }) 
-      // but at the moment i am more relaxed with this :D
+    // maybe i will update to db.collection("users").updateOne({ name:name2}, {$set:{name:name} }) 
+    // but at the moment i am more relaxed with this :D
     db.collection("users").deleteOne({ email: email2 })
     const newUser = new User({
       name,
@@ -143,12 +144,12 @@ router.post('/update', (req, res) => {
         newUser.name = name.toUpperCase();
         newUser.car = car.toUpperCase();
         newUser.save().then(user => {
-            req.flash(
-              'success_msg',
-              'You profile has been updates. You can now log in with your new credentials.'
-            );
-            res.redirect('/users/login');
-          })
+          req.flash(
+            'success_msg',
+            'You profile has been updates. You can now log in with your new credentials.'
+          );
+          res.redirect('/users/login');
+        })
           .catch(err => console.log(err));
       });
     });
@@ -171,13 +172,13 @@ router.post('/delete', (req, res) => {
 router.post('/checkbookings', (req, res) => {
   var { city, date } = req.body;
   city = city.toLowerCase();
-  console.log("capturing data", city, date )
+  console.log("capturing data", city, date)
 
-  MongoClient.connect(url,{ useUnifiedTopology: true }, function(err, db) {
+  MongoClient.connect(url, { useUnifiedTopology: true }, function (err, db) {
     if (err) throw err;
     var dbo = db.db("location");
-    var query = { date_in: {$gte: date} };
-    dbo.collection(city).find(query).toArray(function(err, result) {
+    var query = { date_in: { $gte: date } };
+    dbo.collection(city).find(query).toArray(function (err, result) {
       if (err) throw err;
       console.log(result[0]["date_in"]);
       db.close();

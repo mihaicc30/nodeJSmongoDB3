@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 
   <div class="card card-body d-flex">
-    <form action="/contactform" method="post" autocomplete="off">
+    <form method="post" action="/contact" autocomplete="off">
       <div class="card mt-1" style="max-width: 50vh; margin: 0 auto;">
 
         <label for="name" class="cfl name mx-1 px-1" id="cflname">Name</label> <!-- cfl = contact form label -->
@@ -10,13 +10,21 @@
         <label for="email" class="cfl email mx-1 px-1" id="cflemail">Email</label>
         <input name="email" type="text" class="cfi m-1 p-1">
 
+        <select name="city" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+          <option selected>Where is the hotel located?</option>
+          <option value="London">London</option>
+          <option value="Birmingham">Birmingham</option>
+          <option value="Gloucester">Gloucester</option>
+        </select>
+
+
         <label for="telephone" class="cfl telephone mx-1 px-1" id="cfltelephone">Telephone</label>
         <input name="telephone" type="text" class="cfi m-1 p-1">
 
-        <label for="comment" class="cfl textarea mx-1 px-1" id="cfltextarea">Comment</label>
+        <label for="comment" class="cfl textarea mx-1 px-1" id="cfltextarea">Message</label>
         <textarea name="comment" class="cfi m-1 p-1" id="" cols="30" rows="10"></textarea>
 
-        <div class="m-1 p-1"><button type="submit">Submit</button></div>
+        <div class="m-1 p-1"><button type="submit" value="submit">Submit</button></div>
       </div>
     </form>
   </div>
