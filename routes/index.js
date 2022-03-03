@@ -41,7 +41,7 @@ router.get('/findaroom', ensureAuthenticated, (req, res) =>
   })
 );
 // Admin - Bookings
-router.get('/bookings', ensureAuthenticated, (req, res) =>
+router.get('/bookings', (req, res) => // , ensureAuthenticated
   res.render('bookings', {
     user: req.user
   })

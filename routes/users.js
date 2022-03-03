@@ -1,8 +1,3 @@
-
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb+srv://mihaiapp:MyDBpassMihai123@mihai.ch81p.mongodb.net/user?retryWrites=true&w=majority&";
-
-
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -12,7 +7,30 @@ const passport = require('passport');
 const User = require('../models/User')
 const { forwardAuthenticated } = require('../config/auth');
 const { db } = require('../models/User');
+const bookings = require('../config/key-gloucester-bookings').mongoURI;
 
+
+// checkbookings
+router.post('/checkbookings', function (req, res) {
+  var { city, date } = req.body;
+  console.log(city, date)
+  mongoose.createConnection(bookings, { useNewUrlParser: true, useUnifiedTopology: true }, (err, bookings) => {
+    if (err) { console.log(err) }
+    bookings.collection("101").find().toArray(function(err, result) {
+      if (err) throw err;
+
+      var dbdata = [
+        { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
+        { name: 'Tux', organization: "Linux", birth_year: 1996},
+        { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
+      ];
+      
+      console.log(result);
+      db.close();
+    });
+  });
+  res.redirect('/bookings');
+});
 
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
@@ -168,23 +186,7 @@ router.post('/delete', (req, res) => {
 })
 
 
-// checkbookings
-router.post('/checkbookings', (req, res) => {
-  var { city, date } = req.body;
-  city = city.toLowerCase();
-  console.log("capturing data", city, date)
 
-  MongoClient.connect(url, { useUnifiedTopology: true }, function (err, db) {
-    if (err) throw err;
-    var dbo = db.db("location");
-    var query = { date_in: { $gte: date } };
-    dbo.collection(city).find(query).toArray(function (err, result) {
-      if (err) throw err;
-      console.log(result[0]["date_in"]);
-      db.close();
-    });
-  });
-})
 
 
 module.exports = router;
