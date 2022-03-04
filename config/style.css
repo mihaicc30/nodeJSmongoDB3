@@ -141,6 +141,7 @@ font-family: 'Lora', serif; */
     transform: scale(1.6);
     transition: .4s ease-in-out;
 }
+
 @media (max-width: 767px) {
     .head1 {
         display: flex;
@@ -158,6 +159,9 @@ font-family: 'Lora', serif; */
     }
     .findaRoomHotelCardList {
         padding-left: 2.6em;
+    }
+    .aboutcard {
+        flex-direction: column;
     }
 }
 
