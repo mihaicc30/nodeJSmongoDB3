@@ -46,9 +46,9 @@
     </div>
 
     
-    <h2 class="mt-2" id="choice2">2. Pick your dates</h2>    
+    <h2 class="mt-2" id="choice2" loading="lazy">2. Pick your dates</h2>    
     
-    <div class="datepicker card card-body d-flex justify-content-center py-4 fs-4 gap-2">
+    <div class="datepicker card card-body d-flex justify-content-center py-4 fs-4 gap-2" loading="lazy">
         <div>
             <script>
                 window.onload=()=>{
@@ -72,9 +72,9 @@
     </div>
 
     
-    <h2 class="mt-2" id="choice3">3. Choose your options</h2>    
+    <h2 class="mt-2" id="choice3" loading="lazy">3. Choose your options</h2>    
 
-    <div class="card card-body d-flex flex-column justify-content-center p-2 gap-2 py-4">
+    <div class="card card-body d-flex flex-column justify-content-center p-2 gap-2 py-4" loading="lazy">
         <div class="card d-flex flex-row fs-5">
             <div class="findaRoomHotelCard p-2 d-flex flex-grow-1 bd-highlight justify-content-center text-center gap-2 p-1">
                 
@@ -130,9 +130,9 @@
     </div>
 
     
-    <h2 class="mt-2" id="choice4">4. Finalizing</h2>  
+    <h2 class="mt-2" id="choice4" loading="lazy">4. Finalizing</h2>  
     <!-- <button onclick="showchoices()" >show me the stuff</button> -->
-    <div class="results card card-body" > 
+    <div class="results card card-body" loading="lazy"> 
         <table id="results" border="1px"></table>
         <table id="resultsTOTAL" border="1px" class="fs-2 fw-bold">
             <div class="spinnerContainer" id="spinnerContainer">
@@ -145,7 +145,7 @@
         <button type="button" onclick="console.log(theChoices)">theChoices</button> -->
         <div class="confirmButton p-4 mt-1" id="confirmButton">
             <form action="/successfullbooking" method="post" id="confirmationButtonFORM">
-
+                <div style="display: none;">
                 <input type="text" class="" id="hotelUserName" name="hotelUserName" value="<%- user.name %>">
                 <input type="text" class="" id="hotelUserEmail" name="hotelUserEmail" value="<%- user.email %>">
 
@@ -157,7 +157,7 @@
                 <input type="text" class="" id="champagneFORM" name="champagneFORM" value="theChoiceCopy">
                 <input type="text" class="" id="rentcarFORM" name="rentcarFORM" value="theChoiceCopy">
                 <input type="text" class="" id="TOTALFORM" name="TOTALFORM" value="theChoiceCopy">
-
+            </div>
                 <button onclick="putValuesInForm()" type="button" class="fs-1 fw-bold p-3">CONFIRM</button>
             </form>
         </div>
@@ -208,22 +208,22 @@
 
         var price = 0;
         for (i=0;i<Object.keys(theChoices).length;i++) {
-            var tr = document.createElement("tr");
+            // var tr = document.createElement("tr");
             
-            var td = document.createElement("td");
-            var td2 = document.createElement("td");
+            // var td = document.createElement("td");
+            // var td2 = document.createElement("td");
 
-            if (Object.keys(theChoices)[i] != "TOTAL") {
-                var textnode = document.createTextNode((Object.keys(theChoices)[i]));
-                var textnode2 = document.createTextNode((Object.values(theChoices)[i]));
-            }
+            // if (Object.keys(theChoices)[i] != "TOTAL") {
+            //     var textnode = document.createTextNode((Object.keys(theChoices)[i]));
+            //     var textnode2 = document.createTextNode((Object.values(theChoices)[i]));
+            // }
 
-            td.appendChild(textnode);
-            td2.appendChild(textnode2);
+            // td.appendChild(textnode);
+            // td2.appendChild(textnode2);
 
-            tr.appendChild(td);
-            tr.appendChild(td2);
-            document.getElementById('results').appendChild(tr)
+            // tr.appendChild(td);
+            // tr.appendChild(td2);
+            // document.getElementById('results').appendChild(tr)
 
             var daysToPay = days_between(theChoices.from_date, theChoices.to_date);
             // console.log(daysToPay)
