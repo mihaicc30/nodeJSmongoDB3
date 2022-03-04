@@ -1,79 +1,98 @@
 <% include ./partials/header %> 
+<script> var theChoices = []; </script>
+<script> var theChoicesCopy = undefined; </script>
 
-<div class="card card-body text-center">
-    <h2 class="mt-2">1. Pick your hotel</h2>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<div class="farp card card-body text-center"> 
+    
+    <% include ./partials/messages %>
+    <h2 class="mt-2" id="choice1">1. Pick your hotel</h2>
     <div class="hotels card card-body flex-wrap flex-md-row gap-2 justify-content-center p-3">
-        <div class="card">
-            <div class="p-2 flex-grow-1 bd-highlight">
+        <!-- <div class="card">
+            <div class="hotelnames p-2 flex-grow-1 bd-highlight">
                 <h2>Test</h2>
-                <img src="/imgs/1.jpg" alt="" style="height:200px">
+                <img src="/imgs/fronthotel/birmingham.jpg" onclick="scrollzTo('2'); theChoices.hotel='test' " style="height:200px; cursor: pointer;">
             </div>
-        </div>  
+        </div>   -->
         <div class="card">
-            <div class="p-2 flex-grow-1 bd-highlight">
+            <div class="hotelnames p-2 flex-grow-1 bd-highlight">
                 <h2>London</h2>
-                <img src="/imgs/1.jpg" alt="" style="height:200px">
+                <img src="/imgs/fronthotel/london.jpg" onclick="scrollzTo('2'); theChoices.hotel='london' " style="height:200px; cursor: pointer;">
             </div>
         </div>  
         <div class="card">
-            <div class="p-2 flex-grow-1 bd-highlight">
+            <div class="hotelnames p-2 flex-grow-1 bd-highlight">
                 <h2>Gloucester</h2>
-                <img src="/imgs/1.jpg" alt="" style="height:200px">
+                <img src="/imgs/fronthotel/gloucester.jpg" onclick="scrollzTo('2'); theChoices.hotel='gloucester'" style="height:200px; cursor: pointer;">
             </div>
         </div>  
         <div class="card">
-            <div class="p-2 flex-grow-1 bd-highlight">
+            <div class="hotelnames p-2 flex-grow-1 bd-highlight">
                 <h2>Birmingham</h2>
-                <img src="/imgs/1.jpg" alt="" style="height:200px">
+                <img src="/imgs/fronthotel/birmingham.jpg" onclick="scrollzTo('2'); theChoices.hotel='birmingham'" style="height:200px; cursor: pointer;">
             </div>
         </div>
         <div class="card">
-            <div class="p-2 flex-grow-1 bd-highlight">
+            <div class="hotelnames p-2 flex-grow-1 bd-highlight">
                 <h2>Manchester</h2>
-                <img src="/imgs/1.jpg" alt="" style="height:200px">
+                <img src="/imgs/fronthotel/manchester.jpg" onclick="scrollzTo('2'); theChoices.hotel='manchester'" style="height:200px; cursor: pointer;">
             </div>
         </div>
         
     </div>
 
     
-    <h2 class="mt-2">2. Pick your dates</h2>    
+    <h2 class="mt-2" id="choice2">2. Pick your dates</h2>    
     
-    <div class="card card-body d-flex flex-row justify-content-center p-2">
+    <div class="datepicker card card-body d-flex justify-content-center py-4 fs-4 gap-2">
         <div>
+            <script>
+                window.onload=()=>{
+                    var todaysDate = new Date().toISOString().slice(0, 10);
+                    document.getElementById('start').value = todaysDate;
+                    theChoices.from_date=todaysDate;
+
+                    
+                    var tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate()+1);
+
+                    document.getElementById('end').value = tomorrow.toISOString().slice(0, 10); 
+                    theChoices.to_date=tomorrow.toISOString().slice(0, 10)};
+            </script>
             <label for="start">Start date:</label>
-            <input type="date" id="start" name="trip-start"></div>
+            <input type="date" id="start" name="trip-start" value="" onchange="theChoices.from_date=value"></div>
         <div>
-            <label for="start">End date:</label>
-            <input type="date" id="end" name="trip-end"></div>
+            <label for="end">End date:</label>
+            <input type="date" id="end" name="trip-end" value="" onchange="scrollzTo('3');theChoices.to_date=value"></div>
 
     </div>
 
     
-    <h2 class="mt-2">3. Choose your options</h2>    
+    <h2 class="mt-2" id="choice3">3. Choose your options</h2>    
 
-    <div class="card card-body d-flex flex-column justify-content-center p-2 gap-2">
+    <div class="card card-body d-flex flex-column justify-content-center p-2 gap-2 py-4">
         <div class="card d-flex flex-row fs-5">
-            <div class="findaRoomHotelCard p-2 d-flex flex-grow-1 bd-highlight justify-content-center text-center gap-2">
+            <div class="findaRoomHotelCard p-2 d-flex flex-grow-1 bd-highlight justify-content-center text-center gap-2 p-1">
                 
-                <img src="/imgs/1.jpg" alt="" class="m-auto" style="max-height:200px; max-width: 300px;">
+                <img src="/imgs/rooms/1 (4).jpg" class="m-auto" style="max-height:200px; max-width: 300px;">
                 <ul class="findaRoomHotelCardList">
                     <h2>Single Room</h2>
                     <li>Free Toiletries</li>
                     <li>In room kettle</li>
                     <li>Daily change of towels</li>
-                    <li>attribute#</li>
-                    <li>attribute#</li>
+                    <li>Minibar</li>
+                    <li>Fridge</li>
                 </ul>
                 <ul class="findaRoomHotelCardList2">
                     <li><input type="checkbox" name="breakfast" id="breakfast"> Add breakfast?</li>
-                    <li><input type="checkbox" name="champagne" id="breakfast"> Champagne & chocolate?</li>
-                    <li><input type="checkbox" name="rentcar" id="breakfast"> Rent a car options?</li>
-                    <li><input type="checkbox" name="champagne" id="breakfast"> Champagne & chocolate?</li>
-                    <li><h3>Price of the day: £99.95</h2></li>
-                    <button type="submit" value="submit" class="py-2 px-4">Choose!</button>
-                </ul>
-                <ul>
+                    <li><input type="checkbox" name="champagne" id="champagne"> Champagne & chocolate?</li>
+                    <li><input type="checkbox" name="rentcar" id="rentcar"> Rent a car?</li>
+                    <li><h3>Price/day: £24.95<br>+Location Rate</h2></li>
+                    <button type="submit" value="submit" class="py-2 px-4"
+                    onclick ="scrollzTo('4');theChoices.roomType='single'; theChoices.breakfast=document.getElementById('breakfast').checked;
+                    theChoices.champagne=document.getElementById('champagne').checked;
+                    theChoices.rentcar=document.getElementById('rentcar').checked;showchoices()
+                    ">Choose!</button>
                 </ul>
             </div>
         </div>  
@@ -81,34 +100,173 @@
         <div class="card d-flex flex-row fs-5">
             <div class="findaRoomHotelCard p-2 d-flex flex-grow-1 bd-highlight justify-content-center text-center gap-2">
                 
-                <img src="/imgs/1.jpg" alt="" class="m-auto" style="max-height:200px; max-width: 300px;">
+                <img src="/imgs/rooms/1 (3).jpg" class="m-auto" style="max-height:200px; max-width: 300px;">
                 <ul class="findaRoomHotelCardList">
                     <h2>Double Room</h2>
-                    <li>attribute#</li>
-                    <li>attribute#</li>
-                    <li>attribute#</li>
-                    <li>attribute#</li>
-                    <li>attribute#</li>
+                    <li>Free Toiletries</li>
+                    <li>In room kettle</li>
+                    <li>Daily change of towels</li>
+                    <li>Minibar</li>
+                    <li>Fridge</li>
                 </ul>
                 <ul class="findaRoomHotelCardList2">
-                    <li><input type="checkbox" name="breakfast" id="breakfast"> Add breakfast?</li>
-                    <li><input type="checkbox" name="champagne" id="breakfast"> Champagne & chocolate?</li>
-                    <li><input type="checkbox" name="rentcar" id="breakfast"> Rent a car options?</li>
-                    <li><input type="checkbox" name="champagne" id="breakfast"> Champagne & chocolate?</li>
-                    <li><h3 class="mt-3">Price of the day: £129.95</h2></li>
-                    <button type="submit" value="submit" class="py-2 px-4">Choose!</button>
-                </ul>
-                <ul>
-                    
+                    <li><input type="checkbox" name="breakfast2" id="breakfast2"> Add breakfast?</li>
+                    <li><input type="checkbox" name="champagne2" id="champagne2"> Champagne & chocolate?</li>
+                    <li><input type="checkbox" name="rentcar2" id="rentcar2"> Rent a car?</li>
+                    <li><h3 class="mt-3">Price/day: £34.95 <br>+Location Rate</h2></li>
+                    <button type="submit" value="submit" class="py-2 px-4"
+                        onclick ="scrollzTo('4');theChoices.roomType='double'; theChoices.breakfast=document.getElementById('breakfast2').checked;
+                        theChoices.champagne=document.getElementById('champagne2').checked;
+                        theChoices.rentcar=document.getElementById('rentcar2').checked;showchoices()
+                        ">Choose!</button>
                 </ul>
             </div>
         </div>  
         <!-- -- -->
-        
-        
-        
-        
-
     </div>
 
+    
+    <h2 class="mt-2" id="choice4">4. Finalizing</h2>  
+    <!-- <button onclick="showchoices()" >show me the stuff</button> -->
+    <div class="results card card-body" > 
+        <table id="results" border="1px"></table>
+        <table id="resultsTOTAL" border="1px" class="fs-2 fw-bold">
+            <div class="spinnerContainer" id="spinnerContainer">
+                <div class="spinMe"></div>
+                <i class="fas fa-spinner"></i>
+            </div>
+        </table>
+        <!-- <button type="button" onclick="console.log(theChoicesCopy)">theChoicesCopy</button>
+        <button type="button" onclick="console.log(theChoices)">theChoices</button> -->
+        <div class="confirmButton p-4 mt-1" id="confirmButton">
+            <form action="/successfullbooking" method="post" id="confirmationButtonFORM">
+
+                <input type="text" class="" id="hotelUserName" name="hotelUserName" value="<%- user.name %>">
+                <input type="text" class="" id="hotelUserEmail" name="hotelUserEmail" value="<%- user.email %>">
+
+                <input type="text" class="" id="hotelFORM" name="hotelFORM" value="theChoiceCopy">
+                <input type="text" class="" id="from_dateFORM" name="from_dateFORM" value="theChoiceCopy">
+                <input type="text" class="" id="to_dateFORM" name="to_dateFORM" value="theChoiceCopy">
+                <input type="text" class="" id="roomTypeFORM" name="roomTypeFORM" value="theChoiceCopy">
+                <input type="text" class="" id="breakfastFORM" name="breakfastFORM" value="theChoiceCopy">
+                <input type="text" class="" id="champagneFORM" name="champagneFORM" value="theChoiceCopy">
+                <input type="text" class="" id="rentcarFORM" name="rentcarFORM" value="theChoiceCopy">
+                <input type="text" class="" id="TOTALFORM" name="TOTALFORM" value="theChoiceCopy">
+
+                <button onclick="putValuesInForm()" type="button" class="fs-1 fw-bold p-3">CONFIRM</button>
+            </form>
+        </div>
+        
+    </div>
+
+<script defer>
+    function putValuesInForm() {
+        var errors=[];
+
+        if (!theChoicesCopy || !theChoicesCopy.from_date || !theChoicesCopy.to_date || !theChoicesCopy.roomType) {
+            console.log("missing fields")
+
+        } else {
+            document.getElementById('hotelFORM').value = theChoicesCopy.hotel;
+            document.getElementById('from_dateFORM').value = theChoicesCopy.from_date;
+            document.getElementById('to_dateFORM').value = theChoicesCopy.to_date;
+            document.getElementById('roomTypeFORM').value = theChoicesCopy.roomType;
+            document.getElementById('breakfastFORM').value = theChoicesCopy.breakfast;
+            document.getElementById('champagneFORM').value = theChoicesCopy.champagne;
+            document.getElementById('rentcarFORM').value = theChoicesCopy.rentcar;
+            document.getElementById('TOTALFORM').value = theChoicesCopy.TOTAL;
+            
+            document.getElementById("confirmationButtonFORM").submit();
+            }
+        }
+
+    function days_between(date1, date2) {
+        aDay = 86400000,
+        diff = Math.floor(( Date.parse(date2) - Date.parse(date1) ) / aDay) ;
+        // console.log("days:",diff);
+        return diff
+
+        }
+
+        
+    function showchoices(){
+        document.getElementById("spinnerContainer").style.display = "none";
+        console.log(theChoices)
+
+        var elmtTable = document.getElementById('results');
+        var tableRows = elmtTable.getElementsByTagName('tr');
+        var rowCount = tableRows.length-1;
+        for (var x=rowCount; x>=0; x--) {
+        elmtTable.removeChild(tableRows[x]);
+        }
+
+
+        var price = 0;
+        for (i=0;i<Object.keys(theChoices).length;i++) {
+            var tr = document.createElement("tr");
+            
+            var td = document.createElement("td");
+            var td2 = document.createElement("td");
+
+            if (Object.keys(theChoices)[i] != "TOTAL") {
+                var textnode = document.createTextNode((Object.keys(theChoices)[i]));
+                var textnode2 = document.createTextNode((Object.values(theChoices)[i]));
+            }
+
+            td.appendChild(textnode);
+            td2.appendChild(textnode2);
+
+            tr.appendChild(td);
+            tr.appendChild(td2);
+            document.getElementById('results').appendChild(tr)
+
+            var daysToPay = days_between(theChoices.from_date, theChoices.to_date);
+            // console.log(daysToPay)
+            
+
+            // if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "test") {console.log("1a");price += (19.69*daysToPay)}; //testing purposes :)
+            if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "london") {price += (19.95*daysToPay)};
+            if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "gloucester") {price += (9.95*daysToPay)};
+            if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "manchester") {price += (14.95*daysToPay)};
+            if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "birmingham") {price += (14.95*daysToPay)};
+
+            if (Object.keys(theChoices)[i] == "roomType" && Object.values(theChoices)[i] === "single") {price += (24.95*daysToPay)};
+            if (Object.keys(theChoices)[i] == "roomType" && Object.values(theChoices)[i] === "double") {price += (34.95*daysToPay)};
+            
+            if (Object.keys(theChoices)[i] == "breakfast" && Object.values(theChoices)[i] === true) { price += (9.95*daysToPay)};
+            if (Object.keys(theChoices)[i] == "champagne" && Object.values(theChoices)[i] === true) { price += (19.95*daysToPay)};
+            if (Object.keys(theChoices)[i] == "rentcar" && Object.values(theChoices)[i] === true) { price += (29.95*daysToPay)};
+            
+            theChoices.TOTAL=price.toFixed(2);
+        }
+        
+        theChoicesCopy = theChoices;
+        theChoicesCopy.TOTAL = theChoices.TOTAL;
+        showTotalPrice();
+    };
+    function showTotalPrice() {
+
+        var elmtTable = document.getElementById('resultsTOTAL');
+        var tableRows = elmtTable.getElementsByTagName('tr');
+        var rowCount = tableRows.length-1;
+        for (var x=rowCount; x>=0; x--) {
+        elmtTable.removeChild(tableRows[x]);
+        }
+
+
+        // console.log(theChoicesCopy.TOTAL);
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        var td2 = document.createElement("td");
+
+        var textnode = document.createTextNode("TOTAL");
+        var textnode2 = document.createTextNode("£"+theChoicesCopy.TOTAL);
+        td.appendChild(textnode);
+        td2.appendChild(textnode2);
+        tr.appendChild(td);
+        tr.appendChild(td2);
+        document.getElementById('resultsTOTAL').appendChild(tr);
+        document.getElementById('confirmButton').style.visibility = "visible";
+    };
+</script>
 <% include ./partials/footer %>

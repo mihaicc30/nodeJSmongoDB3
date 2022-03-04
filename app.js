@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const app = express();
 
+const nodemailer = require('nodemailer');
 
 // Passport Config
 require('./config/passport')(passport);

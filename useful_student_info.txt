@@ -9,14 +9,15 @@ var dbdata = [
   ];
 
 <% dbdata.forEach(function(data) { %>
-        <li>
-          <strong><%= data.name %></strong> is living at <%= data.address %>, born in <%= data.age %>  looping over a list 
-        </li>
-      <% }); %>
+  <li>
+    <strong><%= data.name %></strong> is living at <%= data.address %>, born in <%= data.age %>  looping over a list 
+  </li>
+<% }); %>
 
 
 
 
+    <!-- <p><%- user.email %></p> -->
 
 
 

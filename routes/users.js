@@ -32,6 +32,7 @@ router.post('/checkbookings', function (req, res) {
   res.redirect('/bookings');
 });
 
+
 // Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
