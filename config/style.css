@@ -73,7 +73,7 @@ font-family: 'Lora', serif; */
 .findaRoomHotelCard > img:hover, .hotelnames > img:hover {
     z-index: 99;
     border-radius: 25%;
-    transform: scale(2);
+    transform: scale(1.4);
     transition: .5s ease-in-out;
 }
 #toTheTopBtn {
@@ -105,6 +105,14 @@ font-family: 'Lora', serif; */
     width: 4em;
     height: 4em;
     animation: spinMe 2s infinite cubic-bezier(0.18, 0.89, 0.01, 1.31);
+}
+.dataTableDB {
+    font-size: 1em;
+    font-weight: 800;
+}
+tbody, td, tfoot, th, thead, tr {
+    border-width: 1px;
+    border: 1px solid black;
 }
 
 @keyframes spinMe {

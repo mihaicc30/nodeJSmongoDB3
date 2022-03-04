@@ -8,8 +8,6 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const app = express();
 
-const nodemailer = require('nodemailer');
-
 // Passport Config
 require('./config/passport')(passport);
 
@@ -17,9 +15,30 @@ require('./config/passport')(passport);
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-mongoose.connect(db, { useNewUrlParser: true ,useUnifiedTopology: true})
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+mongoose.connect(db, { 
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false}).then(() => console.log('MongoDB Connected')).catch(err => console.log(err));
+
+// // Connect to MongoDB
+// const connectDB = async () => {
+//   try {
+//     await mongoose.connect(db, {
+//             useNewUrlParser: true,
+//             useUnifiedTopology: true,
+//             useFindAndModify: false,
+//             useCreateIndex: true
+//         });
+//         console.log('MongoDB connected!!');
+//       } catch (err) {
+//         console.log('Failed to connect to MongoDB', err);
+//     }
+// };
+
+// connectDB();
+
+
 
 // EJS
 app.use(expressLayouts);
@@ -46,6 +65,7 @@ app.use(flash());
 
 // Global variables
 app.use(function(req, res, next) {
+  res.locals.bookings_data = req.flash('bookings_data');
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');

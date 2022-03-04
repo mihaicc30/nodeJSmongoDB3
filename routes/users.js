@@ -13,23 +13,29 @@ const bookings = require('../config/key-gloucester-bookings').mongoURI;
 // checkbookings
 router.post('/checkbookings', function (req, res) {
   var { city, date } = req.body;
-  theDate = new Date()
-  thedate1 = theDate.getFullYear()
-  thedate2 = theDate.getMonth()
-  thedate3 = theDate.getDate()
-  console.log(city, date)
-  console.log(thedate1,thedate2,thedate3)
-
+  console.log(" looking for city and date >>>>> ",city, date)
+  the_data = {}
   mongoose.createConnection(bookings, { useNewUrlParser: true, useUnifiedTopology: true }, (err, bookings) => {
     if (err) { console.log(err) }
-    bookings.collection("101").find().toArray(function(err, result) {
-      if (err) throw err;
+
+    bookings.collection(city).find({ fromDate: date }).toArray(function(err, result) {
+      if (err) { console.log(err) }
       
+      the_data=result;
+
       console.log(result);
       db.close();
+      // console.log("dataz>>>> ", the_data[0]["hotel"])
+      // console.log(the_data.length)
+
+      req.flash(
+        'bookings_data',
+        the_data
+      );
+      
+      res.redirect('/bookings');
     });
   });
-  res.redirect('/bookings');
 });
 
 
@@ -92,14 +98,11 @@ router.post('/register', (req, res) => {
             newUser.name = name.toUpperCase();
             newUser.car = car.toUpperCase();
             newUser
-              .save()
-              .then(user => {
-                req.flash(
-                  'success_msg',
-                  'You are now registered and can log in'
-                );
-                res.redirect('/users/login');
-              })
+            .save()
+            .then(user => {
+              req.flash('success_msg', 'You are now registered and can log in' );
+              res.redirect('/users/login');
+             })
               .catch(err => console.log(err));
           });
         });

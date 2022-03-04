@@ -3,16 +3,57 @@
   <div class="card d-flex flex-column align-items-center text-center" style="height:60vh;">
     <form action="/users/checkbookings" method="post">
       <div class="dropdown">
+
         <select name="city" id="city" class="m-1 fs-3" style="padding: 18px">
           <!-- <option disabled selected value> -- select city -- </option> -->
-          <option value="gloucester">Gloucester</option>
           <option value="london">London</option>
+          <option value="gloucester">Gloucester</option>
           <option value="birmingham">Birmingham</option>
           <option value="manchester">Manchester</option>
         </select>
+
+
         <input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px">
+        <script>
+          var todaysDate = new Date().toISOString().slice(0, 10);
+          document.getElementById('date').value = todaysDate;
+        </script>
+
 
         <button type="submit" id="xxx" class="m-1 px-4 py-1 fs-2">Search</button>
+
+        <div class="table-responsive-xxl fs-4 ">
+          <table class="dataTableDB table card card-body text-center ">
+            <th class="dataTableDBth">
+              <tr style="column-span: 8;">Results</tr> <!-- why is this happening.. need this to align the table -->
+              <td>Location</td>
+              <td>Check in</td>
+              <td>Check out</td>
+              <td>Room type</td>
+              <td>breakfast</td>
+              <td>champagne</td>
+              <td>car</td>
+              <td>to pay</td>
+            </th>
+            
+
+
+          <% bookings_data.forEach(function(data) { %>
+            <tr>
+              <td><%= data.hotel %> </td>
+              <td><%= data.fromDate %> </td>
+              <td><%= data.toDate %> </td>
+              <td><%= data.roomType %> </td>
+              <td><%= data.extras.breakfast %> </td>
+              <td><%= data.extras.champagne %> </td>
+              <td><%= data.extras.car %> </td>
+              <td>£<%= data.total %> </td>
+           </tr>
+          <% }); %>
+
+        </table>
+
+        </div>
       </div>
       <!-- db.["101"].find() db use gloucester -->
     </form>
