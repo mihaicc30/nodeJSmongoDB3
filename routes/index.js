@@ -20,7 +20,7 @@ router.get('/bookings', (req, res) => // , ensureAuthenticated
 router.get('/', forwardAuthenticated, (req, res) => res.render('landing'));
 
 // Contact Form
-router.post('/contact', function (req, res) {
+router.post('/contact', function (req, res) {   
   var { name, email, telephone, comment, city } = req.body;
 
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
@@ -38,18 +38,11 @@ router.post('/contact', function (req, res) {
       db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment, date: new Date() } )
         req.flash('success_msg', 'Thank you for contacting us. You message has been successfully sent to QualityB&B in ' + city + '!');
         res.redirect('/contact')
-
-// -------------------------------------------------
-
-
-
-
-
         }
     })
 })
 // successfullbooking get
-router.get('/successfullbooking', (req, res) => //, ensureAuthenticated
+router.get('/successfullbooking', ensureAuthenticated, (req, res) => //, ensureAuthenticated
   res.render('successfullbooking', {
     user: req.user
   })
@@ -85,7 +78,7 @@ router.post('/successfullbooking', function (req, res) {
         }
       });
 
-      var emailMsg = "This is a confirmation email.\nThank you for booking with QualityHotel "+(hotelFORM.toUpperCase())+"! \nJust to confirm, your stay will be from "+from_dateFORM+" until "+to_dateFORM+" in our "+roomTypeFORM+" room.\nMore details will be provided at the reception and we apologize we only take payments on arrival ( cash or card ).\nWishing you a pleasant stay and let us know if you require anything else!\nKind regards,\nQualityHotel Reception\n"+hotelFORM.toUpperCase();
+      var emailMsg = "This is a confirmation email.\nThank you for booking with QualityHotel "+(hotelFORM.toUpperCase())+"! \nJust to confirm, your stay will be from "+from_dateFORM+" until "+to_dateFORM+" in our "+roomTypeFORM+" room.\nMore details will be provided at the reception and we apologize we only take payments on arrival.\nWishing you a pleasant stay and let us know if you require anything else!\nKind regards,\nQualityHotel Reception\n"+hotelFORM.toUpperCase();
 
 
       var mailOptions = {
@@ -108,18 +101,16 @@ router.post('/successfullbooking', function (req, res) {
 })
 
 // Index
-router.get('/index', (req, res) => //, ensureAuthenticated
+router.get('/index', ensureAuthenticated, (req, res) => //, ensureAuthenticated
   res.render('index', {
     user: req.user
   })
 );
 var theChoices = [];
 // Find a Room
-router.get('/findaroom', (req, res) => // , ensureAuthenticated
+router.get('/findaroom', ensureAuthenticated, (req, res) => // , ensureAuthenticated
   res.render('findaroom', {
-    user: req.user,
-    theChoices: theChoices
-    
+    user: req.user
   })
 );
 // About
@@ -135,7 +126,7 @@ router.get('/faq', ensureAuthenticated, (req, res) =>
   })
 );
 // Contact
-router.get('/contact', ensureAuthenticated, (req, res) => 
+router.get('/contact', (req, res) =>   //leaving this on purpose without ensureAuthenticated
   res.render('contact', {
     user: req.user
   })
