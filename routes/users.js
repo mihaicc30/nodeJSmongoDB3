@@ -7,33 +7,55 @@ const passport = require('passport');
 const User = require('../models/User')
 const { forwardAuthenticated } = require('../config/auth');
 const { db } = require('../models/User');
-const bookings = require('../config/key-gloucester-bookings').mongoURI;
+const bookings = require('../config/key-bookingform').mongoURI;
+const messagesDB = require('../config/key-contactform').mongoURI;
 
 
-// checkbookings
+// check bookings
 router.post('/checkbookings', function (req, res) {
   var { city, date } = req.body;
-  console.log(" looking for city and date >>>>> ",city, date)
-  the_data = {}
   mongoose.createConnection(bookings, { useNewUrlParser: true, useUnifiedTopology: true }, (err, bookings) => {
     if (err) { console.log(err) }
 
     bookings.collection(city).find({ fromDate: date }).toArray(function(err, result) {
       if (err) { console.log(err) }
-      
-      the_data=result;
-
-      console.log(result);
-      db.close();
-      // console.log("dataz>>>> ", the_data[0]["hotel"])
-      // console.log(the_data.length)
-
+      the_data = {}
+      if (!result) { the_data={"found_data":false} }
+      if (result.length === 0) { the_data={"found_data":false} }
+      if (result.length > 0) { the_data=result }
+      // console.log(result);
+      // console.log("dataz>>>> ", the_data)
+      // console.log(the_data)
       req.flash(
         'bookings_data',
         the_data
       );
       
       res.redirect('/bookings');
+    });
+  });
+});
+
+// check messages
+router.post('/checkmessages', function (req, res) {
+  var { city } = req.body;
+  mongoose.createConnection(messagesDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, messagesDB) => {
+    if (err) { console.log(err) }
+
+    messagesDB.collection(city).find().sort({ date: -1 }).toArray(function(err, result) {
+      if (err) { console.log(err) }
+      the_data = {}
+      if (!result) { the_data={"found_data":false} }
+      if (result.length === 0) { the_data={"found_data":false} }
+      the_data=result;
+      // console.log(result);
+      // console.log("dataz>>>> ", the_data[0]["hotel"])
+      req.flash(
+        'bookings_data',
+        the_data
+      );
+      
+      res.redirect('/messages');
     });
   });
 });

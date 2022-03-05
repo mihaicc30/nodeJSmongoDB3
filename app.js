@@ -1,5 +1,11 @@
 const dev_mode = true;
 
+/////////////////////
+/////////////////////   to fix>>no results on bookings + messages
+/////////////////////
+/////////////////////
+/////////////////////
+
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
@@ -15,30 +21,14 @@ require('./config/passport')(passport);
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-mongoose.connect(db, { 
+mongoose.connect(db, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false}).then(() => console.log('MongoDB Connected')).catch(err => console.log(err));
-
-// // Connect to MongoDB
-// const connectDB = async () => {
-//   try {
-//     await mongoose.connect(db, {
-//             useNewUrlParser: true,
-//             useUnifiedTopology: true,
-//             useFindAndModify: false,
-//             useCreateIndex: true
-//         });
-//         console.log('MongoDB connected!!');
-//       } catch (err) {
-//         console.log('Failed to connect to MongoDB', err);
-//     }
-// };
-
-// connectDB();
-
-
+  useFindAndModify: false
+})
+.then(() => console.log('MongoDB Connected'))
+.catch(err => console.log(err));
 
 // EJS
 app.use(expressLayouts);

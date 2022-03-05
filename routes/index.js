@@ -10,10 +10,17 @@ var nodemailer = require('nodemailer');
 // Admin - Bookings
 router.get('/bookings', (req, res) => // , ensureAuthenticated
   res.render('bookings', {
-    user: req.user
+    user: req.user,
   })
 );
 
+
+// Admin - Messages
+router.get('/messages', (req, res) => // , ensureAuthenticated
+  res.render('messages', {
+    user: req.user
+  })
+);
 
 
 // Home Page
