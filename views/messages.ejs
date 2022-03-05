@@ -1,4 +1,5 @@
 <% include ./partials/header %>
+  <script>var bookings_data = {} </script>
 
   <div class="card d-flex flex-column align-items-center text-center">
     <form action="/users/checkmessages" method="post">
@@ -21,26 +22,26 @@
 
       </div>
     </form>
-    
-  
-    <table class="table dataTableDB table-xxl card card-body text-center ">
-      <h1> </h1>
+
+
+    <table class="dataTableDB table card card-body text-center ">
       <tr class="dataTableDBth">
-        <td>User Data</td>
+        <td>User Data</td> 
         <td>Message</td>
       </tr>
-      
-    <% bookings_data.forEach(function(data) { %>
-      <tr>
-        <td><%= data.name %> <br> <%= data.email %> <br><%= data.telephone %> <br><%= data.date.slice(0,10) %></td>
 
-        <td><%= data.comment %> </td>
-     </tr>
-    <% }); %>
-
-  </table>
+      <% bookings_data.forEach(function(data) { %>
+        <% if(data.found_data==false) {%>
+          
+          </table>
+          <h1> no data found </h1>
+          <% } else {%>
+            <tr>
+              <td><%= data.name %> <br> <%= data.email %> <br> <%= data.telephone %> <br> <%= data.date.slice(0,10) %></td>
+              <td><%= data.comment %> </td>
+            </tr>
+            <% } })%>
+    </table>
 
   </div>
   <% include ./partials/footer %>
-
-  

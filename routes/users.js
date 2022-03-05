@@ -20,6 +20,7 @@ router.post('/checkbookings', function (req, res) {
     bookings.collection(city).find({ fromDate: date }).toArray(function(err, result) {
       if (err) { console.log(err) }
       the_data = {}
+      
       if (!result) { the_data={"found_data":false} }
       if (result.length === 0) { the_data={"found_data":false} }
       if (result.length > 0) { the_data=result }
@@ -45,16 +46,17 @@ router.post('/checkmessages', function (req, res) {
     messagesDB.collection(city).find().sort({ date: -1 }).toArray(function(err, result) {
       if (err) { console.log(err) }
       the_data = {}
+
       if (!result) { the_data={"found_data":false} }
       if (result.length === 0) { the_data={"found_data":false} }
-      the_data=result;
+      
+      if (result.length > 0) { the_data=result }
       // console.log(result);
       // console.log("dataz>>>> ", the_data[0]["hotel"])
       req.flash(
         'bookings_data',
         the_data
       );
-      
       res.redirect('/messages');
     });
   });

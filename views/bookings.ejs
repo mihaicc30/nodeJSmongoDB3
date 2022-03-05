@@ -1,4 +1,5 @@
 <% include ./partials/header %>
+<script>var bookings_data = {} </script>
 
   <div class="card d-flex flex-column align-items-center text-center" style="height:60vh;">
     <form action="/users/checkbookings" method="post">
@@ -34,11 +35,12 @@
               <td>to pay</td>
             </tr>
 
-        
-
             <% bookings_data.forEach(function(data) { %>
-              
-              <tr>
+              <% if(data.found_data == false) {%>
+                </table>
+                <h1> no data found </h1>
+                <% } else {%>
+                  <tr>
                 <td><%= data.hotel %></td>
                 <td><%= data.fromDate %></td>
                 <td><%= data.toDate %></td>
@@ -48,8 +50,8 @@
                 <td><%= data.extras.car %></td>
                 <td>£<%= data.total %></td>
               </tr>
-              <% }); %>
-
+              <% 
+             } })%>
           </table>
 
         </div>

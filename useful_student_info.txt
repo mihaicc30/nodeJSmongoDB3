@@ -19,16 +19,36 @@ var dbdata = [
 
     <!-- <p><%- user.email %></p> -->
 
-
-
-
-
-
-
-
-
-
       //////////////
       ////////////////
       npm install -g nodemon
       ////////////
+
+
+
+
+
+
+
+
+      
+            <%= if (bookings_data[0]["found_data"] = false) {console.log("its false")} %>
+            
+            <% if (bookings_data[0]["found_data"] != false) { %>
+              <p> valid!!!</p>
+              <%} else { %>
+              <p> Not Allowed </p>
+              <% } %>
+
+            <% bookings_data.forEach(function(data) { %>
+              <tr>
+                <td><%= data.hotel %></td>
+                <td><%= data.fromDate %></td>
+                <td><%= data.toDate %></td>
+                <td><%= data.roomType %></td>
+                <td><%= data.extras.breakfast %></td>
+                <td><%= data.extras.champagne %></td>
+                <td><%= data.extras.car %></td>
+                <td>£<%= data.total %></td>
+              </tr>
+              <% }); %>
