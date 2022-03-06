@@ -57,7 +57,7 @@ router.get('/successfullbooking', ensureAuthenticated, (req, res) => //, ensureA
 // successfullbooking post
 router.post('/successfullbooking', function (req, res) {
 
-  var { hotelFORM, from_dateFORM, to_dateFORM, roomTypeFORM, breakfastFORM, champagneFORM, rentcarFORM, TOTALFORM, hotelUserName, hotelUserEmail} = req.body;
+  var { hotelFORM, from_dateFORM, to_dateFORM, roomTypeFORM, breakfastFORM, champagneFORM, rentcarFORM, TOTALFORM, hotelUserName, hotelUserEmail,hotelUserPhone} = req.body;
   // console.log(hotelFORM, from_dateFORM, to_dateFORM, roomTypeFORM, breakfastFORM, champagneFORM, rentcarFORM, TOTALFORM);
   
   mongoose.createConnection(db2, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db2) => {
@@ -73,9 +73,13 @@ router.post('/successfullbooking', function (req, res) {
 
     else {
       // console.log(hotelFORM, from_dateFORM, to_dateFORM, roomTypeFORM, breakfastFORM, champagneFORM, rentcarFORM, TOTALFORM);
-      db2.collection(hotelFORM).insertOne({ hotel:hotelFORM, fromDate:from_dateFORM, toDate:to_dateFORM, roomType:roomTypeFORM, extras:{breakfast:breakfastFORM, champagne:champagneFORM, car:rentcarFORM}, total:TOTALFORM, date: new Date() } )
-      // console.log("success");
-      req.flash('success_msg', 'Thank you for booking with us! Check your email for a confirmation! Kind regards, QualityHotel');
+      if (breakfastFORM.valueOf() == "true") { var needBreakfast = "breakfast"} else { var needBreakfast = ""};
+      if (champagneFORM.valueOf() == "true") { var needChampagne = "champagne"} else { var needChampagne = ""};
+      if (rentcarFORM.valueOf() == "true") { var needCar = "car"} else { var needCar = ""};
+
+      db2.collection(hotelFORM).insertOne({ customer:hotelUserName, customerEmail:hotelUserEmail, customerPhone:hotelUserPhone, hotel:hotelFORM, fromDate:from_dateFORM, toDate:to_dateFORM, roomType:roomTypeFORM, extras:{breakfast:needBreakfast, champagne:needChampagne, car:needCar}, total:TOTALFORM, date: new Date() } )
+
+      req.flash('success_msg', 'Thank you '+hotelUserName+' for booking with us! Check your email for a confirmation! Kind regards, QualityHotel');
       res.redirect('/successfullbooking')
       var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -85,24 +89,23 @@ router.post('/successfullbooking', function (req, res) {
         }
       });
 
-      var emailMsg = "This is a confirmation email.\nThank you for booking with QualityHotel "+(hotelFORM.toUpperCase())+"! \nJust to confirm, your stay will be from "+from_dateFORM+" until "+to_dateFORM+" in our "+roomTypeFORM+" room.\nMore details will be provided at the reception and we apologize we only take payments on arrival.\nWishing you a pleasant stay and let us know if you require anything else!\nKind regards,\nQualityHotel Reception\n"+hotelFORM.toUpperCase();
+      var emailMsg = " Email for "+hotelUserEmail+"\n \n \nThis is a confirmation email.\nThank you for booking with QualityHotel "+(hotelFORM.toUpperCase())+"! \n \nJust to confirm, your stay will be from "+from_dateFORM+" until "+to_dateFORM+" in our "+roomTypeFORM+" room.\nMore details will be provided at the reception and we apologize we only take payments on arrival.\n \nWishing you a pleasant stay and let us know if you require anything else!\n \n \nKind regards,\nQualityHotel Reception\n"+hotelFORM.toUpperCase();
 
 
       var mailOptions = {
         from: 'mihaisolent@gmail.com',
-        to: 'alemihai25@gmail.com',
-        cc: ''+hotelUserEmail+'',
-        subject: 'QualityHotel - Booking Confirmation',
+        to: 'mihaisolent@gmail.com',
+        subject: 'QualityHotel - Booking Confirmation '+(new Date().toISOString().slice(0, 10)),
         text: emailMsg
       };
 
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
+      // transporter.sendMail(mailOptions, function(error, info){
+      //   if (error) {
+      //     console.log(error);
+      //   } else {
+      //     console.log('Email sent: ' + info.response);
+      //   }
+      // });
         }
     })
 })

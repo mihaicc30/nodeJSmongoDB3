@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  car: {
+  phone: {
     type: String,
     required: true
   },

@@ -16,12 +16,12 @@
                     <input type="email" name="email2" placeholder="changing email?" value="<%-user.email %>" readonly>
                 </div>
                 <div class="card card-body mt-2 py-2 px-1 " style="box-shadow: 6px 8px 13px 3px black;">
-                    <label for="car2">Car</label>
-                    <input type="text" name="car2" placeholder="changing car?" value="<%-user.car %>" readonly>
+                    <label for="phone2">Phone</label>
+                    <input type="text" name="phone2" placeholder="changing phone?" value="<%-user.phone %>" readonly>
                 </div>
                 <div class="card card-body mt-2 py-2 px-1 visually-hidden" style="box-shadow: 6px 8px 13px 3px black;">
-                    <label for="created2">Car</label>
-                    <input type="text" name="created2" placeholder="changing car?" value="<%-user.date %>" readonly>
+                    <label for="created2">Phone</label>
+                    <input type="text" name="created2" placeholder="changing phone?" value="<%-user.date %>" readonly>
                 </div>
 
                 <h2 class="mt-5 text-center ">Change details?</h2>
@@ -35,8 +35,8 @@
                     <input type="email" name="email" placeholder="changing email?" value="<%-user.email %>" required minlength="6" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                 </div>
                 <div class="card card-body mt-2 py-2 px-1 " style="box-shadow: 6px 8px 13px 3px black;">
-                    <label for="car">Car</label>
-                    <input type="text" name="car" placeholder="changing car?" value="<%-user.car %>" required minlength="2">
+                    <label for="phone">Phone</label>
+                    <input type="text" name="phone" placeholder="changing phone?" value="<%-user.phone %>" required minlength="2">
                 </div>
                 <div class="card card-body mt-2 py-2 px-1 " style="box-shadow: 6px 8px 13px 3px black;">
                     <label for="password">Password</label>
@@ -54,8 +54,8 @@
                 <form action="/users/delete" method="POST">
 
                     <div class="card card-body mt-2 py-2 px-1 visually-hidden">
-                        <label for="email">Car</label>
-                        <input type="text" name="email" placeholder="changing car?" value="<%-user.email %>" readonly>
+                        <label for="email">Phone</label>
+                        <input type="text" name="email" placeholder="changing phone?" value="<%-user.email %>" readonly>
                     </div>
 
                     <button class="py-3 px-4 mt-1 " type="submit"

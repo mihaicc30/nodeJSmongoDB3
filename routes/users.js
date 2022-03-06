@@ -17,7 +17,7 @@ router.post('/checkbookings', function (req, res) {
   mongoose.createConnection(bookings, { useNewUrlParser: true, useUnifiedTopology: true }, (err, bookings) => {
     if (err) { console.log(err) }
 
-    bookings.collection(city).find({ fromDate: date }).toArray(function(err, result) {
+    bookings.collection(city).find({ fromDate: date }).sort({ date: -1 }).toArray(function(err, result) {
       if (err) { console.log(err) }
       the_data = {}
       
@@ -71,10 +71,10 @@ router.get('/register', forwardAuthenticated, (req, res) => res.render('register
 
 // Register
 router.post('/register', (req, res) => {
-  const { name, email, car, password, password2 } = req.body;
+  const { name, email, phone, password, password2 } = req.body;
   let errors = [];
 
-  if (!name || !email || !password || !password2 || !car) {
+  if (!name || !email || !password || !password2 || !phone) {
     errors.push({ msg: 'Please enter all fields' });
   }
 
@@ -110,7 +110,7 @@ router.post('/register', (req, res) => {
         const newUser = new User({
           name,
           email,
-          car,
+          phone,
           password
         });
 
@@ -120,7 +120,6 @@ router.post('/register', (req, res) => {
             newUser.password = hash;
             newUser.date = date_created;
             newUser.name = name.toUpperCase();
-            newUser.car = car.toUpperCase();
             newUser
             .save()
             .then(user => {
@@ -153,12 +152,12 @@ router.get('/logout', (req, res) => {
 
 // Update
 router.post('/update', (req, res) => {
-  const { email2, created2, name, email, car, password } = req.body;
+  const { email2, created2, name, email, phone, password } = req.body;
 
   let errors = [];
   creation_date = created2;
 
-  if (!name || !email || !car || !password) {
+  if (!name || !email || !phone || !password) {
     errors.push({ msg: 'Please enter all fields' });
   }
 
@@ -168,7 +167,7 @@ router.post('/update', (req, res) => {
 
   if (errors.length > 0) {
     res.render('myprofile', {
-      errors, name, email, car, password
+      errors, name, email, phone, password
     });
   } else {
 
@@ -178,7 +177,7 @@ router.post('/update', (req, res) => {
     const newUser = new User({
       name,
       email,
-      car,
+      phone,
       password
     });
 
@@ -188,7 +187,6 @@ router.post('/update', (req, res) => {
         newUser.password = hash;
         newUser.date = creation_date;
         newUser.name = name.toUpperCase();
-        newUser.car = car.toUpperCase();
         newUser.save().then(user => {
           req.flash(
             'success_msg',

@@ -145,9 +145,10 @@
         <button type="button" onclick="console.log(theChoices)">theChoices</button> -->
         <div class="confirmButton p-4 mt-1" id="confirmButton">
             <form action="/successfullbooking" method="post" id="confirmationButtonFORM">
-                <div style="display: none;">
+                <div style="display: block;">
                 <input type="text" class="" id="hotelUserName" name="hotelUserName" value="<%- user.name %>">
                 <input type="text" class="" id="hotelUserEmail" name="hotelUserEmail" value="<%- user.email %>">
+                <input type="text" class="" id="hotelUserPhone" name="hotelUserPhone" value="<%- user.phone %>">
 
                 <input type="text" class="" id="hotelFORM" name="hotelFORM" value="theChoiceCopy">
                 <input type="text" class="" id="from_dateFORM" name="from_dateFORM" value="theChoiceCopy">
@@ -196,7 +197,6 @@
         
     function showchoices(){
         document.getElementById("spinnerContainer").style.display = "none";
-        console.log(theChoices)
 
         var elmtTable = document.getElementById('results');
         var tableRows = elmtTable.getElementsByTagName('tr');

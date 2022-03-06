@@ -1,10 +1,9 @@
 <% include ./partials/header %>
 <script>var bookings_data = {} </script>
 
-  <div class="card d-flex flex-column align-items-center text-center" style="height:60vh;">
+  <div class="card d-flex flex-column align-items-center text-center">
     <form action="/users/checkbookings" method="post">
       <div class="dropdown">
-
         <select name="city" id="city" class="m-1 fs-3" style="padding: 18px">
           <!-- <option disabled selected value> -- select city -- </option> -->
           <option value="london">London</option>
@@ -12,51 +11,43 @@
           <option value="birmingham">Birmingham</option>
           <option value="manchester">Manchester</option>
         </select>
-
-
         <input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px">
         <script>
           var todaysDate = new Date().toISOString().slice(0, 10);
           document.getElementById('date').value = todaysDate;
         </script>
-
         <button type="submit" id="xxx" class="m-1 px-4 py-1 fs-2">Search</button>
-
-        <div class="table-responsive-xxl fs-4 ">
-          <table class="dataTableDB table card card-body text-center ">
-            <tr class="dataTableDBth">
-              <td>Location</td>
-              <td>Check in</td>
-              <td>Check out</td>
-              <td>Room type</td>
-              <td>breakfast</td>
-              <td>champagne</td>
-              <td>car</td>
-              <td>to pay</td>
-            </tr>
-
-            <% bookings_data.forEach(function(data) { %>
-              <% if(data.found_data == false) {%>
-                </table>
-                <h1> no data found </h1>
-                <% } else {%>
-                  <tr>
-                <td><%= data.hotel %></td>
-                <td><%= data.fromDate %></td>
-                <td><%= data.toDate %></td>
-                <td><%= data.roomType %></td>
-                <td><%= data.extras.breakfast %></td>
-                <td><%= data.extras.champagne %></td>
-                <td><%= data.extras.car %></td>
-                <td>£<%= data.total %></td>
-              </tr>
-              <% 
-             } })%>
-          </table>
-
-        </div>
       </div>
     </form>
+    
   </div>
+  <div class="table-responsive-xxl fs-4 m-auto">
+    <table class="dataTableDB table card card-body align-items-center">
+      <tr class="dataTableDBth">
+        <td>Customer</td>
+        <td>Location</td>
+        <td>Check in/out</td>
+        <td>Room type</td>
+        <td>extras</td>
+        <td>to pay</td>
+      </tr>
 
+      <% bookings_data.forEach(function(data) { %>
+        <% if(data.found_data == false) {%>
+          </table>
+          <h1> no data found </h1>
+          <% } else {%>
+            <tr>
+          <td><%= data.customer %> <br> <%= data.customerEmail %><br> <%= data.customerPhone %></td>
+          <td><%= data.hotel.toUpperCase() %></td>
+          <td><%= data.fromDate %> / <br> <%= data.toDate %></td>
+          <td><%= data.roomType %></td>
+          <td><%= data.extras.breakfast %><br><%= data.extras.champagne %><br><%= data.extras.car %></td>
+          <td>£<%= data.total %></td>
+        </tr>
+        <% 
+        } })%>
+    </table>
+
+  </div>
   <% include ./partials/footer %>
