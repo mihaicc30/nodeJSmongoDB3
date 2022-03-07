@@ -124,7 +124,7 @@ router.post('/register', (req, res) => {
             .save()
             .then(user => {
               req.flash('success_msg', 'You are now registered and can log in' );
-              res.redirect('/login');
+              res.redirect('/users/login');
              })
               .catch(err => console.log(err));
           });
@@ -138,7 +138,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/index',
-    failureRedirect: '/login',
+    failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
 });
@@ -192,7 +192,7 @@ router.post('/update', (req, res) => {
             'success_msg',
             'You profile has been updates. You can now log in with your new credentials.'
           );
-          res.redirect('/login');
+          res.redirect('/users/login');
         })
           .catch(err => console.log(err));
       });
@@ -208,7 +208,7 @@ router.post('/delete', (req, res) => {
     'success_msg',
     'We are sad to see you go! Hopes for the best. Your profile has been deleted.'
   );
-  res.redirect('/login');
+  res.redirect('/users/login');
 })
 
 

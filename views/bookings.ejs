@@ -35,7 +35,7 @@
       <% bookings_data.forEach(function(data) { %>
         <% if(data.found_data == false) {%>
           </table>
-          <h1> no data found </h1>
+          <h1 class="text-center"> no data found </h1>
           <% } else {%>
             <tr>
           <td><%= data.customer %> <br> <%= data.customerEmail %><br> <%= data.customerPhone %></td>
