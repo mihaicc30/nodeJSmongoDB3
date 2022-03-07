@@ -1,10 +1,11 @@
 <!-- very long page i know :d but was easier for me like this -->
 
 <% include ./partials/header %> 
-<script src="/config/script.js"></script>  
   
 <script> var theChoices = []; </script>
 <script> var theChoicesCopy = undefined; </script>
+
+<body onpageshow="scrollzTo('1')"></body>
 
 <button onclick="topFunction()" id="toTheTopBtn" title="Go to top">Top</button>
 <div class="farp card card-body text-center"> 
@@ -15,7 +16,7 @@
         <!-- <div class="card">
             <div class="hotelnames p-2 flex-grow-1 bd-highlight">
                 <h2>Test</h2>
-                <img src="/imgs/fronthotel/birmingham.jpg" onclick="scrollzTo('2'); theChoices.hotel='test' " style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh;">
+                <img src="/imgs/fronthotel/birmingham.jpg" onclick="scrollzTo('1'); theChoices.hotel='test' " style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh;">
             </div>
         </div>   -->
         <div class="card">
