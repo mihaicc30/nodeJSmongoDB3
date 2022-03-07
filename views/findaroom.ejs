@@ -91,7 +91,7 @@
                     <li><input type="checkbox" name="breakfast" id="breakfast"> Add breakfast?</li>
                     <li><input type="checkbox" name="champagne" id="champagne"> Champagne & chocolate?</li>
                     <li><input type="checkbox" name="rentcar" id="rentcar"> Rent a car?</li>
-                    <li><h3>Price/day: £24.95<br>+Location Rate</h2></li>
+                    <li><h3>Price/day: £24.95<br>+Location Rate<div class="info">i<li>£19.95 London<br>£14.95 Manchester<br>£14.95 Birmingham<br>£9.95  Gloucester</li></div></h2></li>
                     <button type="submit" value="submit" class="py-2 px-4"
                     onclick ="scrollzTo('4');theChoices.roomType='single'; theChoices.breakfast=document.getElementById('breakfast').checked;
                     theChoices.champagne=document.getElementById('champagne').checked;
@@ -117,7 +117,7 @@
                     <li><input type="checkbox" name="breakfast2" id="breakfast2"> Add breakfast?</li>
                     <li><input type="checkbox" name="champagne2" id="champagne2"> Champagne & chocolate?</li>
                     <li><input type="checkbox" name="rentcar2" id="rentcar2"> Rent a car?</li>
-                    <li><h3 class="mt-3">Price/day: £34.95 <br>+Location Rate</h2></li>
+                    <li><h3 class="mt-3">Price/day: £34.95 <br>+Location Rate<div class="info">i<li>£19.95 London<br>£14.95 Manchester<br>£14.95 Birmingham<br>£9.95  Gloucester</li></div></h2></li>
                     <button type="submit" value="submit" class="py-2 px-4"
                         onclick ="scrollzTo('4');theChoices.roomType='double'; theChoices.breakfast=document.getElementById('breakfast2').checked;
                         theChoices.champagne=document.getElementById('champagne2').checked;
@@ -132,7 +132,7 @@
     
     <h2 class="mt-2" id="choice4" loading="lazy">4. Finalizing</h2>  
     <!-- <button onclick="showchoices()" >show me the stuff</button> -->
-    <div class="results card card-body" loading="lazy"> 
+    <div class="results card card-body align-items-center" loading="lazy"> 
         <table id="results" border="1px"></table>
         <table id="resultsTOTAL" border="1px" class="fs-2 fw-bold">
             <div class="spinnerContainer" id="spinnerContainer">
@@ -145,7 +145,7 @@
         <button type="button" onclick="console.log(theChoices)">theChoices</button> -->
         <div class="confirmButton p-4 mt-1" id="confirmButton">
             <form action="/successfullbooking" method="post" id="confirmationButtonFORM">
-                <div style="display: block;">
+                <div style="display: none;">
                 <input type="text" class="" id="hotelUserName" name="hotelUserName" value="<%- user.name %>">
                 <input type="text" class="" id="hotelUserEmail" name="hotelUserEmail" value="<%- user.email %>">
                 <input type="text" class="" id="hotelUserPhone" name="hotelUserPhone" value="<%- user.phone %>">

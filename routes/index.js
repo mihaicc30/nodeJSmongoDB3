@@ -24,7 +24,7 @@ router.get('/messages', (req, res) => // , ensureAuthenticated
 
 
 // Home Page
-router.get('/', forwardAuthenticated, (req, res) => res.render('landing'));
+router.get('/', forwardAuthenticated, (req, res) => res.render('index'));
 
 // Contact Form
 router.post('/contact', function (req, res) {   

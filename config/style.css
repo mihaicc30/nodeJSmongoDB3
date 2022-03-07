@@ -149,6 +149,45 @@ tbody, td, tfoot, th, thead, tr {
     transform: scale(1.6);
     transition: .4s ease-in-out;
 }
+.info {
+    vertical-align: super;
+    cursor: pointer;
+    font-size: .6em;
+    background-color: rgb(192, 192, 192);
+    border-radius: 50%;
+    padding-left: 4px;
+    padding-right: 4px;
+    position: relative;
+    display: inline-block;
+    transform: translateY(-7px);
+}
+.info > li {
+    visibility: hidden;
+    width: 11em;
+    background-color: black;
+    color: #fff;
+    border-radius: 6px;
+    padding: 10px 17px;
+    position: absolute;
+    z-index: 1;
+    bottom: 200%;
+    margin-left: -60px;
+}
+.info, .info>li::after {
+    content: "";
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+.info:hover, .info:hover > li {
+    visibility: visible;
+}
+#resultsTOTAL tr td,#resultsTOTAL tr, #resultsTOTAL {
+    border: none;
+}
+#resultsTOTAL tr td:nth-child(2) {
+    font-size: 2em;
+}
 @media (max-width: 767px) {
     .head1 {
         display: flex;
