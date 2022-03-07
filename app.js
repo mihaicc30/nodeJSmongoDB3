@@ -63,10 +63,12 @@ app.use(function(req, res, next) {
 });
 
 // Routes
+app.use(express.static('../config'));
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/imgs', express.static('./imgs'))
-app.use('/config',express.static('./config'));
+app.use('/config', express.static('./config'))
+
 
 const PORT = process.env.PORT || 5555;
 app.listen(PORT, console.log(`Server running on ${PORT}`));

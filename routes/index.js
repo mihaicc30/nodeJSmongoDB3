@@ -8,7 +8,7 @@ var nodemailer = require('nodemailer');
 
 
 // Admin - Bookings
-router.get('/bookings', (req, res) => // , ensureAuthenticated
+router.get('/bookings', ensureAuthenticated, (req, res) => // 
   res.render('bookings', {
     user: req.user,
   })
@@ -16,7 +16,7 @@ router.get('/bookings', (req, res) => // , ensureAuthenticated
 
 
 // Admin - Messages
-router.get('/messages', (req, res) => // , ensureAuthenticated
+router.get('/messages', ensureAuthenticated, (req, res) => // 
   res.render('messages', {
     user: req.user
   })
@@ -55,7 +55,7 @@ router.get('/successfullbooking', ensureAuthenticated, (req, res) => //, ensureA
   })
 );
 // successfullbooking post
-router.post('/successfullbooking', function (req, res) {
+router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
 
   var { hotelFORM, from_dateFORM, to_dateFORM, roomTypeFORM, breakfastFORM, champagneFORM, rentcarFORM, TOTALFORM, hotelUserName, hotelUserEmail,hotelUserPhone} = req.body;
   // console.log(hotelFORM, from_dateFORM, to_dateFORM, roomTypeFORM, breakfastFORM, champagneFORM, rentcarFORM, TOTALFORM);
@@ -111,7 +111,7 @@ router.post('/successfullbooking', function (req, res) {
 })
 
 // Index
-router.get('/index', ensureAuthenticated, (req, res) => //, ensureAuthenticated
+router.get('/index', (req, res) => //, ensureAuthenticated
   res.render('index', {
     user: req.user
   })
@@ -124,19 +124,19 @@ router.get('/findaroom', ensureAuthenticated, (req, res) => // , ensureAuthentic
   })
 );
 // About
-router.get('/about', ensureAuthenticated, (req, res) =>
+router.get('/about', (req, res) => // , ensureAuthenticated
   res.render('about', {
     user: req.user
   })
 );
 // FAQ
-router.get('/faq', ensureAuthenticated, (req, res) =>
+router.get('/faq', (req, res) => // , ensureAuthenticated
   res.render('faq', {
     user: req.user
   })
 );
 // Contact
-router.get('/contact', (req, res) =>   //leaving this on purpose without ensureAuthenticated
+router.get('/contact', (req, res) =>   // , ensureAuthenticated  - leaving this on purpose without ensureAuthenticated
   res.render('contact', {
     user: req.user
   })
