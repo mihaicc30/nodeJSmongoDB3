@@ -188,6 +188,14 @@ tbody, td, tfoot, th, thead, tr {
 #resultsTOTAL tr td:nth-child(2) {
     font-size: 2em;
 }
+#contactSubmit:hover {
+    transition: .5s ease-in-out;
+    background-color: rgb(81, 130, 236);
+}
+#contactPhone:hover {
+    transition: .5s ease-in-out;
+    font-size: 1.4em;
+}
 @media (max-width: 767px) {
     .head1 {
         display: flex;
@@ -195,6 +203,9 @@ tbody, td, tfoot, th, thead, tr {
     }
     .datepicker {
         flex-direction: column;
+    }
+    #headz {
+        flex-direction: column-reverse!important;
     }
 }
 @media (max-width: 991px) {
