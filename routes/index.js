@@ -42,7 +42,7 @@ router.post('/contact', function (req, res) {
       res.redirect('/contact') }
 
     else {
-      db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment, location:city,date: new Date() } )
+      db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment, location:city, date: new Date()} )
         req.flash('success_msg', 'Thank you for contacting us. You message has been successfully sent to QualityB&B in ' + city + '!');
         res.redirect('/contact')
         }

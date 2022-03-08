@@ -227,6 +227,7 @@
             // document.getElementById('results').appendChild(tr)
 
             var daysToPay = days_between(theChoices.from_date, theChoices.to_date);
+            if(daysToPay <= 1) { daysToPay = 1}
             // console.log(daysToPay)
             
 

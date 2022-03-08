@@ -16,17 +16,21 @@ router.post('/checkbookings', function (req, res) {
   var { city, date } = req.body;
   mongoose.createConnection(bookings, { useNewUrlParser: true, useUnifiedTopology: true }, (err, bookings) => {
     if (err) { console.log(err) }
-
+    
+    // bookings.collection(city).aggregate([
+    //   { $addFields: {stringDate: { $dateToString: { format: "%Y-%m-%d", date: "$date" } } } },
+    //   { $match: {"stringDate":date}},
+    //   { $project:{"stringDate":0}}
+    //   ]).sort({ date: -1 }).toArray(function(err, result) {
+    //     if (err) { console.log(err) }  // new version of command, searches by date CREATED !important
+      
     bookings.collection(city).find({ fromDate: date }).sort({ date: -1 }).toArray(function(err, result) {
-      if (err) { console.log(err) }
+      if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important
       the_data = {}
       
       if (!result) { the_data={"found_data":false} }
       if (result.length === 0) { the_data={"found_data":false} }
       if (result.length > 0) { the_data=result }
-      // console.log(result);
-      // console.log("dataz>>>> ", the_data)
-      // console.log(the_data)
       req.flash(
         'bookings_data',
         the_data
@@ -39,11 +43,11 @@ router.post('/checkbookings', function (req, res) {
 
 // check messages
 router.post('/checkmessages', function (req, res) {
-  var { city } = req.body;
+  var { city, date } = req.body;
   mongoose.createConnection(messagesDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, messagesDB) => {
     if (err) { console.log(err) }
 
-    messagesDB.collection(city).find().sort({ date: -1 }).toArray(function(err, result) {
+    messagesDB.collection(city).find({ date: date }).sort({ date: -1 }).toArray(function(err, result) {
       if (err) { console.log(err) }
       the_data = {}
 
@@ -51,8 +55,6 @@ router.post('/checkmessages', function (req, res) {
       if (result.length === 0) { the_data={"found_data":false} }
       
       if (result.length > 0) { the_data=result;}
-      // console.log(result);
-      // console.log("dataz>>>> ", the_data[0]["hotel"])
       req.flash('bookings_data', the_data);
       res.redirect('/messages');
     });
