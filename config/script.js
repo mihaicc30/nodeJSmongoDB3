@@ -46,3 +46,12 @@ function rotateLogo() {
   logo.style.transform = "rotate(" + scrollPos + "deg)";
   }
 };
+
+function editBooking(name,email,telephone,location,checkin,checkout,roomtype,breakfast,champagne,car,topay){
+  alert("in progress", "values:",name,email,telephone,location,checkin,checkout,roomtype,breakfast,champagne,car,topay)
+}
+
+
+function setLoc(x) {
+   document.getElementById('messageLocation').innerText = x; 
+  }

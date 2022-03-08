@@ -16,7 +16,7 @@ router.get('/bookings', ensureAuthenticated, (req, res) => //
 
 
 // Admin - Messages
-router.get('/messages', ensureAuthenticated, (req, res) => // 
+router.get('/messages', ensureAuthenticated, (req, res) => //  , ensureAuthenticated
   res.render('messages', {
     user: req.user
   })
@@ -42,9 +42,78 @@ router.post('/contact', function (req, res) {
       res.redirect('/contact') }
 
     else {
-      db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment, date: new Date() } )
+      db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment, location:city,date: new Date() } )
         req.flash('success_msg', 'Thank you for contacting us. You message has been successfully sent to QualityB&B in ' + city + '!');
         res.redirect('/contact')
+        }
+    })
+})
+
+// Admin Form - Edit Contact Messages
+router.post('/messagesedit', ensureAuthenticated, function (req, res) {   
+  var { modalName, modalEmail,  modalTelephone,  modalDate, modalMessage, modalName2, modalEmail2,  modalTelephone2,  modalDate2, modalMessage2, messageLocation2 } = req.body;
+  messageLocation2 = messageLocation2.trim();
+
+  mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
+    if (err) { console.log(err) }
+
+    else {
+      db.collection(messageLocation2).updateOne(
+        { name:modalName2, email:modalEmail2,telephone:modalTelephone2, comment:modalMessage2 }, { $set: 
+        { name:modalName, email:modalEmail, telephone:modalTelephone, comment:modalMessage} } )
+        res.redirect('/messages')
+        }
+    })
+})
+
+// Admin Form - Delete Contact Messages
+router.post('/messagesdelete', ensureAuthenticated, function (req, res) {   
+  var { modalName, modalEmail,  modalTelephone,  modalDate, modalMessage, modalName2, modalEmail2,  modalTelephone2,  modalDate2, modalMessage2, messageLocation2 } = req.body;
+  messageLocation2 = messageLocation2.trim();
+
+  mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
+    if (err) { console.log(err) }
+
+    else {
+      db.collection(messageLocation2).deleteOne(
+        { name:modalName2, email:modalEmail2,telephone:modalTelephone2, comment:modalMessage2 })
+        res.redirect('/messages')
+        }
+    })
+})
+
+
+// Admin Form - Edit Bookings
+router.post('/bookingedit', ensureAuthenticated, function (req, res) {   
+  var { modalname,modalemail,modalhotel,modalcheckin,modalcheckout,modalroomtype,modalbreakfast,modalchampagne,modalcar,modaltotal,
+    modalname2,modalemail2,modalhotel2,modalcheckin2,modalcheckout2,modalroomtype2,modalbreakfast2,modalchampagne2,modalcar2,modaltotal2} = req.body;
+  city = modalhotel2.trim().toLowerCase();
+
+  mongoose.createConnection(db2, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db2) => {
+    if (err) { console.log(err) }
+
+    else {
+      db2.collection(city).updateOne(
+        { customer:modalname2,customerEmail:modalemail2,fromDate:modalcheckin2,toDate:modalcheckout2,roomType:modalroomtype2,extras:{breakfast:modalbreakfast2,champagne:modalchampagne2,car:modalcar2},total:modaltotal2 }, { $set: 
+        { name:modalname, email:modalemail, hotel:modalhotel, fromDate:modalcheckin, toDate:modalcheckout, roomType:modalroomtype, extras:{breakfast:modalbreakfast, champagne:modalchampagne, car:modalcar}, total:modaltotal} } )
+        res.redirect('/bookings')
+        }
+    })
+})
+
+// Admin Form - Delete Bookings
+router.post('/bookingdelete', ensureAuthenticated, function (req, res) {   
+  var { modalname,modalemail,modaltelephone,modalhotel,modalcheckin,modalcheckout,modalroomtype,modalbreakfast,modalchampagne,modalcar,modaltotal,
+    modalname2,modalemail2,modaltelephone2,modalhotel2,modalcheckin2,modalcheckout2,modalroomtype2,modalbreakfast2,modalchampagne2,modalcar2,modaltotal2} = req.body;
+  city = modalhotel2.trim().toLowerCase();
+
+  mongoose.createConnection(db2, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db2) => {
+    if (err) { console.log(err) }
+
+    else {
+      db2.collection(city).deleteOne(
+        { customer:modalname2,customerEmail:modalemail2,fromDate:modalcheckin2,toDate:modalcheckout2,roomType:modalroomtype2,extras:{breakfast:modalbreakfast2,champagne:modalchampagne2,car:modalcar2},total:modaltotal2 })
+        res.redirect('/bookings')
         }
     })
 })

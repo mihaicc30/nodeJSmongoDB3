@@ -50,13 +50,10 @@ router.post('/checkmessages', function (req, res) {
       if (!result) { the_data={"found_data":false} }
       if (result.length === 0) { the_data={"found_data":false} }
       
-      if (result.length > 0) { the_data=result }
+      if (result.length > 0) { the_data=result;}
       // console.log(result);
       // console.log("dataz>>>> ", the_data[0]["hotel"])
-      req.flash(
-        'bookings_data',
-        the_data
-      );
+      req.flash('bookings_data', the_data);
       res.redirect('/messages');
     });
   });

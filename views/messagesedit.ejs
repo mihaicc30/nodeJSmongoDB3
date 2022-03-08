@@ -1,6 +1,5 @@
 <% include ./partials/header %>
-  <script>var bookings_data = {};</script>
- 
+  <script>var bookings_data = {} </script>
 
   <div class="card d-flex flex-column align-items-center text-center">
     <form action="/users/checkmessages" method="post">
@@ -32,7 +31,6 @@
       </tr>
       <% var counter=1;%>
         <% bookings_data.forEach(function(data) { %>
-          <% if(counter <= 1) { %> <h1 id="messageLocation"> <%= bookings_data[0]['location'] %> </h1><% }     %> 
           <% if(data.found_data==false) {%>
 
     </table>
@@ -62,27 +60,19 @@
       </tr>
       <% } counter+=1; })%>
         </table>
-        
+
   </div>
 <div class="myModal" id="myModal">
 
-  <form method="post">
-    <input type="text" id="modalName2" name="modalName2" style="display: none;">
-    <input type="text" id="modalEmail2" name="modalEmail2" style="display: none;">
-    <input type="text" id="modalTelephone2" name="modalTelephone2" style="display: none;">
-    <input type="text" id="modalDate2" name="modalDate2" style="display: none;">
-    <input type="text" id="modalMessage2" name="modalMessage2" style="display: none;">
-    <input type="text" id="messageLocation2" name="messageLocation2" style="display: none;">
-
-    <input type="text" id="modalName" name="modalName">
-    <input type="text" id="modalEmail" name="modalEmail">
-    <input type="text" id="modalTelephone" name="modalTelephone">
-    <input type="text" id="modalDate" name="modalDate">
-    <input type="text" id="modalMessage" name="modalMessage">
-    <div class="d-flex flex-row" style="height:100px; background: transparent; justify-content: center; gap:1em; padding-left: 0px!important;">
+  <form action="" method="post">
+    <div type="text" id="modalName" name="modalName" contenteditable="true"></div>
+    <div type="text" id="modalEmail" name="modalEmail" contenteditable="true"></div>
+    <div type="text" id="modalTelephone" name="modalTelephone" contenteditable="true"></div>
+    <div type="text" id="modalDate" name="modalDate" contenteditable="true"></div>
+    <div type="text" id="modalMessage" name="modalMessage" contenteditable="true"></div>
+    <div class="d-flex flex-row" style="height:100px; background: transparent; justify-content: space-evenly; padding-left: 0px!important;">
       <button type="button" class="fs-5" style="padding: 1em 2em 1em 2em;" onclick="document.getElementById('myModal').style.display='none';"> Close </button>
-      <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(212, 63, 63);" formaction="/messagesdelete" > Delete </button>
-      <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(61, 189, 72);" formaction="/messagesedit" > Save </button>
+      <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(61, 189, 72);"> Save </button>
     </div>
   </form>
 </div>
@@ -94,23 +84,16 @@ function editMessage(counter) {
   modalTelephone = document.getElementById("telephone" + counter).innerText;
   modalDate = document.getElementById("date" + counter).innerText;
   modalMessage = document.getElementById("message" + counter).innerText;
-  document.getElementById("modalName").value = modalName;
-  document.getElementById("modalEmail").value = modalEmail;
-  document.getElementById("modalTelephone").value = modalTelephone;
-  document.getElementById("modalDate").value = modalDate;
-  document.getElementById("modalMessage").value = modalMessage;
 
-  
-  document.getElementById("modalName2").value = modalName;
-  document.getElementById("modalEmail2").value = modalEmail;
-  document.getElementById("modalTelephone2").value = modalTelephone;
-  document.getElementById("modalDate2").value = modalDate;
-  document.getElementById("modalMessage2").value = modalMessage;
-  document.getElementById("messageLocation2").value = document.getElementById("messageLocation").innerHTML;
+  document.getElementById("modalName").innerHTML = modalName;
+  document.getElementById("modalEmail").innerHTML = modalEmail;
+  document.getElementById("modalTelephone").innerHTML = modalTelephone;
+  document.getElementById("modalDate").innerHTML = modalDate;
+  document.getElementById("modalMessage").innerHTML = modalMessage;
   document.getElementById('myModal').style.display='block'
 }
 
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keyup', function(e) {
   if (e.keyCode == 27) {
     document.getElementById('myModal').style.display='none';
   }

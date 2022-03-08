@@ -31,23 +31,100 @@
         <td>extras</td>
         <td>to pay</td>
       </tr>
-
+      <% var counter=1;%>
       <% bookings_data.forEach(function(data) { %>
         <% if(data.found_data == false) {%>
           </table>
           <h1 class="text-center"> no data found </h1>
           <% } else {%>
             <tr>
-          <td><%= data.customer %> <br> <%= data.customerEmail %><br> <%= data.customerPhone %></td>
-          <td><%= data.hotel.toUpperCase() %></td>
-          <td><%= data.fromDate %> / <br> <%= data.toDate %></td>
-          <td><%= data.roomType %></td>
-          <td><%= data.extras.breakfast %><br><%= data.extras.champagne %><br><%= data.extras.car %></td>
-          <td>£<%= data.total %></td>
+          <td><div id="name<%=counter%>" class="name<%=counter%>"><%= data.customer %></div><div id="email<%=counter%>" class="email<%=counter%>"><%= data.customerEmail %></div></td>
+          <td><div id="hotel<%=counter%>" class="location<%=counter%>"><%= data.hotel.toUpperCase() %></div></td>
+          <td><div id="checkin<%=counter%>" class="checkin<%=counter%>"><%= data.fromDate %></div>/<div  id="checkout<%=counter%>" class="checkout<%=counter%>"><%= data.toDate %></div></td>
+          <td><div id="roomtype<%=counter%>" class="roomtype<%=counter%>"><%= data.roomType %></div></td>
+          <td><div id="breakfast<%=counter%>" class="breakfast<%=counter%>"><%= data.extras.breakfast %></div><div id="champagne<%=counter%>" class="champagne<%=counter%>"><%= data.extras.champagne %></div><div id="car<%=counter%>" class="car<%=counter%>"><%= data.extras.car %></div></td>
+          <td>£<div id="total<%=counter%>" class="total<%=counter%>"><%= data.total %></div></td>
+          <td><i class="fa fa-edit" style="cursor: pointer;" onclick="editMessage('<%=counter%>');"></i></td>
         </tr>
         <% 
-        } })%>
+        }  counter+=1; })%>
     </table>
 
   </div>
+<div class="myModal" id="myModal">
+  <form method="post">
+    <input type="text" id="modalname2" name="modalname2" style="display: none;">
+    <input type="text" id="modalemail2" name="modalemail2" style="display: none;">
+    <input type="text" id="modalhotel2" name="modalhotel2" style="display: none;">
+    <input type="text" id="modalcheckin2" name="modalcheckin2" style="display: none;">
+    <input type="text" id="modalcheckout2" name="modalcheckout2" style="display: none;">
+    <input type="text" id="modalroomtype2" name="modalroomtype2" style="display: none;">
+    <input type="text" id="modalbreakfast2" name="modalbreakfast2" style="display: none;">
+    <input type="text" id="modalchampagne2" name="modalchampagne2" style="display: none;">
+    <input type="text" id="modalcar2" name="modalcar2" style="display: none;">
+    <input type="text" id="modaltotal2" name="modaltotal2" style="display: none;">
+
+    <input type="text" id="modalname" name="modalname">
+    <input type="text" id="modalemail" name="modalemail">
+    <input type="text" id="modalhotel" name="modalhotel">
+    <input type="text" id="modalcheckin" name="modalcheckin">
+    <input type="text" id="modalcheckout" name="modalcheckout">
+    <input type="text" id="modalroomtype" name="modalroomtype">
+    <input type="text" id="modalbreakfast" name="modalbreakfast">
+    <input type="text" id="modalchampagne" name="modalchampagne">
+    <input type="text" id="modalcar" name="modalcar">
+    <input type="text" id="modaltotal" name="modaltotal">
+
+    <div class="d-flex flex-row" style="height:100px; background: transparent; justify-content: center; gap:1em; padding-left: 0px!important;">
+      <button type="button" class="fs-5" style="padding: 1em 2em 1em 2em;" onclick="document.getElementById('myModal').style.display='none';"> Close </button>
+      <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(212, 63, 63);" formaction="/bookingdelete" > Delete </button>
+      <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(61, 189, 72);" formaction="/bookingedit" > Save </button>
+    </div>
+  </form>
+</div>
+<script defer>
+function editMessage(counter) {
+  // grab original data
+  modalname = document.getElementById("name" + counter).innerHTML;
+  modalemail = document.getElementById("email" + counter).innerHTML;
+  modalhotel = document.getElementById("hotel" + counter).innerHTML;
+  modalcheckin = document.getElementById("checkin" + counter).innerHTML;
+  modalcheckout = document.getElementById("checkout" + counter).innerHTML;
+  modalroomtype = document.getElementById("roomtype" + counter).innerHTML;
+  modalbreakfast = document.getElementById("breakfast" + counter).innerHTML;
+  modalchampagne = document.getElementById("champagne" + counter).innerHTML;
+  modalcar = document.getElementById("car" + counter).innerHTML;
+  modaltotal = document.getElementById("total" + counter).innerHTML;
+  // //set modal data to edit
+  document.getElementById("modalname").value = modalname;
+  document.getElementById("modalemail").value = modalemail;
+  document.getElementById("modalhotel").value = modalhotel;
+  document.getElementById("modalcheckin").value = modalcheckin;
+  document.getElementById("modalcheckout").value = modalcheckout;
+  document.getElementById("modalroomtype").value = modalroomtype;
+  document.getElementById("modalbreakfast").value = modalbreakfast;
+  document.getElementById("modalchampagne").value = modalchampagne;
+  document.getElementById("modalcar").value = modalcar;
+  document.getElementById("modaltotal").value = modaltotal;
+  // save&keep original data to use later at database comparison
+  document.getElementById("modalname2").value = modalname;
+  document.getElementById("modalemail2").value = modalemail;
+  document.getElementById("modalhotel2").value = modalhotel;
+  document.getElementById("modalcheckin2").value = modalcheckin;
+  document.getElementById("modalcheckout2").value = modalcheckout;
+  document.getElementById("modalroomtype2").value = modalroomtype;
+  document.getElementById("modalbreakfast2").value = modalbreakfast;
+  document.getElementById("modalchampagne2").value = modalchampagne;
+  document.getElementById("modalcar2").value = modalcar;
+  document.getElementById("modaltotal2").value = modaltotal;
+
+  document.getElementById('myModal').style.display='block';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.keyCode == 27) {
+    document.getElementById('myModal').style.display='none';
+  }
+})
+</script>
   <% include ./partials/footer %>
