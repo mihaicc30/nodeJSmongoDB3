@@ -52,3 +52,19 @@ var dbdata = [
                 <td>£<%= data.total %></td>
               </tr>
               <% }); %>
+
+
+
+
+
+
+
+
+
+canceling rez email
+default show
+message admin reply button
+faq database data+design
+active menu
+page layout
+welcome message+bookimg

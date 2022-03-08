@@ -8,10 +8,54 @@ font-family: 'Lora', serif; */
     font-family: 'Josefin Sans', sans-serif;
     color: black;
 }
+.topNavBar{
+    top:0%;
+    width: 100vw;
+    position: fixed;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 995;
+    height: 23vh;
+    background: linear-gradient(180deg, rgba(0,255,196,1) 0%, rgba(89,225,142,1) 93%, rgba(253,170,45,0.3253676470588235) 100%);
+}
+.topNavBar h1 {
+    margin-top: 30px;
+}
+.navBar {
+    top:19%;
+    width: 100vw;
+    position: fixed;
+    z-index: 999;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    z-index: 996;
+    
+}
+.naviBtn {
+    font-size: .8em;
+    text-transform:uppercase;
+    height:50px;
+    background-color: #8039fb;
+    box-shadow: -3px 3px black;
+}
+.naviBtn:hover {
+    transform: scale(1.05) translate(-3px, 3px);
+    background-color: #5719c2;
+    box-shadow: inset -3px 3px black;
+}
+.naviBtn:focus {
+    background-color: #5719c2;
+    box-shadow: inset -8px 8px black;
+}
 
 #faqbody {
-    max-width: 80vh;
-    margin: 0 auto;
+    max-width: 85vw;
 }
 .faqli {
     font-weight: bold;

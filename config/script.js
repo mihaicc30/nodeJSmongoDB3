@@ -30,19 +30,11 @@ const logo = document.getElementById('myLogo2');
 
 function rotateLogo() {
   var scrollPos = window.scrollY;
-  if(window.scrollY == 0) {
-    logo.style.position="initial";
-  } 
-  if(window.scrollY < 200) {
-    logo.style.position="initial";
-  } 
-
-  if(scrollPos > 200 && width > 700) {
-  logo.style.position="fixed";
+  
+  if(scrollPos > 0) {
+  logo.style.position="sticky";
   logo.style.zIndex="99";
   var scrollPos = window.scrollY;
-  logo.style.top="50px";
-  logo.style.left="30px";
   logo.style.transform = "rotate(" + scrollPos + "deg)";
   }
 };

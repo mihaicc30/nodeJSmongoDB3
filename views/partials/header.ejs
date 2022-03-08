@@ -1,42 +1,28 @@
-<% const x = typeof user;%>
+<% const x=typeof user;%>
+<div class="topNavBar" >
+  <a href="/"><img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo" style="height:80px; width:80px"></a>
+  <h1>Quality Hotel</h1>
+  <div class="navBar">
 
+    <% if (x==="object" && user.name !="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
+      <a href="/myprofile" class="btn naviBtn">My Profile</a>
+      <% } %>
 
-<div class="container mb-4 ">
-  <div class="row">
-    <div class="col mt-3">
-      <div id="headz" class="d-flex flex-row-reverse bd-highlight gap-1">
-        <% if (x === "object" && user.name != "ADMIN") {   %>   <a href="/users/logout" class="btn btn-secondary btn-info d-flex align-items-center px-4">Logout</a>
-                                        <a href="/myprofile" class="btn btn-secondary btn-info d-flex align-items-center px-4">My Profile</a>      <%   } %>
+        <% if (x !="object" ) { %> <a href="/users/register" class="btn naviBtn">Register</a>
+          <a href="/users/login" class="btn naviBtn">Login</a>
+          <% } %>
 
-        <% if (x != "object") {   %>   <a href="/users/register" class="btn btn-primary btn-secondary btn-block mb-2 px-4">Register</a>
-                                                            <a href="/users/login" class="btn btn-secondary btn-info btn-block mb-2 px-4">Login</a>      <%   } %>  
+            <% if (x==="object" && user.name==="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
+              <a href="/bookings" class="btn naviBtn">Bookings</a>
+              <a href="/messages" class="btn naviBtn">Messages</a>
+              <% } %>
 
-        <% if (x === "object" && user.name === "ADMIN") {   %>  <a href="/users/logout" class="btn btn-secondary btn-info btn-block mb-2 px-4">Logout</a> 
-                                                                <a href="/bookings" class="btn btn-primary btn-info btn-block mb-2 px-4">Bookings</a>
-                                                                <a href="/messages" class="btn btn-primary btn-info btn-block mb-2 px-4">Messages</a>
-                                                                 <%   } %>  
-      </div>
-    </div>     
+                <a href="/" class="btn naviBtn">Home</a>
+                <a href="/findaroom" class="btn naviBtn">Book Room</a>
+                <a href="/about" class="btn naviBtn">About</a>
+                <a href="/faq" class="btn naviBtn">FAQ</a>
+                <a href="/contact" class="btn naviBtn">Contact</a>
+
+                <script src="/config/script.js" defer></script>
   </div>
-  <h1>
-    <div class="d-flex flex-row my-4">
-      <img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo">
-      <div class="logoP">
-        <p>Quality</p><p>Hotel</p>
-      </div>
-
-      <script src="/config/script.js" defer></script>  
-    </div>
-    <!-- <img src="/imgs/croissant.svg" style="height: 10vh; transform-origin: center; transform: rotate(110deg) translateX(-36px) translateY(13px); border-radius: 50% 10% 50% 10% ;"><span style="text-shadow: 2px 1px 1px #bfbfbf;"> QualityB&B</span></h1> -->
-    <div class="row">
-      <div class="col align-self-start">
-        <div class="head1 d-flex bd-highlight mb-3 gap-2">
-          <a href="/" class="btn btn-secondary btn-success d-flex align-items-center fs-4" style="box-shadow: 3px 3px 3px black">Home</a>
-          <a href="/findaroom" class="btn btn-secondary d-flex align-items-center fs-4" style="box-shadow: 3px 3px 3px black">Find a Room</a>
-          <a href="/about" class="btn btn-secondary d-flex align-items-center fs-4" style="box-shadow: 3px 3px 3px black">About</a>
-          <a href="/faq" class="btn btn-secondary d-flex align-items-center fs-4" style="box-shadow: 3px 3px 3px black">FAQ</a>
-          <a href="/contact" class="btn btn-secondary d-flex align-items-center btn-dark fs-4" style="box-shadow: 3px 3px 3px black">Contact</a>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
