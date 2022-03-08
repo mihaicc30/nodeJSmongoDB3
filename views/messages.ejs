@@ -73,13 +73,14 @@
     <input type="text" id="modalDate2" name="modalDate2" style="display: none;">
     <input type="text" id="modalMessage2" name="modalMessage2" style="display: none;">
     <input type="text" id="messageLocation2" name="messageLocation2" style="display: none;">
-
+    <div class="container d-flex flex-column">
     <input type="text" id="modalName" name="modalName">
     <input type="text" id="modalEmail" name="modalEmail">
     <input type="text" id="modalTelephone" name="modalTelephone">
     <input type="text" id="modalDate" name="modalDate">
     <input type="text" id="modalMessage" name="modalMessage">
-    <div class="d-flex flex-row" style="height:100px; background: transparent; justify-content: center; gap:1em; padding-left: 0px!important;">
+    </div>
+    <div class="d-flex flex-row mt-2" style="height:100px; background: transparent; justify-content: center; gap:1em; padding-left: 0px!important;">
       <button type="button" class="fs-5" style="padding: 1em 2em 1em 2em;" onclick="document.getElementById('myModal').style.display='none';"> Close </button>
       <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(212, 63, 63);" formaction="/messagesdelete" > Delete </button>
       <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(61, 189, 72);" formaction="/messagesedit" > Save </button>
