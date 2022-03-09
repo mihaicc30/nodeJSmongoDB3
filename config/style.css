@@ -286,7 +286,7 @@ tbody, td, tfoot, th, thead, tr {
     position: relative;
     height: 30vh;
     width: 100vw;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 
 .carousel {
@@ -299,6 +299,7 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 .slide {
+    margin-top: 100px;
     width: 35vw;
     text-align: center;
 }
@@ -340,10 +341,12 @@ tbody, td, tfoot, th, thead, tr {
 
 .left-arrow {
     left: 2rem;
+    margin-top: 73px;
 }
 
 .right-arrow {
     right: 2rem;
+    margin-top: 73px;
 }
 /* // */
 @media (max-width: 767px) {
