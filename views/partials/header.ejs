@@ -1,28 +1,53 @@
 <% const x=typeof user;%>
-<div class="topNavBar" >
-  <a href="/"><img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo" style="height:80px; width:80px"></a>
-  <h1>Quality Hotel</h1>
-  <div class="navBar">
 
-    <% if (x==="object" && user.name !="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
-      <a href="/myprofile" class="btn naviBtn">My Profile</a>
-      <% } %>
+  <div>
+    <div class="d-flex flex-column">
+      <div class="topNavBar">
+        <div class="d-flex flex-row"
+          style="justify-content: space-evenly;margin-top: 50px;width: 100vw;height: 100px; padding-top: 1em;background-color: rgba(49, 49, 49, 0.527);">
+          <div class="d-flex flex-column" style="margin-left:50px;height: 100px;">
+            <div style="display: flex;">
+              <h1 style="color:white;">Quality Hotel</h1>
+              <a href="/"><img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo"
+                  style="height:50px; width:50px"></a>
+            </div>
+            <div>
+              <div class="navBar d-flex flex-row gap-1" style="justify-content: start; ">
 
-        <% if (x !="object" ) { %> <a href="/users/register" class="btn naviBtn">Register</a>
-          <a href="/users/login" class="btn naviBtn">Login</a>
-          <% } %>
+                <% if (x==="object" && user.name !="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
+                  <a href="/myprofile" class="btn naviBtn">My Profile</a>
+                  <% } %>
 
-            <% if (x==="object" && user.name==="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
-              <a href="/bookings" class="btn naviBtn">Bookings</a>
-              <a href="/messages" class="btn naviBtn">Messages</a>
-              <% } %>
+                    <% if (x !="object" ) { %> <a href="/users/register" class="btn naviBtn">Register</a>
+                      <a href="/users/login" class="btn naviBtn">Login</a>
+                      <% } %>
 
-                <a href="/" class="btn naviBtn">Home</a>
-                <a href="/findaroom" class="btn naviBtn">Book Room</a>
-                <a href="/about" class="btn naviBtn">About</a>
-                <a href="/faq" class="btn naviBtn">FAQ</a>
-                <a href="/contact" class="btn naviBtn">Contact</a>
+                        <% if (x==="object" && user.name==="ADMIN" ) { %> <a href="/users/logout"
+                            class="btn naviBtn">Logout</a>
+                          <a href="/bookings" class="btn naviBtn">Bookings</a>
+                          <a href="/messages" class="btn naviBtn">Messages</a>
+                          <% } %>
+              </div>
+            </div>
 
-                <script src="/config/script.js" defer></script>
-  </div>
-</div>
+
+          </div>
+
+          <div style="margin-left:50px;height: 100px;">
+            <a href="/" class="btn naviBtn">Home</a>
+            <a href="/findaroom" class="btn naviBtn">Book Room</a>
+            <a href="/about" class="btn naviBtn">About</a>
+            <a href="/faq" class="btn naviBtn">FAQ</a>
+            <a href="/contact" class="btn naviBtn">Contact</a>
+          </div>
+          <div style="margin-left:50px;height: 50px;" class="btn naviBtn">
+            <p class="fa fa-phone text-center align-items-center"> <br> <a href="tel:01235%12312345" style="text-decoration: none;"
+                role="button">01234 012 01234</a> </p>
+          </div>
+
+          <script src="/config/script.js" defer></script>
+
+        </div>
+      </div>
+
+    </div>

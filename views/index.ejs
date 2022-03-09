@@ -1,81 +1,69 @@
 <% include ./partials/header %>
 
-    <div class="card card-body text-center mt-2 mb-4">
-        <h1 class="card card-body text-dark">Book your next stay with confidence.</h1>
-        <div id="myCarousel" class="carousel slide mb-4" data-bs-interval="4000" data-bs-ride="carousel" style="animation: fadein 1s;">
-            <div class="carousel-indicators" style="animation: fadein 1s;">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-current="true" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-current="true" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-current="true" aria-label="Slide 4"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-current="true" aria-label="Slide 5"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="5" aria-current="true" aria-label="Slide 6"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="6" aria-current="true" aria-label="Slide 7"></button>
-            </div>
-            <div class="carousel-inner" style="animation: fadein 1s;">
-                <div class="carousel-item active" style="animation: fadein 1s;">
-                    <img src="/imgs/1.jpg" class="d-block w-100 rounded" alt="Photo by Brett Sayles from Pexels" />
-                    <div class="carousel-caption d-none d-md-block card card-body" style="background-color: rgba(255, 255, 255, 0.673);">
-                            <h5 style="color: rgb(0, 0, 0)">Looking for an escape from you daily life?</h5>
-                            <h2><a href="/findaroom" style="color: black; font-weight: bolder;">Book now!</a></h2>
-                    </div>
-                </div>
-                <div class="carousel-item" style="animation: fadein 1s;">
-                    <img src="/imgs/other/1 (6).jpg" loading="lazy" class="d-block w-100 rounded" alt="Photo by Carl Newton from Pexels" />
-                    <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.673);">
-                        <h5>Passion for gin?</h5>
-                        <h6>Come and enjoy our vast Gin Bar!</h6>
-                    </div>
-                </div>
-                <div class="carousel-item" style="animation: fadein 1s;">
-                    <img src="/imgs/rooms/1 (2).jpg" loading="lazy" class="d-block w-100 rounded" alt="Photo by Carl Newton from Pexels" />
-                    <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.673);">
-                        <h5>Double Rooms.</h5>
-                        <h6>Equiped with fridge, tea/coffee stationary and kettle, iron and ironboard and more.</h6>
-                    </div>
-                </div>
-                <div class="carousel-item" style="animation: fadein 1s;">
-                    <img src="/imgs/rooms/1 (4).jpg" loading="lazy" class="d-block w-100 rounded" alt="Photo by Erik Mclean from Pexels" />
-                    <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.673);">
-                        <h5>Single Rooms.</h5>
-                        <h6>Not much different from double, only less space.</h6>
-                    </div>
-                </div>
-                <div class="carousel-item" style="animation: fadein 1s;">
-                    <img src="/imgs/spa/1 (4).jpg" loading="lazy" class="d-block w-100 rounded" alt="Photo by K HOWARD from Pexels" />
-                    <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.673);">
-                        <h5>Vintage Cast Iron Bathtubs</h5>
-                        <h6>Only the best for our guests.</h6>
-                    </div>
-                </div>
-                <div class="carousel-item" style="animation: fadein 1s;">
-                    <img src="/imgs/spa/1 (3).jpg" loading="lazy" class="d-block w-100 rounded" alt="Photo by K HOWARD from Pexels" />
-                    <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.673);">
-                        <h5>Spa Time lover ?</h5>
-                        <h6>No bookings necessary. Just come on and enjoy.</h6>
-                    </div>
-                </div>
-                <div class="carousel-item" style="animation: fadein 1s;">
-                    <img src="/imgs/other/1 (2).jpg" loading="lazy" class="d-block w-100 rounded" alt="Photo by K HOWARD from Pexels" />
-                    <div class="carousel-caption d-none d-md-block" style="background-color: rgba(255, 255, 255, 0.673);">
-                        <h5>Breakfast Buffet</h5>
-                        <h6>Various choices on the breakfast buffet from all around the world.</h6>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+<% const x=typeof user;%>
+<div>
+    <div class="d-flex flex-column">
+      <div style="height:80vh;width: 100%;background-image: url(/imgs/landscape/3.jpg);background-repeat: no-repeat;
+    background-position: center;background-size: cover;text-align: center;">
+        <h1 style="margin:0 auto;width: 50vw;margin-top:30vh;color:rgb(255, 255, 255); font-weight:bolder;padding: .5em; background-color: rgba(0, 0, 0, 0.562);">
+          Out with the daily, in with the wild! <br> Book now!</h1>
+  
+        <div style="width: 100vw;display: flex; justify-content: center;">
+  
+          <div class="mt-4 gap-1" style="background-color: rgba(255, 0, 0, 0);color: rgba(255, 255, 255, 0.562);display: flex;justify-content: space-between;">
+            <input type="date" class="rounded" placeholder="Arrival" style="box-shadow: 1px 2px 5px 2px #000000db;"><br>
+            <input type="date" class="rounded" placeholder="Departure" style="box-shadow: 1px 2px 5px 2px #000000db;"><br>
+            <input type="text" class="rounded" placeholder="Persons#" style="box-shadow: 1px 2px 5px 2px #000000db;">
+            <select name="city" id="city" class="rounded" style="box-shadow: 1px 2px 5px 2px #000000db;">
+                <option value="Gloucester">Gloucester</option>
+                <option value="London">London</option>
+                <option value="Birmingham">Birmingham</option>
+                <option value="Manchester">Manchester</option>
+              </select>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <div class="slide" data-bg="radial-gradient(circle, rgba(230,241,240,1) 0%, rgba(0,0,0,1) 63%)">
+                <i class="fa fa-bars"></i>
+                <h1>#Attribute1</h1>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="slide" data-bg="radial-gradient(circle, rgba(230,241,240,1) 0%, rgba(0,0,0,1) 63%)">
+                <i class="fa fa-bars"></i>
+                <h1>#Attribute2</h1>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="slide" data-bg="radial-gradient(circle, rgba(230,241,240,1) 0%, rgba(0,0,0,1) 63%)">
+                <i class="fa fa-bars"></i>
+                <h1>#Attribute3</h1>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="slide" data-bg="radial-gradient(circle, rgba(230,241,240,1) 0%, rgba(0,0,0,1) 63%)">
+                <i class="fa fa-bars"></i>
+                <h1>#Attribute4</h1>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="slide" data-bg="radial-gradient(circle, rgba(230,241,240,1) 0%, rgba(0,0,0,1) 63%)">
+                <i class="fa fa-bars"></i>
+                <h1>#Attribute5</h1>
+                <a href="#">Learn More</a>
+            </div>
+        </div>
+
+        <button id="left" class="left-arrow arrow">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="right" class="right-arrow arrow">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="progress" id="progress"></div>
     </div>
 
-
-    <div class="card card-body text-center" loading="lazy">
+    <div class="text-center" loading="lazy">
     
         <div class="index card card-body flex-wrap flex-md-row gap-2 justify-content-center m-auto">
             <img src="/imgs/1.jpg" class="rounded" loading="lazy" style="max-width: 100%; height:auto; max-height: 20vh;">
@@ -95,5 +83,40 @@
         </div>
 
     </div>
-
+    <script defer>
+        //carousel
+    
+        const slides = document.querySelectorAll(".slide");
+    const carousel = document.getElementById("carousel");
+    const left = document.getElementById("left");
+    const right = document.getElementById("right");
+    const progress = document.getElementById("progress");
+    const SLIDES_COUNT = slides.length;
+    
+    let current_slide = 0;
+    
+    left.addEventListener("click", () => {
+        current_slide--;
+        if (current_slide < 0) {
+            current_slide = SLIDES_COUNT - 1;
+        }
+        updateCarouse();
+    });
+    
+    right.addEventListener("click", () => {
+        current_slide++;
+        if (current_slide > SLIDES_COUNT - 1) {
+            current_slide = 0;
+        }
+        updateCarouse();
+    });
+    
+    function updateCarouse() {
+        carousel.style.transform = `translateX(${-current_slide * slides[0].offsetWidth/2}px)`;
+        // document.body.style.background = `${slides[current_slide].getAttribute("data-bg")}`; //dynamic bg possibility
+    // progress
+    
+    }
+    </script>
     <% include ./partials/footer %>
+
