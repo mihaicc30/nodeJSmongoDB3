@@ -1,8 +1,8 @@
 <% include ./partials/header %>
-<script>var bookings_data = {} </script>
+<script>var bookings_data = {}; </script>
 
-  <div class="card d-flex flex-column align-items-center text-center">
-    <form action="/users/checkbookings" method="post">
+  <div class="card d-flex flex-column align-items-center text-center" style="margin-top: 25vh;">
+    <form action="/users/checkbookings" method="post" id="myFormBookings">
       <div class="dropdown">
         <select name="city" id="city" class="m-1 fs-3" style="padding: 18px">
           <!-- <option disabled selected value> -- select city -- </option> -->
@@ -11,17 +11,17 @@
           <option value="birmingham">Birmingham</option>
           <option value="manchester">Manchester</option>
         </select>
-        <input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px">
-        <script>
+        <input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px" onchange="this.form.submit()">
+        <!-- <script>
           var todaysDate = new Date().toISOString().slice(0, 10);
           document.getElementById('date').value = todaysDate;
-        </script>
-        <button type="submit" id="xxx" class="m-1 px-4 py-1 fs-2">Search</button>
+        </script> -->
+        <!-- <button type="submit" id="xxx" class="m-1 px-4 py-1 fs-2">Search</button> -->
       </div>
     </form>
     
   </div>
-  <div class="table-responsive-xxl fs-4 m-auto">
+  <div class="table-responsive-xxl fs-4 m-auto text-center">
     <table class="dataTableDB table card card-body align-items-center">
       <tr class="dataTableDBth">
         <td>Customer</td>
@@ -33,6 +33,14 @@
       </tr>
       <% var counter=1;%>
       <% bookings_data.forEach(function(data) { %>
+
+        <% if(counter <= 1) { %> <h1 id="messageLocation" style="text-transform: uppercase"> <%= bookings_data[0]['hotel']; %> </h1><% }     %> 
+        <div class="d-flex flex-row gap-1 justify-content-center">
+          <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1><% }     %> 
+          <% if(counter <= 1) { %> <h1 id="SelectedDate"> <%= bookings_data[0]['date'].slice(0, 10); %> </h1><% }     %> 
+          <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="tomorrow"> ▶ </button> </h1><% }     %> 
+        </div>
+
         <% if(data.found_data == false) {%>
           </table>
           <h1 class="text-center"> no data found </h1>
@@ -128,3 +136,37 @@ document.addEventListener('keydown', function(e) {
 })
 </script>
   <% include ./partials/footer %>
+
+  
+<script defer>
+  document.getElementById('yesterday').addEventListener("click", function() {
+    console.log(document.getElementById('SelectedDate').innerHTML.slice(0, 11))
+
+
+    var d = new Date(document.getElementById('SelectedDate').innerHTML.slice(0, 11))
+    d.setDate(d.getDate() - 1)
+
+    console.log(d.toISOString().slice(0, 10))
+
+    document.getElementById('date').value = d.toISOString().slice(0, 10);
+    document.getElementById('myFormBookings').submit();
+  })
+
+
+  document.getElementById('tomorrow').addEventListener("click", function() {
+    console.log(document.getElementById('SelectedDate').innerHTML.slice(0, 11))
+
+
+    var d = new Date(document.getElementById('SelectedDate').innerHTML.slice(0, 11))
+    d.setDate(d.getDate() + 1)
+
+    console.log(d.toISOString().slice(0, 10))
+
+    document.getElementById('date').value = d.toISOString().slice(0, 10);
+    document.getElementById('myFormBookings').submit();
+  })
+
+
+
+
+</script>

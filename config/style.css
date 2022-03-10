@@ -44,7 +44,7 @@ font-family: 'Lora', serif; */
 }
 
 #faqbody {
-    max-width: 85vw;
+    width: 85vw;
 }
 .faqli {
     font-weight: bold;
@@ -70,16 +70,6 @@ font-family: 'Lora', serif; */
     width:100%;
     border: 2px solid black;
     box-shadow: 11px 11px 3px rgb(80, 80, 80);
-}
-.motto {
-    font-family: 'Grand Hotel', cursive;
-    font-size: 2em;
-}
-.bigletter {
-    font-family: 'Dancing Script', cursive;
-    font-size: 4em;
-    line-height: 0;
-    font-weight: normal;
 }
 .cfl {
     margin-top: 1em;
@@ -244,7 +234,7 @@ tbody, td, tfoot, th, thead, tr {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    top:0; right:0; bottom:0; left:0;
+    top:20%; right:0; bottom:0; left:0;
     background-color: rgba(0, 0, 0, 0.75);
     animation: fadein 1s;
     text-align: center;
