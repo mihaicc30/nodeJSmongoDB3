@@ -6,10 +6,10 @@
       <div class="dropdown">
         <select name="city" id="city" class="m-1 fs-3" style="padding: 18px">
           <!-- <option disabled selected value> -- select city -- </option> -->
-          <option value="london">London</option>
-          <option value="gloucester">Gloucester</option>
-          <option value="birmingham">Birmingham</option>
-          <option value="manchester">Manchester</option>
+          <option value="London">London</option>
+          <option value="Gloucester">Gloucester</option>
+          <option value="Birmingham">Birmingham</option>
+          <option value="Manchester">Manchester</option>
         </select>
         <input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px" onchange="this.form.submit()">
         <!-- <script>
@@ -34,7 +34,7 @@
       <% var counter=1;%>
       <% bookings_data.forEach(function(data) { %>
 
-        <% if(counter <= 1) { %> <h1 id="messageLocation" style="text-transform: uppercase"> <%= bookings_data[0]['hotel']; %> </h1><% }     %> 
+        <% if(counter <= 1) { %> <h1 id="messageLocation" > <%= bookings_data[0]['hotel']; %> </h1><% }     %> 
         <div class="d-flex flex-row gap-1 justify-content-center">
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1><% }     %> 
           <% if(counter <= 1) { %> <h1 id="SelectedDate"> <%= bookings_data[0]['date'].slice(0, 10); %> </h1><% }     %> 
@@ -145,29 +145,25 @@ document.addEventListener('keydown', function(e) {
   
 <script defer>
   document.getElementById('yesterday').addEventListener("click", function() {
-    console.log(document.getElementById('SelectedDate').innerHTML.slice(0, 11))
-
-
-    var d = new Date(document.getElementById('SelectedDate').innerHTML.slice(0, 11))
+    var selectArea = document.getElementById('SelectedDate').innerHTML
+    var d = new Date(selectArea)
     d.setDate(d.getDate() - 1)
-
-    console.log(d.toISOString().slice(0, 10))
-
-    document.getElementById('date').value = d.toISOString().slice(0, 10);
+    d.setTime(d.getTime() + (12*60*60*1000)) // UTC SUCKS!
+    // console.log(d)
+    d = d.toISOString()
+    document.getElementById('date').value = d.substring(0,10);
     document.getElementById('myFormBookings').submit();
   })
 
 
   document.getElementById('tomorrow').addEventListener("click", function() {
-    console.log(document.getElementById('SelectedDate').innerHTML.slice(0, 11))
-
-
-    var d = new Date(document.getElementById('SelectedDate').innerHTML.slice(0, 11))
+    var selectArea = document.getElementById('SelectedDate').innerHTML
+    var d = new Date(selectArea)
     d.setDate(d.getDate() + 1)
-
-    console.log(d.toISOString().slice(0, 10))
-
-    document.getElementById('date').value = d.toISOString().slice(0, 10);
+    d.setTime(d.getTime() + (12*60*60*1000)) // UTC SUCKS!
+    // console.log(d)
+    d = d.toISOString()
+    document.getElementById('date').value = d.substring(0,10);
     document.getElementById('myFormBookings').submit();
   })
 

@@ -26,7 +26,9 @@
       <tr class="dataTableDBth">
         <td>User Data</td>
         <td>Message</td>
+        <td>Status</td>
       </tr>
+      
       <% var counter=1;%>
         <% bookings_data.forEach(function(data) { %>
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <%= bookings_data[0]['location'] %> </h1><% }     %> 
@@ -47,7 +49,7 @@
     <% } else {%>
       <script>document.getElementById('messagesTable').style.display="flex" </script>
       
-      <tr>
+      <tr id="row<%=counter%>">
         <td>
           <div id="name<%=counter%>">
             <%= data.name %>
@@ -67,13 +69,21 @@
             <%= data.comment%>
           </div>
         </td>
-        <td><i class="fa fa-edit" style="cursor: pointer;" onclick="editMessage('<%=counter%>');"></i></td>
+        <td>
+          <div id="status<%=counter%>">
+            <%= data.status%>
+          </div>
+        </td>
+        
+        <td><i class="fa fa-edit" style="cursor: pointer;" onclick="editMessage('<%=counter%>');"></i><% if(data.status =="unread"){%><br> NEW! <script>document.getElementById('row<%=counter%>').style.background="#dd3838a8"; </script> <% }%></td>
+
+        
       </tr>
       <% } counter+=1; })%>
         </table>
       </div> 
   </div>
-<div class="myModal" id="myModal">
+<div class="myModal" id="myModal" style="color: rgba(238, 53, 53, 0.678);">
 
   <form method="post">
     <input type="text" id="modalName2" name="modalName2" style="display: none;">
@@ -81,12 +91,14 @@
     <input type="text" id="modalTelephone2" name="modalTelephone2" style="display: none;">
     <input type="text" id="modalDate2" name="modalDate2" style="display: none;">
     <input type="text" id="modalMessage2" name="modalMessage2" style="display: none;">
+    <input type="text" id="modalStatus2" name="modalStatus2" style="display: none;">
     <input type="text" id="messageLocation2" name="messageLocation2" style="display: none;">
     <div class="container d-flex flex-column">
     <input type="text" id="modalName" name="modalName">
     <input type="text" id="modalEmail" name="modalEmail">
     <input type="text" id="modalTelephone" name="modalTelephone">
     <input type="text" id="modalDate" name="modalDate">
+    <input type="text" id="modalStatus" name="modalStatus">
     <input type="text" id="modalMessage" name="modalMessage">
     </div>
     <div class="d-flex flex-row mt-2" style="height:100px; background: transparent; justify-content: center; gap:1em; padding-left: 0px!important;">
@@ -103,11 +115,13 @@ function editMessage(counter) {
   modalEmail = document.getElementById("email" + counter).innerText;
   modalTelephone = document.getElementById("telephone" + counter).innerText;
   modalDate = document.getElementById("date" + counter).innerText;
+  modalStatus = document.getElementById("status" + counter).innerText;
   modalMessage = document.getElementById("message" + counter).innerText;
   document.getElementById("modalName").value = modalName;
   document.getElementById("modalEmail").value = modalEmail;
   document.getElementById("modalTelephone").value = modalTelephone;
   document.getElementById("modalDate").value = modalDate;
+  document.getElementById("modalStatus").value = modalStatus;
   document.getElementById("modalMessage").value = modalMessage;
 
   
@@ -115,6 +129,7 @@ function editMessage(counter) {
   document.getElementById("modalEmail2").value = modalEmail;
   document.getElementById("modalTelephone2").value = modalTelephone;
   document.getElementById("modalDate2").value = modalDate;
+  document.getElementById("modalStatus2").value = modalStatus;
   document.getElementById("modalMessage2").value = modalMessage;
   document.getElementById("messageLocation2").value = document.getElementById("messageLocation").innerHTML;
   document.getElementById('myModal').style.display='block'
@@ -132,29 +147,25 @@ document.addEventListener('keydown', function(e) {
 
 <script defer>
   document.getElementById('yesterday').addEventListener("click", function() {
-    // console.log(document.getElementById('SelectedDate').innerHTML)
-
-
-    var d = new Date(document.getElementById('SelectedDate').innerHTML)
+    var selectArea = document.getElementById('SelectedDate').innerHTML
+    var d = new Date(selectArea)
     d.setDate(d.getDate() - 1)
-
-    // console.log(d.toISOString().slice(0, 10))
-
-    document.getElementById('date').value = d.toISOString().slice(0, 10);
+    d.setTime(d.getTime() + (12*60*60*1000)) // UTC SUCKS!
+    // console.log(d)
+    d = d.toISOString()
+    document.getElementById('date').value = d.substring(0,10);
     document.getElementById('myMessages').submit();
   })
 
 
   document.getElementById('tomorrow').addEventListener("click", function() {
-    // console.log(document.getElementById('SelectedDate').innerHTML)
-
-
-    var d = new Date(document.getElementById('SelectedDate').innerHTML)
+    var selectArea = document.getElementById('SelectedDate').innerHTML
+    var d = new Date(selectArea)
     d.setDate(d.getDate() + 1)
-
-    // console.log(d.toISOString().slice(0, 10))
-
-    document.getElementById('date').value = d.toISOString().slice(0, 10);
+    d.setTime(d.getTime() + (12*60*60*1000)) // UTC SUCKS!
+    // console.log(d)
+    d = d.toISOString()
+    document.getElementById('date').value = d.substring(0,10);
     document.getElementById('myMessages').submit();
   })
 

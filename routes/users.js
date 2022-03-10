@@ -10,10 +10,11 @@ const { db } = require('../models/User');
 const bookings = require('../config/key-bookingform').mongoURI;
 const messagesDB = require('../config/key-contactform').mongoURI;
 
-
 // check bookings
 router.post('/checkbookings', function (req, res) {
   var { city, date } = req.body;
+  
+
   mongoose.createConnection(bookings, { useNewUrlParser: true, useUnifiedTopology: true }, (err, bookings) => {
     if (err) { console.log(err) }
     
@@ -24,10 +25,11 @@ router.post('/checkbookings', function (req, res) {
     //   ]).sort({ date: -1 }).toArray(function(err, result) {
     //     if (err) { console.log(err) }  // new version of command, searches by date CREATED !important
       
+
     bookings.collection(city).find({ fromDate: date }).sort({ date: -1 }).toArray(function(err, result) {
       if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important
       the_data = {}
-      
+
       if (!result) { the_data={"found_data":false, "date":date, "hotel":city} }
       if (result.length === 0) { the_data={"found_data":false, "date":date, "hotel":city} }
       if (result.length > 0) { the_data=result }
@@ -44,13 +46,13 @@ router.post('/checkbookings', function (req, res) {
 // check messages
 router.post('/checkmessages', function (req, res) {
   var { city, date } = req.body;
+
   mongoose.createConnection(messagesDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, messagesDB) => {
     if (err) { console.log(err) }
 
     messagesDB.collection(city).find({ date: date }).sort({ date: -1 }).toArray(function(err, result) {
       if (err) { console.log(err) }
       the_data = {}
-
       if (!result) { the_data={"found_data":false, "date":date, "location":city} }
       if (result.length === 0) { the_data={"found_data":false, "date":date, "location":city} }
       

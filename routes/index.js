@@ -16,10 +16,12 @@ router.get('/bookings', ensureAuthenticated, (req, res) => //
 
 
 // Admin - Messages
-router.get('/messages', ensureAuthenticated, (req, res) => //  , ensureAuthenticated
+router.get('/messages', (req, res) => //  , ensureAuthenticated
   res.render('messages', {
     user: req.user
-  })
+  }
+  )
+
 );
 
 
@@ -42,7 +44,7 @@ router.post('/contact', function (req, res) {
       res.redirect('/contact') }
 
     else {
-      db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment, location:city, date: new Date()} )
+      db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment, location:city, date: new Date().toISOString().slice(0, 10), status:"unread" })
         req.flash('success_msg', 'Thank you for contacting us. You message has been successfully sent to QualityB&B in ' + city + '!');
         res.redirect('/contact')
         }
@@ -51,16 +53,15 @@ router.post('/contact', function (req, res) {
 
 // Admin Form - Edit Contact Messages
 router.post('/messagesedit', ensureAuthenticated, function (req, res) {   
-  var { modalName, modalEmail,  modalTelephone,  modalDate, modalMessage, modalName2, modalEmail2,  modalTelephone2,  modalDate2, modalMessage2, messageLocation2 } = req.body;
+  var { modalName, modalEmail,  modalTelephone,  modalDate, modalStatus, modalMessage, modalName2, modalEmail2,  modalTelephone2,  modalDate2, modalMessage2, modalStatus2, messageLocation2 } = req.body;
   messageLocation2 = messageLocation2.trim();
-
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     if (err) { console.log(err) }
 
     else {
       db.collection(messageLocation2).updateOne(
-        { name:modalName2, email:modalEmail2,telephone:modalTelephone2, comment:modalMessage2 }, { $set: 
-        { name:modalName, email:modalEmail, telephone:modalTelephone, comment:modalMessage} } )
+        { name:modalName2, email:modalEmail2,telephone:modalTelephone2, comment:modalMessage2, status:modalStatus2 }, { $set: 
+        { name:modalName, email:modalEmail, telephone:modalTelephone, comment:modalMessage, status:modalStatus} } )
         res.redirect('/messages')
         }
     })
@@ -68,7 +69,7 @@ router.post('/messagesedit', ensureAuthenticated, function (req, res) {
 
 // Admin Form - Delete Contact Messages
 router.post('/messagesdelete', ensureAuthenticated, function (req, res) {   
-  var { modalName, modalEmail,  modalTelephone,  modalDate, modalMessage, modalName2, modalEmail2,  modalTelephone2,  modalDate2, modalMessage2, messageLocation2 } = req.body;
+  var { modalName, modalEmail,  modalTelephone, messageStatus,  modalDate, modalMessage, modalName2, modalEmail2,  modalTelephone2,  modalDate2, modalMessage2, messageLocation2, messageStatus2 } = req.body;
   messageLocation2 = messageLocation2.trim();
 
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
@@ -185,7 +186,6 @@ router.get('/index', (req, res) => //, ensureAuthenticated
     user: req.user
   })
 );
-var theChoices = [];
 // Find a Room
 router.get('/findaroom', ensureAuthenticated, (req, res) => // , ensureAuthenticated
   res.render('findaroom', {
