@@ -21,7 +21,8 @@
     </form>
 
 
-    <table class="dataTableDB table card card-body text-center align-items-center">
+    <div class="table-responsive-xxl fs-4 m-auto text-center">  
+    <table class="dataTableDB table text-center align-items-center" id="messagesTable" style="display: none;">
       <tr class="dataTableDBth">
         <td>User Data</td>
         <td>Message</td>
@@ -29,16 +30,22 @@
       <% var counter=1;%>
         <% bookings_data.forEach(function(data) { %>
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <%= bookings_data[0]['location'] %> </h1><% }     %> 
-          <div class="d-flex flex-row gap-1">
+        
+        <div class="d-flex flex-row gap-1 justify-content-center">
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1><% }     %> 
           <% if(counter <= 1) { %> <h1 id="SelectedDate"> <%= bookings_data[0]['date']; %> </h1><% }     %> 
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="tomorrow"> ▶ </button> </h1><% }     %> 
-          </div>
+          
+          <script>
+            document.getElementById('city').value = "<%= bookings_data[0]['location']; %>"
+          </script>
+        </div>
           <% if(data.found_data==false) {%>
 
     </table>
     <h1> no data found </h1>
     <% } else {%>
+      <script>document.getElementById('messagesTable').style.display="flex" </script>
       
       <tr>
         <td>
@@ -64,7 +71,7 @@
       </tr>
       <% } counter+=1; })%>
         </table>
-      
+      </div> 
   </div>
 <div class="myModal" id="myModal">
 

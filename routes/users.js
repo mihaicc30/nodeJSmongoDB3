@@ -28,8 +28,8 @@ router.post('/checkbookings', function (req, res) {
       if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important
       the_data = {}
       
-      if (!result) { the_data={"found_data":false, "date":date} }
-      if (result.length === 0) { the_data={"found_data":false, "date":date} }
+      if (!result) { the_data={"found_data":false, "date":date, "hotel":city} }
+      if (result.length === 0) { the_data={"found_data":false, "date":date, "hotel":city} }
       if (result.length > 0) { the_data=result }
       req.flash(
         'bookings_data',
@@ -51,8 +51,8 @@ router.post('/checkmessages', function (req, res) {
       if (err) { console.log(err) }
       the_data = {}
 
-      if (!result) { the_data={"found_data":false, "date":date} }
-      if (result.length === 0) { the_data={"found_data":false, "date":date} }
+      if (!result) { the_data={"found_data":false, "date":date, "location":city} }
+      if (result.length === 0) { the_data={"found_data":false, "date":date, "location":city} }
       
       if (result.length > 0) { the_data=result;}
       req.flash('bookings_data', the_data);

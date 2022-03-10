@@ -9,23 +9,30 @@
                         style="margin:0 auto;width: 50vw;margin-top:30vh;color:rgb(255, 255, 255); font-weight:bolder;padding: .5em; background-color: rgba(0, 0, 0, 0.562);">
                         Out with the daily, in with the wild! <br> Book now!</h1>
 
-                    <div style="width: 100vw;display: flex; justify-content: center;">
+                    <div style="width: 95vw;display: flex; justify-content: center;">
 
                         <div class="mt-4 gap-1"
                             style="background-color: rgba(255, 0, 0, 0);color: rgba(255, 255, 255, 0.562);display: flex;justify-content: space-between;">
-                            <input type="date" class="rounded" placeholder="Arrival"
-                                style="box-shadow: 1px 2px 5px 2px #000000db;"><br>
-                            <input type="date" class="rounded" placeholder="Departure"
-                                style="box-shadow: 1px 2px 5px 2px #000000db;"><br>
-                            <input type="text" class="rounded" placeholder="Persons#"
-                                style="box-shadow: 1px 2px 5px 2px #000000db;">
-                            <select name="city" id="city" class="rounded"
-                                style="box-shadow: 1px 2px 5px 2px #000000db;">
-                                <option value="Gloucester">Gloucester</option>
-                                <option value="London">London</option>
-                                <option value="Birmingham">Birmingham</option>
-                                <option value="Manchester">Manchester</option>
-                            </select>
+
+                            <form action="/findaroom" class="d-flex flex-row" id="indexBookingsForm">
+                                <input id="start" name="start" type="date" class="rounded" placeholder="Arrival"
+                                    style="box-shadow: 1px 2px 5px 2px #000000db;" required><br>
+                                <input id="end" name="end" type="date" class="rounded" placeholder="Departure"
+                                    style="box-shadow: 1px 2px 5px 2px #000000db;" required><br>
+                                <select id="hotel" name="hotel" class="rounded"
+                                    style="box-shadow: 1px 2px 5px 2px #000000db;" onchange="validateAndSubmit()">
+                                    <option selected="selected" disabled>Select hotel</option>
+                                    <option value="Gloucester">Gloucester</option>
+                                    <option value="London">London</option>
+                                    <option value="Birmingham">Birmingham</option>
+                                    <option value="Manchester">Manchester</option>
+                                </select>
+                            </form>
+                                <script>
+                                    function validateAndSubmit(){
+                                        document.getElementById('indexBookingsForm').submit();
+                                    };
+                                </script>
                         </div>
                     </div>
                 </div>
@@ -179,3 +186,12 @@
         <h1><i class="fa-brands fa-gripfire"></i></h1>
     </div>
 </div>
+
+<script>
+    window.onload=()=>{
+        var todaysDate = new Date().toISOString().slice(0, 10);
+        document.getElementById('start').value = todaysDate;
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate()+1);
+        document.getElementById('end').value = tomorrow.toISOString().slice(0, 10); }
+</script>

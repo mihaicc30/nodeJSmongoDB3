@@ -20,9 +20,9 @@
       </div>
     </form>
     
-  </div>
+  
   <div class="table-responsive-xxl fs-4 m-auto text-center">
-    <table class="dataTableDB table card card-body align-items-center">
+    <table class="dataTableDB table align-items-center" id="bookingsTable" style="display: none;">
       <tr class="dataTableDBth">
         <td>Customer</td>
         <td>Location</td>
@@ -39,12 +39,16 @@
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1><% }     %> 
           <% if(counter <= 1) { %> <h1 id="SelectedDate"> <%= bookings_data[0]['date'].slice(0, 10); %> </h1><% }     %> 
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="tomorrow"> ▶ </button> </h1><% }     %> 
+          <script>
+            document.getElementById('city').value = "<%= bookings_data[0]['hotel']; %>"
+          </script>
         </div>
 
         <% if(data.found_data == false) {%>
           </table>
           <h1 class="text-center"> no data found </h1>
           <% } else {%>
+            <script>document.getElementById('bookingsTable').style.display="flex" </script>
             <tr>
           <td><div id="name<%=counter%>" class="name<%=counter%>"><%= data.customer %></div><div id="email<%=counter%>" class="email<%=counter%>"><%= data.customerEmail %></div></td>
           <td><div id="hotel<%=counter%>" class="location<%=counter%>"><%= data.hotel.toUpperCase() %></div></td>
@@ -59,6 +63,7 @@
     </table>
 
   </div>
+</div>
 <div class="myModal" id="myModal">
   <form method="post">
     <input type="text" id="modalname2" name="modalname2" style="display: none;">

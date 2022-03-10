@@ -17,7 +17,6 @@ font-family: 'Lora', serif; */
     display: flex;
     flex-direction: row;
     z-index: 995;
-    height: 23vh;
     justify-content: center;
 }
 .naviBtn {
@@ -270,15 +269,21 @@ tbody, td, tfoot, th, thead, tr {
     word-wrap: break-word;
     word-break: break-all;
 }
+#detailsDiv {
+    display: none;
+}
+#detailsDiv.show {
+    display: block;
+}
 /* // */
 .carousel-container {
     overflow: hidden;
     position: relative;
     height: 30vh;
-    width: 100vw;
+    width: 95vw;
     margin-top: 2rem;
+    overflow-y: hidden;
 }
-
 .carousel {
     display: flex;
     position: absolute;
@@ -286,17 +291,18 @@ tbody, td, tfoot, th, thead, tr {
     top: 0;
     transform: translateX(0);
     transition: transform 0.4s ease-in-out;
+    overflow: hidden;
 }
 
 .slide {
     margin-top: 100px;
-    width: 35vw;
+    width: 33vw;
     text-align: center;
 }
 
 .slide img {
     object-fit: cover;
-    height: 40vh;
+    height: 35vh;
     width: 70%;
 }
 
@@ -335,7 +341,7 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 .right-arrow {
-    right: 2rem;
+    right: 0rem;
     margin-top: 73px;
 }
 /* // */
