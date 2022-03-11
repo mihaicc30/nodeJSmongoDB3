@@ -345,6 +345,49 @@ tbody, td, tfoot, th, thead, tr {
     margin-top: 73px;
 }
 /* // */
+
+.show {
+    -webkit-animation: show-modal 1s both;
+    animation: show-modal 1s both;	
+    opacity: 1;
+}
+.show2 {
+    -webkit-animation: show-modal 2s both;
+    animation: show-modal 2s both;	
+    opacity: 1;
+}
+
+.hide {
+    -webkit-animation: hide-modal 1s ease-in-out both;
+    animation: hide-modal 1s ease-in-out both;
+}
+
+
+@keyframes show-modal {
+    0% {
+        transform: scale(0) ;
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+  }
+@keyframes hide-modal {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1.2);
+        opacity: 1;
+}
+    100% {
+        transform: scale(0);
+        opacity: 1;
+    }
+}
+
 @media (max-width: 767px) {
     .head1 {
         display: flex;

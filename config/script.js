@@ -47,3 +47,23 @@ function editBooking(name,email,telephone,location,checkin,checkout,roomtype,bre
 function setLoc(x) {
    document.getElementById('messageLocation').innerText = x; 
   }
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', loadModal, false);
+
+function loadModal() {
+  setTimeout(showModal,1000);
+  console.log("yes i know...only available when user is logged in");
+}
+
+function showModal() {
+  document.querySelector('.welcomeMsg').classList.add('show');
+}
+
+document.querySelector('#hidewelcomemsg').addEventListener('click', function() {
+  document.querySelector('.welcomeMsg').classList.remove('show');
+  document.querySelector('.welcomeMsg').classList.add('hide');
+})
