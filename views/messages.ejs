@@ -146,6 +146,7 @@ document.addEventListener('keydown', function(e) {
 
 
 <script defer>
+if((document.getElementById('yesterday')) != undefined){
   document.getElementById('yesterday').addEventListener("click", function() {
     var selectArea = document.getElementById('SelectedDate').innerHTML
     var d = new Date(selectArea)
@@ -167,9 +168,5 @@ document.addEventListener('keydown', function(e) {
     d = d.toISOString()
     document.getElementById('date').value = d.substring(0,10);
     document.getElementById('myMessages').submit();
-  })
-
-
-
-
+  })}
 </script>

@@ -47,11 +47,3 @@ function editBooking(name,email,telephone,location,checkin,checkout,roomtype,bre
 function setLoc(x) {
    document.getElementById('messageLocation').innerText = x; 
   }
-
-
-
-
-
-
-
-
