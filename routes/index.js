@@ -172,18 +172,18 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
 
       var mailOptions = {
         from: 'mihaisolent@gmail.com',
-        to: 'mihaisolent@gmail.com',
+        to: hotelUserEmail,
         subject: 'QualityHotel - Booking Confirmation ' + (new Date().toISOString().slice(0, 10)),
         text: emailMsg
       };
 
-      // transporter.sendMail(mailOptions, function(error, info){
-      //   if (error) {
-      //     console.log(error);
-      //   } else {
-      //     console.log('Email sent: ' + info.response);
-      //   }
-      // });
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
     }
   })
 })

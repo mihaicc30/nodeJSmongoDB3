@@ -47,9 +47,9 @@
     </div>
 
     
-    <h2 class="mt-2" id="choice2" loading="lazy">2. Pick your dates</h2>    
+    <h2 class="mt-2 hideme" id="choice2" loading="lazy">2. Pick your dates</h2>    
     
-    <div class="datepicker card card-body d-flex justify-content-center py-4 fs-4 gap-2" loading="lazy">
+    <div class="datepicker card card-body d-flex justify-content-center py-4 fs-4 gap-2 hideme" loading="lazy">
         <div>
             
             <label for="start">Start date:</label>
@@ -61,7 +61,7 @@
     </div>
 
     
-    <h2 class="mt-2" id="choice3" loading="lazy">3. Choose your options</h2>    
+    <h2 class="mt-2 hideme" id="choice3" loading="lazy">3. Choose your options</h2>    
 
     <div class="card card-body d-flex flex-column justify-content-center p-2 gap-2 py-4" loading="lazy">
         <div class="card d-flex flex-row fs-5">
@@ -119,9 +119,9 @@
     </div>
 
     
-    <h2 class="mt-2" id="choice4" >4. Finalizing</h2>  
+    <h2 class="mt-2 hideme" id="choice4" >4. Finalizing</h2>  
     <!-- <button onclick="showchoices()" >show me the stuff</button> -->
-    <div class="results card card-body align-items-center"> 
+    <div class="results card card-body align-items-center hideme"> 
         <table id="results" border="1px"></table>
         <table id="resultsTOTAL" border="1px" class="fs-2 fw-bold">
             <div class="spinnerContainer" id="spinnerContainer">
@@ -316,3 +316,18 @@ adjust();
 
 
 </script>
+<script defer>
+    $(document).ready(function() {
+        $(window).scroll( function(){
+            $('.hideme').each( function(i){
+                var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+                var bottom_of_window = ($(window).scrollTop() + ($(window).height())) +(111) ;
+                bottom_of_window = parseInt(bottom_of_window).toFixed(0);
+                bottom_of_object = parseInt(bottom_of_object).toFixed(0);
+                if( bottom_of_window > bottom_of_object ){
+                    $(this).animate({'opacity':'1'},1000);
+                } 
+            }); 
+        });
+      });
+    </script>

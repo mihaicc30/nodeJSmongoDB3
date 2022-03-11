@@ -57,6 +57,11 @@
           <td><div id="breakfast<%=counter%>" class="breakfast<%=counter%>"><%= data.extras.breakfast %></div><div id="champagne<%=counter%>" class="champagne<%=counter%>"><%= data.extras.champagne %></div><div id="car<%=counter%>" class="car<%=counter%>"><%= data.extras.car %></div></td>
           <td>£<div id="total<%=counter%>" class="total<%=counter%>"><%= data.total %></div></td>
           <td><i class="fa fa-edit" style="cursor: pointer;" onclick="editMessage('<%=counter%>');"></i></td>
+          <td style="display: none;">
+            <i class="fa fa-save saveBookin" style="cursor: pointer;"><p class="saveBookin" style="display: none;">save ur mom</p></i>
+            <!-- <i class="fa fa-circle-minus" style="cursor: pointer;"></i> -->
+          
+          </td>
         </tr>
         <% 
         }  counter+=1; })%>
