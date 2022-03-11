@@ -61,10 +61,8 @@ var dbdata = [
 
 
 
-canceling rez email
 default show
 message admin reply button
 faq database data+design
 active menu
-page layout
 welcome message+bookimg

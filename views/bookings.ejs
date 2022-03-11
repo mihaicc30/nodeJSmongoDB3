@@ -33,11 +33,11 @@
       </tr>
       <% var counter=1;%>
       <% bookings_data.forEach(function(data) { %>
-
+        <script>console.log(bookings_data[0])</script>
         <% if(counter <= 1) { %> <h1 id="messageLocation" > <%= bookings_data[0]['hotel']; %> </h1><% }     %> 
         <div class="d-flex flex-row gap-1 justify-content-center">
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1><% }     %> 
-          <% if(counter <= 1) { %> <h1 id="SelectedDate"> <%= bookings_data[0]['date'].slice(0, 10); %> </h1><% }     %> 
+          <% if(counter <= 1) { %> <h1 id="SelectedDate"> <%= data['fromDate']; %> </h1><% }     %> 
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="tomorrow"> ▶ </button> </h1><% }     %> 
           <script>
             document.getElementById('city').value = "<%= bookings_data[0]['hotel']; %>"
@@ -51,7 +51,7 @@
             <script>document.getElementById('bookingsTable').style.display="flex" </script>
             <tr>
           <td><div id="name<%=counter%>" class="name<%=counter%>"><%= data.customer %></div><div id="email<%=counter%>" class="email<%=counter%>"><%= data.customerEmail %></div></td>
-          <td><div id="hotel<%=counter%>" class="location<%=counter%>"><%= data.hotel.toUpperCase() %></div></td>
+          <td><div id="hotel<%=counter%>" class="location<%=counter%>"><%= data.hotel %></div></td>
           <td><div id="checkin<%=counter%>" class="checkin<%=counter%>"><%= data.fromDate %></div>/<div  id="checkout<%=counter%>" class="checkout<%=counter%>"><%= data.toDate %></div></td>
           <td><div id="roomtype<%=counter%>" class="roomtype<%=counter%>"><%= data.roomType %></div></td>
           <td><div id="breakfast<%=counter%>" class="breakfast<%=counter%>"><%= data.extras.breakfast %></div><div id="champagne<%=counter%>" class="champagne<%=counter%>"><%= data.extras.champagne %></div><div id="car<%=counter%>" class="car<%=counter%>"><%= data.extras.car %></div></td>
@@ -163,12 +163,17 @@ document.addEventListener('keydown', function(e) {
 
   document.getElementById('tomorrow').addEventListener("click", function() {
     var selectArea = document.getElementById('SelectedDate').innerHTML
+    console.log(selectArea)
     var d = new Date(selectArea)
+    console.log(d)
     d.setDate(d.getDate() + 1)
+    console.log(d)
     d.setTime(d.getTime() + (12*60*60*1000)) // UTC SUCKS!
-    // console.log(d)
+    console.log(d)
     d = d.toISOString()
+    console.log(d)
     document.getElementById('date').value = d.substring(0,10);
+    console.log(d.substring(0,10))
     document.getElementById('myFormBookings').submit();
   })
 

@@ -272,9 +272,7 @@ tbody, td, tfoot, th, thead, tr {
     transform: scale(1.1);
 }
 #modalMessage{
-    height: 250px;
-    word-wrap: break-word;
-    word-break: break-all;
+    height: 100px;
 }
 #detailsDiv {
     display: none;

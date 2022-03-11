@@ -197,6 +197,7 @@
 
         var price = 0;
         for (i=0;i<Object.keys(theChoices).length;i++) {
+            console.log(theChoices)
             // var tr = document.createElement("tr");
             
             // var td = document.createElement("td");
@@ -280,7 +281,7 @@ function adjust() {
         var todaysDate = new Date().toISOString().slice(0, 10);
         document.getElementById('start').value = todaysDate;
         theChoices.from_date=todaysDate;
-
+        
         
         var tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate()+1);
@@ -292,7 +293,7 @@ function adjust() {
     
     
     } else {  // if comming from index
-    theChoices.hotel=urlStringStart;
+    theChoices.hotel=urlStringHotel;
     theChoices.from_date=urlStringStart;
     theChoices.to_date=urlStringEnd;
     

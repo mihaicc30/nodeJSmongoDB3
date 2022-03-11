@@ -16,15 +16,11 @@ router.get('/bookings', ensureAuthenticated, (req, res) => //
 
 
 // Admin - Messages
-router.get('/messages', (req, res) => //  , ensureAuthenticated
+router.get('/messages', ensureAuthenticated, (req, res) => //  
   res.render('messages', {
     user: req.user
-  }
-  )
-
+  })
 );
-
-
 // Home Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('index'));
 
@@ -46,7 +42,7 @@ router.post('/contact', function (req, res) {
     }
 
     else {
-      db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment, location: city, date: new Date().toISOString().slice(0, 10), status: "unread" })
+      db.collection(city).insertOne({ name: name, email: email, telephone: telephone, comment: comment.trim(), location: city, date: new Date().toISOString().slice(0, 10), status: "unread" })
       req.flash('success_msg', 'Thank you for contacting us. You message has been successfully sent to QualityB&B in ' + city + '!');
       res.redirect('/contact')
     }
@@ -54,17 +50,17 @@ router.post('/contact', function (req, res) {
 })
 
 // Admin Form - Edit Contact Messages
-router.post('/messagesedit', ensureAuthenticated, function (req, res) {
+router.post('/messagesedit', ensureAuthenticated, function (req, res) { //
   var { modalName, modalEmail, modalTelephone, modalDate, modalStatus, modalMessage, modalName2, modalEmail2, modalTelephone2, modalDate2, modalMessage2, modalStatus2, messageLocation2 } = req.body;
-  messageLocation2 = messageLocation2.trim();
+
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     if (err) { console.log(err) }
 
     else {
       db.collection(messageLocation2).updateOne(
-        { name: modalName2, email: modalEmail2, telephone: modalTelephone2, comment: modalMessage2, status: modalStatus2 }, {
+        { name: {$eq:modalName2}, email: {$eq:modalEmail2}, telephone: {$eq:modalTelephone2}, comment: {$eq:modalMessage2}, status: {$eq:modalStatus2} }, {
         $set:
-          { name: modalName, email: modalEmail, telephone: modalTelephone, comment: modalMessage, status: modalStatus }
+          { name: modalName, email: modalEmail, telephone: modalTelephone, comment: modalMessage.trim(), status: modalStatus, date:modalDate}
       })
       res.redirect('/messages')
     }
@@ -92,16 +88,15 @@ router.post('/messagesdelete', ensureAuthenticated, function (req, res) {
 router.post('/bookingedit', ensureAuthenticated, function (req, res) {
   var { modalname, modalemail, modalhotel, modalcheckin, modalcheckout, modalroomtype, modalbreakfast, modalchampagne, modalcar, modaltotal,
     modalname2, modalemail2, modalhotel2, modalcheckin2, modalcheckout2, modalroomtype2, modalbreakfast2, modalchampagne2, modalcar2, modaltotal2 } = req.body;
-  city = modalhotel2.trim().toLowerCase();
 
   mongoose.createConnection(db2, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db2) => {
     if (err) { console.log(err) }
 
     else {
-      db2.collection(city).updateOne(
-        { customer: modalname2, customerEmail: modalemail2, fromDate: modalcheckin2, toDate: modalcheckout2, roomType: modalroomtype2, extras: { breakfast: modalbreakfast2, champagne: modalchampagne2, car: modalcar2 }, total: modaltotal2 }, {
-        $set:
-          { name: modalname, email: modalemail, hotel: modalhotel, fromDate: modalcheckin, toDate: modalcheckout, roomType: modalroomtype, extras: { breakfast: modalbreakfast, champagne: modalchampagne, car: modalcar }, total: modaltotal }
+      db2.collection(modalhotel).updateOne(
+        { customer: {$eq:modalname2}, customerEmail: {$eq:modalemail2}, fromDate: {$eq:modalcheckin2}, toDate: {$eq:modalcheckout2}, roomType: {$eq:modalroomtype2}, total: {$eq:modaltotal2} }, 
+        { $set:
+          { customer: modalname, customerEmail: modalemail, hotel: modalhotel, fromDate: modalcheckin, toDate: modalcheckout, roomType: modalroomtype, extras: { breakfast: modalbreakfast, champagne: modalchampagne, car: modalcar }, total: modaltotal }
       })
       res.redirect('/bookings')
     }
@@ -112,15 +107,46 @@ router.post('/bookingedit', ensureAuthenticated, function (req, res) {
 router.post('/bookingdelete', ensureAuthenticated, function (req, res) {
   var { modalname, modalemail, modaltelephone, modalhotel, modalcheckin, modalcheckout, modalroomtype, modalbreakfast, modalchampagne, modalcar, modaltotal,
     modalname2, modalemail2, modaltelephone2, modalhotel2, modalcheckin2, modalcheckout2, modalroomtype2, modalbreakfast2, modalchampagne2, modalcar2, modaltotal2 } = req.body;
-  city = modalhotel2.trim().toLowerCase();
 
   mongoose.createConnection(db2, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db2) => {
     if (err) { console.log(err) }
 
     else {
-      db2.collection(city).deleteOne(
-        { customer: modalname2, customerEmail: modalemail2, fromDate: modalcheckin2, toDate: modalcheckout2, roomType: modalroomtype2, extras: { breakfast: modalbreakfast2, champagne: modalchampagne2, car: modalcar2 }, total: modaltotal2 })
+      console.log(modalname2, modalemail2, modalcheckin2, modalcheckout2, modaltotal2)
+      db2.collection(modalhotel2).deleteOne(
+        { customer: {$eq:modalname2}, customerEmail: {$eq:modalemail2}, fromDate: {$eq:modalcheckin2}, toDate: {$eq:modalcheckout2}, total: {$eq:modaltotal2} })
       res.redirect('/bookings')
+        // send cancelation email
+        console.log("canceling email", modalemail2)
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'mihaisolent@gmail.com',
+            pass: 'mihaisolentmihaisolent'
+          }
+        });
+  
+        var emailMsg = "Dear "+modalname2+"\n  \nThis is a cancelation email of your booking on "+modalcheckin2+" in "+modalhotel2+"\n   \nWe are sorry for any inconvenience and hope to see you again!\n   \nKind Regards,\nReception Team "+modalhotel2;
+  
+  
+        var mailOptions = {
+          from: 'mihaisolent@gmail.com',
+          to: modalemail2,
+          subject: 'QualityHotel - Booking Cancelation Executed ' + (new Date().toISOString().slice(0, 10)),
+          text: emailMsg
+        };
+  
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
+        
+
+
+        //end of cancelation email
     }
   })
 })

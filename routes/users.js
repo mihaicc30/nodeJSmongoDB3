@@ -30,8 +30,8 @@ router.post('/checkbookings', function (req, res) {
       if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important
       the_data = {}
 
-      if (!result) { the_data={"found_data":false, "date":date, "hotel":city} }
-      if (result.length === 0) { the_data={"found_data":false, "date":date, "hotel":city} }
+      if (!result) { the_data={"found_data":false, "fromDate":date, "hotel":city} }
+      if (result.length === 0) { the_data={"found_data":false, "fromDate":date, "hotel":city} }
       if (result.length > 0) { the_data=result }
       req.flash(
         'bookings_data',
@@ -151,7 +151,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-// Update
+// User Account Update
 router.post('/update', (req, res) => {
   const { email2, created2, name, email, phone, password } = req.body;
 
@@ -201,7 +201,7 @@ router.post('/update', (req, res) => {
   }
 })
 
-// Delete
+// User Account Delete
 router.post('/delete', (req, res) => {
   const { email } = req.body;
   db.collection("users").deleteOne({ email: email })

@@ -131,7 +131,7 @@ function editMessage(counter) {
   document.getElementById("modalDate2").value = modalDate;
   document.getElementById("modalStatus2").value = modalStatus;
   document.getElementById("modalMessage2").value = modalMessage;
-  document.getElementById("messageLocation2").value = document.getElementById("messageLocation").innerHTML;
+  document.getElementById("messageLocation2").value = document.getElementById("messageLocation").innerHTML.trim();
   document.getElementById('myModal').style.display='block'
 }
 
@@ -151,7 +151,6 @@ document.addEventListener('keydown', function(e) {
     var d = new Date(selectArea)
     d.setDate(d.getDate() - 1)
     d.setTime(d.getTime() + (12*60*60*1000)) // UTC SUCKS!
-    // console.log(d)
     d = d.toISOString()
     document.getElementById('date').value = d.substring(0,10);
     document.getElementById('myMessages').submit();
@@ -160,6 +159,7 @@ document.addEventListener('keydown', function(e) {
 
   document.getElementById('tomorrow').addEventListener("click", function() {
     var selectArea = document.getElementById('SelectedDate').innerHTML
+    console.log(selectArea)
     var d = new Date(selectArea)
     d.setDate(d.getDate() + 1)
     d.setTime(d.getTime() + (12*60*60*1000)) // UTC SUCKS!
