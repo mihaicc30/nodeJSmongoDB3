@@ -14,9 +14,6 @@ var dbdata = [
   </li>
 <% }); %>
 
-
-
-
     <!-- <p><%- user.email %></p> -->
 
       //////////////
@@ -24,14 +21,6 @@ var dbdata = [
       npm install -g nodemon
       ////////////
 
-
-
-
-
-
-
-
-      
             <%= if (bookings_data[0]["found_data"] = false) {console.log("its false")} %>
             
             <% if (bookings_data[0]["found_data"] != false) { %>
@@ -53,15 +42,6 @@ var dbdata = [
               </tr>
               <% }); %>
 
-
-
-
-
-
-
-
-
-default show
 message admin reply button
 faq database data+design
 active menu

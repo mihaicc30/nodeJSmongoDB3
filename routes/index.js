@@ -22,7 +22,7 @@ router.get('/messages', ensureAuthenticated, (req, res) => //
   })
 );
 // Home Page
-router.get('/', forwardAuthenticated, (req, res) => res.render('index'));
+router.get('/index', forwardAuthenticated, (req, res) => res.render('index'));
 
 // Contact Form
 router.post('/contact', function (req, res) {
@@ -231,9 +231,24 @@ router.get('/index', (req, res) => //, ensureAuthenticated
         }
       })
     }
+  }))
+// Index
+router.get('/', (req, res) => //, ensureAuthenticated
 
+  mongoose.createConnection(db2, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db2) => {
+    if (err) { console.log(err) } else {
 
+      db2.collection("London").find({ customer: "MIHAI C" }).sort({ fromDate: 1 }).limit(1).toArray(function (err, result) {
+        if (err) { console.log(err) } else {
 
+          res.render('index', {
+            user: req.user
+            ,
+            welcomeMsg: { "hotel": result[0]["hotel"], "fromDate": result[0]["fromDate"], "toDate": result[0]["toDate"], "roomType": result[0]["roomType"], "total": result[0]["total"] }
+          })
+        }
+      })
+    }
   }))
 
 // Find a Room

@@ -3,12 +3,12 @@
   <div>
     <div class="d-flex flex-column">
       <div class="topNavBar">
-        <div class="d-flex flex-row"
+        <div class="d-flex flex-row" id="navDiv"
           style="justify-content: space-evenly;margin-top: 50px;width: 95vw;height: 100px; padding-top: 1em;background-color: rgba(49, 49, 49, 0.527);">
           <div class="d-flex flex-column" style="margin-left:50px;height: 100px;">
             <div style="display: flex;">
               <h1 style="color:white;">Quality Hotel</h1>
-              <a href="/"><img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo"
+              <a href="/index"><img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo"
                   style="height:50px; width:50px"></a>
             </div>
             <div>
@@ -29,12 +29,9 @@
                           <% } %>
               </div>
             </div>
-
-
           </div>
-
           <div style="margin-left:50px;height: 100px;">
-            <a href="/" class="btn naviBtn">Home</a>
+            <a href="/index" class="btn naviBtn" id="indexNaviBtn">Home</a>
             <a href="/findaroom" class="btn naviBtn">Book Room</a>
             <a href="/about" class="btn naviBtn">About</a>
             <a href="/faq" class="btn naviBtn">FAQ</a>
@@ -43,10 +40,23 @@
           <div style="margin-left:50px;height: 50px;" class="btn naviBtn" onclick="location.href='tel:01235%12312345';">
             <i class="fa fa-phone"></i><br>01234 012 01234
           </div>
-          
+
           <script src="/config/script.js" defer></script>
 
         </div>
       </div>
 
     </div>
+  <script>
+    $(document).ready(function ($) {
+      var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+      $('.naviBtn').each(function () {
+        if (this.href === path) {
+          $(this).addClass('active');
+        };
+        if (path == "http://localhost:5555/" || path == "https://qualityhotel.herokuapp.com/") {
+          document.querySelector('#indexNaviBtn').classList.add('active');
+        }
+      });
+    });
+  </script>

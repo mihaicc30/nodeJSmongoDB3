@@ -49,6 +49,22 @@ font-family: 'Lora', serif; */
     box-shadow: inset -8px 8px black;
 }
 
+.active {
+    background-color: #fb8039;
+}
+.naviBtn.active:hover {
+    transform: scale(1.05) translate(-3px, 3px);
+    background-color: #be5d24;
+    color: white;
+    box-shadow: inset -3px 3px black;
+    text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.75),
+    -2px 2px 2px rgba(0, 0, 0, 0.75),
+    -3px 3px 3px rgba(0, 0, 0, 0.75);
+}
+.naviBtn.active:focus {
+    background-color: #853d13;
+    box-shadow: inset -8px 8px black;
+}
 #faqbody {
     width: 85vw;
 }
