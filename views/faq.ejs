@@ -2,36 +2,33 @@
 
 <div class="card card-body text-start align-items-center" style="margin-top: 25vh;">
   <div class="card card-body align-items-left" id="faqbody">
-    <div class="text-center fs-1" style="cursor: pointer" onclick="showDiv(0)"></h2>F.A.Q.</h2></div>
+    <div class="-cetextnter fs-1" style="cursor: pointer" onclick="showDiv(0)"></h2>F.A.Q.</h2></div>
     <div  style="display: none" id="faqp0"><h3 class="text-center">Frequently Asked Questions :D</h3></div>
-    <ul>
+
+  <form action="/faq" method="get">
+    <button type="submit" value="submit" name="submit">submit</button>
+  </form>
+    
+    <% var counter=1;%>
+    <% if (faq_data) { %>
+      
+        <table>
+      <% faq_data.forEach(function(data) { %>
+        <tr>
+          <td style="color:black"><%= data.question %></td>
+          <td style="color:black"><%= data.response %></td>
+        </tr>
+        <% }) %>
+      </table> 
+        
+      
+      <%}%>
+
+    <!-- <ul>
       <li class="faqli card fs-3 flex-row" style="cursor: pointer" onclick="showDiv(1)"><div>&#9759;</div>&#8239; Who are we and how long have we been on the market ?</li>
       <h2 class="fs-4" id="faqp1" style="display: none">Established in 2022 QualityHotel provides a restful and inspiring place to stay where guests can share our passion for food, music, art and design.</h2>
-    </ul>
-    <ul>
-      <li class="faqli card fs-3 flex-row" style="cursor: pointer;" onclick="showDiv(2)"><div>&#9759;</div>&#8239; What kind of company is QualityHotel and where abouts are you based?</li>
-      <h2 class="fs-4" id="faqp2" style="display: none">We are a small family business company that just inherited a small fortune and decided to start a B&B business, each around their homes. Main office beeing in Gloucester with secondary locations beeing in London, Birmingham, Manchester.</h2>
-    </ul>
-    <ul>
-      <li class="faqli card fs-3 flex-row" style="cursor: pointer;" onclick="showDiv(3)"><div>&#9759;</div>&#8239; How do i book?</li>
-      <h2 class="fs-4" id="faqp3" style="display: none">Need to click the <a href="/findaroom">Find a room</a> tab and is preety much explanatory, first step beeing choosing your desired location, the dates of your stay, the type of room and if needed something extra, we offer breakfast, champagne&chocolates on arrival or a rented car. </h2>
-    </ul>
-    <ul>
-      <li class="faqli card fs-3 flex-row" style="cursor: pointer;" onclick="showDiv(4)"><div>&#9759;</div>&#8239; I have booked but not paid yet. What now?</li>
-      <h2 class="fs-4" id="faqp4" style="display: none">We only take payments upon arrival, so even if you change your mind, you do not have to worry about anything. We are all about making peoples life easier. <br><br>If for example someone got ill or can not show up anymore, a phone call should be sufficient to let us know and there is no hassle at all! </h2>
-    </ul>
-    <ul>
-      <li class="faqli card fs-3 flex-row" style="cursor: pointer;" onclick="showDiv(5)"><div>&#9759;</div>&#8239; Are there any activities to do around the hotel?</li>
-      <h2 class="fs-4" id="faqp5" style="display: none">Depending on the location, preety much all the time you will find attraction to attend to. Most of them are in the summer period and December. <br><br> A simple search on TripAdvisor will show you your options.</h2>
-    </ul>
-    <ul>
-      <li class="faqli card fs-3 flex-row" style="cursor: pointer;" onclick="showDiv(6)"><div>&#9759;</div>&#8239; Am i allowed with pets?</li>
-      <h2 class="fs-4" id="faqp6" style="display: none">You are free to bring your pet with you but you must ensure that they do not do any damage to the propriety or surroundings. Otherwise they will be sold to the circus, muahaha..</h2>
-    </ul>
-    <ul>
-      <li class="faqli card fs-3 flex-row" style="cursor: pointer;" onclick="showDiv(7)"><div>&#9759;</div>&#8239; What hours do you operate and what time is the earliest check-in and latest check-out?</li>
-      <h2 class="fs-4" id="faqp7" style="display: none">We are a 24/7 B&B hotel, someone is always in the reception area to help you with anything and secure the premises. The check-in time is after 14:00 and check-out time is before 11:00. If you require and earlier or later check-in/out, drop a message through our <a href="/contact">Contact Form</a> and we will do our best to help! </h2>
-    </ul>
+    </ul> -->
+    
     
 
   </div>

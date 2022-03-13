@@ -33,7 +33,7 @@
       </tr>
       <% var counter=1;%>
       <% bookings_data.forEach(function(data) { %>
-        <script>console.log(bookings_data[0])</script>
+        <!-- <script>console.log(bookings_data[0])</script> -->
         <% if(counter <= 1) { %> <h1 id="messageLocation" > <%= bookings_data[0]['hotel']; %> </h1><% }     %> 
         <div class="d-flex flex-row gap-1 justify-content-center">
           <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1><% }     %> 

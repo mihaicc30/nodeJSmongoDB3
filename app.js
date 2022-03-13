@@ -65,6 +65,7 @@ app.use(function(req, res, next) {
 // Routes
 app.use(express.static('../config'));
 app.use('/index', require('./routes/index.js'));
+app.use('/', require('./routes/faq'));
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/imgs', express.static('./imgs'))

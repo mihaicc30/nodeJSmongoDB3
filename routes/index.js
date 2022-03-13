@@ -263,12 +263,6 @@ router.get('/about', (req, res) => // , ensureAuthenticated
     user: req.user
   })
 );
-// FAQ
-router.get('/faq', (req, res) => // , ensureAuthenticated
-  res.render('faq', {
-    user: req.user
-  })
-);
 // Contact
 router.get('/contact', (req, res) =>   // , ensureAuthenticated  - leaving this on purpose without ensureAuthenticated
   res.render('contact', {
