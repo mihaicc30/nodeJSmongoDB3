@@ -367,7 +367,7 @@ tbody, td, tfoot, th, thead, tr {
 }
 /* // */
 
-.hideme{
+.hideme, .fade-right, .fade-left{
     opacity:0;
 }
 
@@ -416,6 +416,9 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 @media (max-width: 767px) {
+    #loggo{
+        color: black!important;
+    }
     .head1 {
         display: flex;
         flex-direction: column;
@@ -425,6 +428,27 @@ tbody, td, tfoot, th, thead, tr {
     }
     #headz {
         flex-direction: column-reverse!important;
+    }
+    #navElems{
+        flex-direction: column;
+    }
+    #headPic {
+        margin-top: 30vh;
+    }
+    #navDiv{
+        flex-direction: column!important;
+    }
+    #callBtn{
+        display: none;
+    }
+    #indexBookingsForm{
+        flex-direction: column;
+    }
+    .carousel-container{
+        display: none;
+    }
+    #footz{
+        flex-direction: column!important;
     }
 }
 @media (max-width: 991px) {

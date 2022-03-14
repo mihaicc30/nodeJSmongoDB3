@@ -25,10 +25,10 @@
     <% if (faq_data) { %>
       
       <% faq_data.forEach(function(data) { %>
-        <div class="d-flex flex-column m-3" style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.5em;font-weight: bold;">
+        <div class="d-flex flex-column m-3 <% if(counter>3){ %>hideme<%}%> " style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.5em;font-weight: bold;">
 
-          <div style="color:black; cursor: pointer;font-size: 1.5em;" id="q<%= counter %>" class="d-flex flex-row m-2">
-            <p onclick="showDiv('<%= counter %>')" >&#9759; <%= data.question %></p>
+          <div style="color:black;font-size: 1.5em;" id="q<%= counter %>" class="d-flex flex-row m-3">
+            <p onclick="showDiv('<%= counter %>')" style=" cursor: pointer;">&#9759; <%= data.question %></p>
              <i class="fa-solid fa-thumbs-up mx-1" onclick="addlike('<%= counter%>')"></i>
               <div id="likess<%= counter %>" name="likess<%= counter %>"><%= data.likes %></div> 
               
@@ -93,7 +93,7 @@ function addlike(count){
   currentLikes = document.getElementById('likess'+count).innerHTML;
   currentLikes++;
   document.getElementById('likess'+count).innerHTML =currentLikes;
-  console.log(currentLikes);
+  // console.log(currentLikes);
   document.getElementById('form'+count).submit();
 }
 

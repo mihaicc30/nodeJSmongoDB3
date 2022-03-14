@@ -4,7 +4,7 @@
         <div>
             <div class="d-flex flex-column">
                 <div style="height:80vh;width: 100%;background-image: url(/imgs/landscape/3.jpg);background-repeat: no-repeat;
-    background-position: center;background-size: cover;text-align: center;">
+    background-position: center;background-size: cover;text-align: center;" id="headPic">
 
                     <% if(typeof user=="object" ) { %>
 
@@ -25,11 +25,18 @@
 
 
                             <h1 style="color: white;margin-top: 1em;"> Welcome back <%= user.name %>!</h1>
+                            <% if(welcomeMsg.hotel === "0") { %>
 
-                            <h1 style="color: white;margin-top: 1em;"> You soon have a trip planned at <%= welcomeMsg.hotel
-                                    %> from <%= welcomeMsg.fromDate %> to <%= welcomeMsg.toDate %> in a <%=
-                                                welcomeMsg.roomType %> room. Payable at the hotel £<%= welcomeMsg.total
-                                                    %>.</h1>
+                                <h1 style="color: white;margin-top: 1em;"> You have no active bookings. <br>Maybe try <a href="/findaroom">one</a>? </h1>
+
+                                
+                                <% } else { %>
+                                    <h1 style="color: white;margin-top: 1em;"> You soon have a trip planned at <%= welcomeMsg.hotel
+                                        %> from <%= welcomeMsg.fromDate %> to <%= welcomeMsg.toDate %> in a <%=
+                                                    welcomeMsg.roomType %> room. Payable at the hotel £<%= welcomeMsg.total
+                                                        %>.</h1>
+                                    <% } %>
+                           
 
                         </div>
                         <% } %>
@@ -43,7 +50,7 @@
                                 <div class="mt-4 gap-1 show2"
                                     style="background-color: rgba(255, 0, 0, 0);color: rgba(255, 255, 255, 0.562);display: flex;justify-content: space-between;">
 
-                                    <form action="/findaroom" class="d-flex flex-row" id="indexBookingsForm">
+                                    <form action="/findaroom" class="d-flex" id="indexBookingsForm">
                                         <input id="start" name="start" type="date" class="rounded" placeholder="Arrival"
                                             style="box-shadow: 1px 2px 5px 2px #000000db;" required><br>
                                         <input id="end" name="end" type="date" class="rounded" placeholder="Departure"
@@ -68,7 +75,7 @@
                 </div>
             </div>
 
-            <div class="carousel-container" onload='this.className += " show";'>
+            <div class="carousel-container hideme" onload='this.className += " show";'>
                 <div class="carousel" id="carousel">
                     <div class="slide hideme">
                         <h1><i class="fa-solid fa-star" style="color: #f5af34;"></i></h1>
@@ -108,7 +115,7 @@
             <div class="text-center" loading="lazy">
 
                 <div class="index card card-body flex-wrap flex-md-row gap-2 justify-content-center m-auto">
-                    <img src="/imgs/1.jpg" class="rounded hideme" loading="lazy"
+                    <img src="/imgs/1.jpg" class="hideme rounded " loading="lazy"
                         style="max-width: 100%; height:auto; max-height: 20vh;">
                     <img src="/imgs/fronthotel/birmingham.jpg" class="rounded hideme" loading="lazy"
                         style="max-width: 100%; height:auto; max-height: 20vh;">
@@ -176,10 +183,10 @@
             </script>
 
             <div class="container hideme" style="margin-top: 50px" loading="lazy">
-                <div class="row">
+                <div class="row" id="footz">
                     <div class="col align-self-start fs-5 fw-bolder">
                         <div class="pt-2 px-2 bd-highlight">
-                            <h1>QualityHotel</h1>
+                            <h1>Quality Hotel</h1>
                         </div>
                         <div class="p-2 bd-highlight">Head Office <br>105 Business Park <br>Gloucester
                             <br>Gloucestershire <br>GL2 5JU <br> 01594 555444
@@ -231,21 +238,6 @@
                     document.getElementById('end').value = tomorrow.toISOString().slice(0, 10);
                 }
             </script>
-<script defer>
-$(document).ready(function() {
-    $(window).scroll( function(){
-        $('.hideme').each( function(i){
-            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-            var bottom_of_window = ($(window).scrollTop() + ($(window).height())) +(111) ;
-            bottom_of_window = parseInt(bottom_of_window).toFixed(0);
-            bottom_of_object = parseInt(bottom_of_object).toFixed(0);
-            if( bottom_of_window > bottom_of_object ){
-                $(this).animate({'opacity':'1'},1000);
-            } 
-        }); 
-    });
-  });
-</script>
 
 <% if(typeof user=="object" ) { %>
     <script>

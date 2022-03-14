@@ -58,9 +58,9 @@ router.post('/messagesedit', ensureAuthenticated, function (req, res) { //
 
     else {
       db.collection(messageLocation2).updateOne(
-        { name: {$eq:modalName2}, email: {$eq:modalEmail2}, telephone: {$eq:modalTelephone2}, comment: {$eq:modalMessage2}, status: {$eq:modalStatus2} }, {
+        { name: { $eq: modalName2 }, email: { $eq: modalEmail2 }, telephone: { $eq: modalTelephone2 }, comment: { $eq: modalMessage2 }, status: { $eq: modalStatus2 } }, {
         $set:
-          { name: modalName, email: modalEmail, telephone: modalTelephone, comment: modalMessage.trim(), status: modalStatus, date:modalDate}
+          { name: modalName, email: modalEmail, telephone: modalTelephone, comment: modalMessage.trim(), status: modalStatus, date: modalDate }
       })
       res.redirect('/messages')
     }
@@ -94,10 +94,11 @@ router.post('/bookingedit', ensureAuthenticated, function (req, res) {
 
     else {
       db2.collection(modalhotel).updateOne(
-        { customer: {$eq:modalname2}, customerEmail: {$eq:modalemail2}, fromDate: {$eq:modalcheckin2}, toDate: {$eq:modalcheckout2}, roomType: {$eq:modalroomtype2}, total: {$eq:modaltotal2} }, 
-        { $set:
-          { customer: modalname, customerEmail: modalemail, hotel: modalhotel, fromDate: modalcheckin, toDate: modalcheckout, roomType: modalroomtype, extras: { breakfast: modalbreakfast, champagne: modalchampagne, car: modalcar }, total: modaltotal }
-      })
+        { customer: { $eq: modalname2 }, customerEmail: { $eq: modalemail2 }, fromDate: { $eq: modalcheckin2 }, toDate: { $eq: modalcheckout2 }, roomType: { $eq: modalroomtype2 }, total: { $eq: modaltotal2 } },
+        {
+          $set:
+            { customer: modalname, customerEmail: modalemail, hotel: modalhotel, fromDate: modalcheckin, toDate: modalcheckout, roomType: modalroomtype, extras: { breakfast: modalbreakfast, champagne: modalchampagne, car: modalcar }, total: modaltotal }
+        })
       res.redirect('/bookings')
     }
   })
@@ -114,39 +115,39 @@ router.post('/bookingdelete', ensureAuthenticated, function (req, res) {
     else {
       console.log(modalname2, modalemail2, modalcheckin2, modalcheckout2, modaltotal2)
       db2.collection(modalhotel2).deleteOne(
-        { customer: {$eq:modalname2}, customerEmail: {$eq:modalemail2}, fromDate: {$eq:modalcheckin2}, toDate: {$eq:modalcheckout2}, total: {$eq:modaltotal2} })
+        { customer: { $eq: modalname2 }, customerEmail: { $eq: modalemail2 }, fromDate: { $eq: modalcheckin2 }, toDate: { $eq: modalcheckout2 }, total: { $eq: modaltotal2 } })
       res.redirect('/bookings')
-        // send cancelation email
-        console.log("canceling email", modalemail2)
-        var transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: {
-            user: 'mihaisolent@gmail.com',
-            pass: 'mihaisolentmihaisolent'
-          }
-        });
-  
-        var emailMsg = "Dear "+modalname2+"\n  \nThis is a cancelation email of your booking on "+modalcheckin2+" in "+modalhotel2+"\n   \nWe are sorry for any inconvenience and hope to see you again!\n   \nKind Regards,\nReception Team "+modalhotel2;
-  
-  
-        var mailOptions = {
-          from: 'mihaisolent@gmail.com',
-          to: modalemail2,
-          subject: 'QualityHotel - Booking Cancelation Executed ' + (new Date().toISOString().slice(0, 10)),
-          text: emailMsg
-        };
-  
-        transporter.sendMail(mailOptions, function(error, info){
-          if (error) {
-            console.log(error);
-          } else {
-            console.log('Email sent: ' + info.response);
-          }
-        });
-        
+      // send cancelation email
+      console.log("canceling email", modalemail2)
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'mihaisolent@gmail.com',
+          pass: 'mihaisolentmihaisolent'
+        }
+      });
+
+      var emailMsg = "Dear " + modalname2 + "\n  \nThis is a cancelation email of your booking on " + modalcheckin2 + " in " + modalhotel2 + "\n   \nWe are sorry for any inconvenience and hope to see you again!\n   \nKind Regards,\nReception Team " + modalhotel2;
 
 
-        //end of cancelation email
+      var mailOptions = {
+        from: 'mihaisolent@gmail.com',
+        to: modalemail2,
+        subject: 'QualityHotel - Booking Cancelation Executed ' + (new Date().toISOString().slice(0, 10)),
+        text: emailMsg
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
+
+
+      //end of cancelation email
     }
   })
 })
@@ -185,7 +186,7 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
 
       req.flash('success_msg', '\nDear guest, \n \nThank you ' + hotelUserName + ' for booking with us! Check your email for a confirmation! Kind regards, QualityHotel');
       res.redirect('/successfullbooking')
-      
+
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -204,7 +205,7 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
         text: emailMsg
       };
 
-      transporter.sendMail(mailOptions, function(error, info){
+      transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           console.log(error);
         } else {
@@ -216,41 +217,89 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
 })
 
 // Index
-router.get('/index', (req, res) => //, ensureAuthenticated
-
-  mongoose.createConnection(db2, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db2) => {
-    if (err) { console.log(err) } else {
-
-      db2.collection("London").find({ customer: "MIHAI C" }).sort({ fromDate: 1 }).limit(1).toArray(function (err, result) {
-        if (err) { console.log(err) } else {
-
-          res.render('index', {
-            user: req.user
-            ,
-            welcomeMsg: { "hotel": result[0]["hotel"], "fromDate": result[0]["fromDate"], "toDate": result[0]["toDate"], "roomType": result[0]["roomType"], "total": result[0]["total"] }
-          })
-        }
-      })
-    }
-  }))
-// Index
 router.get('/', (req, res) => //, ensureAuthenticated
-
   mongoose.createConnection(db2, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db2) => {
+    user = req.user;
+    const todaysDate = new Date().toISOString().slice(0, 10);
     if (err) { console.log(err) } else {
+      collections = ["Manchester", "London", "Birmingham", "Gloucester"]; // can be changed to dynamically get them from DB and do the stuff but i am at the limit of my bandwidth .... for a free account... just trying to limit the traffic a bit :) 
+      var firstCommingBooking = [];
+      // if (user) {
+      // for (i=0; i < collections.length;i++) {
+      //   console.log("checking",collections[i] )
+      //   db2.collection(collections[i]).find({ "customer": user.name, fromDate:{$gte:todaysDate} } ).sort({ fromDate: 1 }).limit(1).toArray(function(err, rez) {
+      //     if (err) {console.log(err)} else {
+      //       console.log(rez[0])
+      //       firstCommingBooking.push(rez[0]);  
+      //       }
+      //     // firstCommingBooking.sort()
+      //     console.log("lookin up var",firstCommingBooking.sort())
+      //   })
+        
+      //   // start building the then ?
 
-      db2.collection("London").find({ customer: "MIHAI C" }).sort({ fromDate: 1 }).limit(1).toArray(function (err, result) {
-        if (err) { console.log(err) } else {
-
-          res.render('index', {
-            user: req.user
-            ,
-            welcomeMsg: { "hotel": result[0]["hotel"], "fromDate": result[0]["fromDate"], "toDate": result[0]["toDate"], "roomType": result[0]["roomType"], "total": result[0]["total"] }
-          })
-        }
-      })
+      //   }}
+      
+      if (user) {
+        
+        db2.collection("London").find({ "customer": user.name, "fromDate": { $gte: todaysDate } }).sort({ fromDate: 1 }).limit(1).toArray(function (err, result) {
+          if (err) { console.log(err) } else {
+            // console.log(result)
+            if (result.length > 0) {
+              res.render('index', {
+                user: req.user,
+                welcomeMsg: { "hotel": result[0]["hotel"], "fromDate": result[0]["fromDate"], "toDate": result[0]["toDate"], "roomType": result[0]["roomType"], "total": result[0]["total"] }
+              })
+            } else {
+              res.render('index', {
+                user: req.user,
+                welcomeMsg: { "hotel": "0" } // saying that i dont have a booking later on when checking
+              })
+            }
+          }
+        })
+      } else {
+        res.render('index', {
+          user: req.user
+        })
+      }
     }
   }))
+// // Index - backup
+// router.get('/', (req, res) => //, ensureAuthenticated
+
+//   mongoose.createConnection(db2, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db2) => {
+//     if (err) { console.log(err) } else {
+
+//       collections = [ "Gloucester", "London", "Birmingham", "Manchester" ]; // can be changed to dynamically get them from DB and do the stuff but i am at the limit of my bandwidth .... for a free account... just trying to limit the traffic a bit :) 
+//       var firstCommingBooking=[];
+
+//       for (i=0; i < collections.length;i++) {
+//         db2.collection(collections[i]).find({ customer: "MIHAI C" }).sort({ fromDate: 1 }).limit(1).toArray(function(err, rez) {
+//           if (err) {console.log(err)} else {
+//             // console.log(rez[0])
+//             firstCommingBooking = rez;  
+//           }
+//         })
+//         // start building the then ?
+
+//         }
+
+//         console.log(typeof firstCommingBooking)
+//         console.log(firstCommingBooking)
+
+//       db2.collection("London").find({ customer: "MIHAI C" }).sort({ fromDate: 1 }).limit(1).toArray(function (err, result) {
+//         if (err) { console.log(err) } else {
+
+//           res.render('index', {
+//             user: req.user
+//             ,
+//             welcomeMsg: { "hotel": result[0]["hotel"], "fromDate": result[0]["fromDate"], "toDate": result[0]["toDate"], "roomType": result[0]["roomType"], "total": result[0]["total"] }
+//           })
+//         }
+//       })
+//     }
+//   }))
 
 // Find a Room
 router.get('/findaroom', ensureAuthenticated, (req, res) => // , ensureAuthenticated
