@@ -41,8 +41,3 @@ var dbdata = [
                 <td>£<%= data.total %></td>
               </tr>
               <% }); %>
-
-message admin reply button
-faq database data+design
-active menu
-welcome message+bookimg

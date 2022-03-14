@@ -1,25 +1,60 @@
 <% include ./partials/header %> 
-
+<% const x=typeof user;%>
 <div class="card card-body text-start align-items-center" style="margin-top: 25vh;">
   <div class="card card-body align-items-left" id="faqbody">
-    <div class="-cetextnter fs-1" style="cursor: pointer" onclick="showDiv(0)"></h2>F.A.Q.</h2></div>
+    <div class="text-center fs-1" style="cursor: pointer" onclick="showDiv(0)"><h1>F.A.Q.</h1></div>
     <div  style="display: none" id="faqp0"><h3 class="text-center">Frequently Asked Questions :D</h3></div>
+    <div class="text-center">
+      <button onclick="this.style.display='none'; document.getElementById('postfaqmsgForm').style.display='block';">Ask a question!</button> <br>
+      <form action="/postfaqmsg" method="post" style="display:none" id="postfaqmsgForm">
+        <% if (x==="object") { %> 
+        <input type="text" name="userEmail" value="<%= user.email %>" style="display:none">
+        <% } %>
+        <input type="text" name="questionnn">
+        <button>Submit your question!</button> <br>
+      </form>
+      
+    </div>
+    
 
-  <form action="/faq" method="get">
-    <button type="submit" value="submit" name="submit">submit</button>
-  </form>
+  <!-- <form action="/faqdata" method="post">
+    <input type="text" value="4" name="next" id="name" onclick="this.form.submit()">Next
+  </form> -->
     
     <% var counter=1;%>
     <% if (faq_data) { %>
       
-        <table>
       <% faq_data.forEach(function(data) { %>
-        <tr>
-          <td style="color:black"><%= data.question %></td>
-          <td style="color:black"><%= data.response %></td>
-        </tr>
+        <div class="d-flex flex-column m-3" style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.5em;font-weight: bold;">
+
+          <div style="color:black; cursor: pointer;font-size: 1.5em;" onclick="showDiv('<%= counter %>')" id="q<%= counter %>" class="d-flex flex-row m-2">&#9759; <%= data.question %>
+             <i class="fa-solid fa-thumbs-up mx-1" onclick="addlike('<%= counter%>')"></i>
+              <div id="likess<%= counter %>" name="likess<%= counter %>"><%= data.likes %></div> 
+              
+          </div>
+          <div id="faqp<%= counter%>" style="color:black;display: none" class="m-3"><%= data.response %>
+            <% if (x==="object" && user.name==="ADMIN" ) { %> 
+              <div>
+                <form method="post" id="anotherFormSaddly<%= counter%>">Want to reply?
+                  <input type="text" name="thequestion" value="<%= data.question %>" style="display:none">
+                  <input type="text" name="theresponse">
+                  <input type="text" name="theoneresponding" value="<%= user.name %>" style="display:none">
+                  <button type="submit" value="submit" formaction="/adminpostfaqmsg">Submit</button>
+                  <button type="submit" value="submit" formaction="/admindeletefaqmsg">Delete Question</button>
+                </form>
+              <div>
+                  
+              </div></div>
+              <% } %></div>
+          
+
+          <form action="/sendlike" method="post" id="form<%= counter %>" style="display:none">
+            <input name="questionn" value="<%= data.question %>">
+            <input name="likee" value="<%= data.likes %>">
+          </form>
+        </div>
+        <% counter++ %>
         <% }) %>
-      </table> 
         
       
       <%}%>
@@ -49,3 +84,16 @@ function showDiv(number) {
 </script>
 
 <% include ./partials/footer %>
+
+
+<script defer>
+
+function addlike(count){
+  currentLikes = document.getElementById('likess'+count).innerHTML;
+  currentLikes++;
+  document.getElementById('likess'+count).innerHTML =currentLikes;
+  console.log(currentLikes);
+  document.getElementById('form'+count).submit();
+}
+
+</script>

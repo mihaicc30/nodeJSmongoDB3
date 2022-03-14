@@ -3,7 +3,7 @@
   <div class="card card-body d-flex" style="margin-top: 25vh;">
     <form method="post" action="/contact" autocomplete="off">
       <% include ./partials/messages %>
-      <div class="contactDiv card mt-1" style="max-width: 70vh; margin: 0 auto;">
+      <div class="contactDiv card mt-1 p-3" style="max-width: 70vh; margin: 0 auto;">
 
         <label for="name" class="cfl name mx-1 px-1" id="cflname"><i class="fa fa-user"></i> Name</label> <!-- cfl = contact form label -->
         <input name="name" type="text" class="cfi m-1 p-1 rounded" required>                                      <!-- cfi = contact form input -->
@@ -11,15 +11,15 @@
         <label for="email" class="cfl email mx-1 px-1" id="cflemail"><i class="fa fa-envelope"></i> Email</label>
         <input name="email" type="text" class="cfi m-1 p-1 rounded" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 
-        <i class="cfl fa fa-hotel mx-1 px-1 fs-5"></i>
-        <select name="city" id="city" class="m-1 py-2 fs-2 rounded" style="background-color: transparent;">
+        <i class="cfl fa fa-hotel mx-1 px-1"></i>
+        <select name="city" id="city" class="m-1 py-2 fs-4 rounded" style="background-color: transparent;">
           <option value="Gloucester">Gloucester</option>
           <option value="London">London</option>
           <option value="Birmingham">Birmingham</option>
           <option value="Manchester">Manchester</option>
         </select>
 
-        <label for="telephone" class="cfl telephone mx-1 fs-2 px-1" id="cfltelephone"><i class="fa fa-phone"></i>Telephone</label>
+        <label for="telephone" class="cfl telephone mx-1 px-1" id="cfltelephone"><i class="fa fa-phone"></i>Telephone</label>
         <input name="telephone" type="text" class="cfi m-1 p-1 rounded" required>
         
         <label for="comment" class="cfl textarea mx-1 px-1" id="cfltextarea"><i class="fa fa-comment"></i>Message</label>

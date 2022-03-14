@@ -351,7 +351,7 @@ tbody, td, tfoot, th, thead, tr {
     top: 30%;
     transform: translateY(-50%);
     font-size: 5rem;
-    color: rgb(202, 202, 202);
+    color: #f5af34;
     opacity: 0.5;
     text-shadow: 2px 2px 2px white;
 }

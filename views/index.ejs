@@ -97,11 +97,11 @@
                     </div>
                 </div>
 
-                <button id="left" class="left-arrow arrow hideme">
-                    <i class="fas fa-chevron-left"></i>
+                <button id="left" class="left-arrow arrow">
+                    <i class="fa-solid fa-chevron-left" style="color: #f5af34;"></i>
                 </button>
-                <button id="right" class="right-arrow arrow hideme">
-                    <i class="fas fa-chevron-right"></i>
+                <button id="right" class="right-arrow arrow">
+                    <i class="fa-solid fa-chevron-right" style="color: #f5af34;"></i>
                 </button>
             </div>
               
@@ -154,7 +154,7 @@
                 left.addEventListener("click", () => {
                     current_slide--;
                     if (current_slide < 0) {
-                        current_slide = SLIDES_COUNT - 1;
+                        current_slide = SLIDES_COUNT - 2;
                     }
                     updateCarouse();
                 });
