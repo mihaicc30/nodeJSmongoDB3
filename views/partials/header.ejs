@@ -2,20 +2,54 @@
 
   <div>
     <div class="d-flex flex-column">
-      <div class="topNavBar">
-        <div class="d-flex" id="navDiv"
-          style="justify-content: space-evenly;margin-top: 50px;width: 95vw;height: 100px; padding-top: 1em;background-color: rgba(49, 49, 49, 0.527);">
+
+      <button id="burgerMenuBtn" >☰</button>
+      <div style="text-align: center;margin-top: 5vh;display: none;" class="burgerMenuBtnDiv">
+        <h1>Quality<br>Hotel<a href="/index"><img src="/imgs/logo.png" style="height:50px; width:50px"></a></h1>
+        
+      </div>
+      <div id="burgerHiddenMenu">
+
+        
+
+        <ul class="burgerMenuUL">
+          <li><% if (x==="object" && user.name !="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a></li>
+            <li><a href="/myprofile" class="btn naviBtn">My Profile</a></li>
+            <% } %>
+
+              <% if (x !="object" ) { %> <li><a href="/users/register" class="btn naviBtn">Register</a></li>
+                <li><a href="/users/login" class="btn naviBtn">Login</a></li>
+                <% } %>
+
+                  <% if (x==="object" && user.name==="ADMIN" ) { %> <li><a href="/users/logout" class="btn naviBtn">Logout</a></li>
+                    <li><a href="/bookings" class="btn naviBtn">Bookings</a></li>
+                    <li><a href="/messages" class="btn naviBtn">Messages</a></li>
+                    <% } %></li>
+            <li><a href="/index" class="btn naviBtn mt-3" id="indexNaviBtn">Home</a></li>
+            <li><a href="/findaroom" class="btn naviBtn">Book Room</a></li>
+            <li><a href="/about" class="btn naviBtn">About</a></li>
+            <li><a href="/faq" class="btn naviBtn">FAQ</a></li>
+            <li><a href="/contact" class="btn naviBtn">Contact</a></li>
+            <li><div class="btn naviBtn" onclick="location.href='tel:01235%12312345';">
+              <i class="fa fa-phone"></i><br>01234 012 01234
+            </div></li>
+        </ul>
+      </div>
+
+      <div class="topNavBar" id="topNavBar" >
+        <div class="d-flex" id="navDiv" style="justify-content: space-between;margin-top: 50px;width: 100vw;height: 100px; padding-top: 1em;background-color: rgba(49, 49, 49, 0.527);">
+
           <div class="d-flex mb-4" style="margin-left:50px;height: 100px;" id="navElems">
             <div style="display: flex;" class="">
               <h1 style="color:white;transform: translateY(-10px);" id="loggo">Quality<br>Hotel</h1>
-              <a href="/index"><img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo"
-                  style="height:50px; width:50px"></a>
+              <a href="/index"><img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo" style="height:50px; width:50px"></a>
             </div>
+
             <div class="">
               <div class="navBar d-flex flex-row gap-1" style="justify-content: start; ">
 
                 <% if (x==="object" && user.name !="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
-                  <a href="/myprofile" class="btn naviBtn">My Profile</a>
+                  <a href="/myprofile" class="btn naviBtn" style="white-space: nowrap;">My Profile</a>
                   <% } %>
 
                     <% if (x !="object" ) { %> <a href="/users/register" class="btn naviBtn">Register</a>
@@ -29,15 +63,17 @@
                           <% } %>
               </div>
             </div>
+
           </div>
-          <div style="margin-left:50px;height: 100px;">
+          <div style="white-space: nowrap;margin-left:2vw;height: 100px;">
             <a href="/index" class="btn naviBtn" id="indexNaviBtn">Home</a>
-            <a href="/findaroom" class="btn naviBtn">Book Room</a>
+            <a href="/findaroom" class="btn naviBtn" style="white-space: nowrap;">Book Room</a>
             <a href="/about" class="btn naviBtn">About</a>
             <a href="/faq" class="btn naviBtn">FAQ</a>
             <a href="/contact" class="btn naviBtn">Contact</a>
           </div>
-          <div id="callBtn" style="margin-left:50px;height: 50px;" class="btn naviBtn" onclick="location.href='tel:01235%12312345';">
+
+          <div id="callBtn" style="margin-left:2vw;height: 50px;white-space: nowrap;" class="btn naviBtn" onclick="location.href='tel:01235%12312345';">
             <i class="fa fa-phone"></i><br>01234 012 01234
           </div>
 

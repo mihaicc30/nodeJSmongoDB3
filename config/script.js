@@ -48,3 +48,13 @@ function setLoc(x) {
    document.getElementById('messageLocation').innerText = x; 
   }
 
+  //burger menu
+var btn = document.getElementById("burgerMenuBtn");
+var nav = document.getElementById("burgerHiddenMenu");
+
+
+btn.addEventListener("click", () => {
+    nav.classList.toggle("showMenu");
+    btn.classList.toggle("showMenu");
+});
+  

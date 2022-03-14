@@ -25,7 +25,7 @@
     <% if (faq_data) { %>
       
       <% faq_data.forEach(function(data) { %>
-        <div class="d-flex flex-column m-3 <% if(counter>3){ %>hideme<%}%> " style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.5em;font-weight: bold;">
+        <div class="d-flex flex-column m-3 <% if(counter>3){ %>hideme<%}%> " style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.1em;font-weight: bold;">
 
           <div style="color:black;font-size: 1.5em;" id="q<%= counter %>" class="d-flex flex-row m-3">
             <p onclick="showDiv('<%= counter %>')" style=" cursor: pointer;">&#9759; <%= data.question %></p>

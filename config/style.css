@@ -390,6 +390,47 @@ tbody, td, tfoot, th, thead, tr {
     display: block;
     font-size: 2em;
 }
+#burgerMenuBtn{
+    display: none;
+    z-index: 99999;
+    background-color: purple;
+    border: none;
+    color: white;
+    position: fixed;
+    top: 5vh;
+    right: 15vw;
+    padding: 1rem;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 20%;
+    box-shadow: 0px 4px 20px 3px black;
+}
+.showMenu {
+    transform: translateX(0%)!important;
+}
+#burgerHiddenMenu{
+    z-index: 99998;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: purple;
+    height: 110vh;
+    width: 110vw;
+    transform: translateX(111%);
+    transition: transform 0.3s ease;
+    list-style: none;
+}
+.burgerMenuUL{
+    margin-top: 4em;
+    list-style: none;
+}
+.burgerMenuUL > li {
+    width: 200px;
+    margin: 5px auto;
+}
+.burgerMenuUL > li > a, .burgerMenuUL > li > div {
+    width: 200px;
+    gap: 1em;
+}
 @keyframes show-modal {
     0% {
         transform: scale(0) ;
@@ -416,6 +457,18 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 @media (max-width: 767px) {
+    .burgerMenuBtnDiv {
+        display: block!important;
+    }
+    #welcomeMsg{
+        top: 20%!important;
+    }
+    #headPic{
+        margin-top:5vh!important;
+    }
+    #burgerMenuBtn{
+        display: block!important;
+    }
     #loggo{
         color: black!important;
     }
@@ -451,7 +504,7 @@ tbody, td, tfoot, th, thead, tr {
         flex-direction: column!important;
     }
     .topNavBar {
-        margin: 10vh 0 10vh 0;
+        display: none;
     }
 }
 @media (max-width: 991px) {
