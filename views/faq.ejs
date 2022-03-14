@@ -27,7 +27,8 @@
       <% faq_data.forEach(function(data) { %>
         <div class="d-flex flex-column m-3" style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.5em;font-weight: bold;">
 
-          <div style="color:black; cursor: pointer;font-size: 1.5em;" onclick="showDiv('<%= counter %>')" id="q<%= counter %>" class="d-flex flex-row m-2">&#9759; <%= data.question %>
+          <div style="color:black; cursor: pointer;font-size: 1.5em;" id="q<%= counter %>" class="d-flex flex-row m-2">
+            <p onclick="showDiv('<%= counter %>')" >&#9759; <%= data.question %></p>
              <i class="fa-solid fa-thumbs-up mx-1" onclick="addlike('<%= counter%>')"></i>
               <div id="likess<%= counter %>" name="likess<%= counter %>"><%= data.likes %></div> 
               
@@ -47,8 +48,8 @@
               </div></div>
               <% } %></div>
           
-
-          <form action="/sendlike" method="post" id="form<%= counter %>" style="display:none">
+          <iframe name="myframe" style="display:none;"></iframe> <!--  😉😜 -->
+          <form action="/sendlike" method="post" id="form<%= counter %>" style="display:none" target="myframe">
             <input name="questionn" value="<%= data.question %>">
             <input name="likee" value="<%= data.likes %>">
           </form>

@@ -4,11 +4,12 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const mongoose = require('mongoose');
 const db = require('../config/key-faqform').mongoURI;
 var nodemailer = require('nodemailer');
+const { Int32 } = require('mongodb');
 
 router.get('/faq', (req, res) => //, ensureAuthenticated
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     if (err) { console.log(err) } else {
-      db.collection("FAQ").find().sort({ likes: -1 }).toArray(function (err, result) {
+      db.collection("FAQ").find().sort({ "likes": -1 }).toArray(function (err, result) {
         // console.log(result)
         faq_data = {}
         if (err) { console.log(err) } else {
@@ -63,7 +64,7 @@ router.post('/adminpostfaqmsg', (req, res) => //, ensureAuthenticated
 
 router.post('/admindeletefaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenticated
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
-    console.log(req.body);
+    // console.log(req.body);
     var { thequestion } = req.body;
     if (err) {
       console.log(err)
@@ -80,7 +81,7 @@ router.post('/postfaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenti
     if (err) {
       console.log(err)
     } else {
-      db.collection("FAQ").insertOne({ question: questionnn, "likes": String("0"), "response": String("Not yet replied."), date: new Date().toISOString().slice(0, 10), questionFrom: String(userEmail) });
+      db.collection("FAQ").insertOne({ "question": questionnn, "likes": Int32(0), "response": String("Not yet replied."), "date": new Date().toISOString().slice(0, 10), "questionFrom": String(userEmail) });
       res.redirect('/faq');
     }
   }))
@@ -92,8 +93,8 @@ router.post('/sendlike', (req, res) => //, ensureAuthenticated
     if (err) {
       console.log(err)
     } else {
-      db.collection("FAQ").updateOne({ question: questionn }, { $set: { likes: String(likee) } });
-      res.redirect('/faq');
+      db.collection("FAQ").updateOne({ "question": questionn }, { $set: { "likes": Int32(likee) } });
+      // res.redirect('/faq');
     }
   }))
 
