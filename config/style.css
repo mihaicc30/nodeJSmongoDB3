@@ -450,6 +450,9 @@ tbody, td, tfoot, th, thead, tr {
     #footz{
         flex-direction: column!important;
     }
+    .topNavBar {
+        margin: 10vh 0 10vh 0;
+    }
 }
 @media (max-width: 991px) {
     .findaRoomHotelCard {

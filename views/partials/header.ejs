@@ -5,13 +5,13 @@
       <div class="topNavBar">
         <div class="d-flex" id="navDiv"
           style="justify-content: space-evenly;margin-top: 50px;width: 95vw;height: 100px; padding-top: 1em;background-color: rgba(49, 49, 49, 0.527);">
-          <div class="d-flex" style="margin-left:50px;height: 100px;" id="navElems">
-            <div style="display: flex;">
+          <div class="d-flex mb-4" style="margin-left:50px;height: 100px;" id="navElems">
+            <div style="display: flex;" class="">
               <h1 style="color:white;transform: translateY(-10px);" id="loggo">Quality<br>Hotel</h1>
               <a href="/index"><img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo"
                   style="height:50px; width:50px"></a>
             </div>
-            <div>
+            <div class="">
               <div class="navBar d-flex flex-row gap-1" style="justify-content: start; ">
 
                 <% if (x==="object" && user.name !="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
