@@ -6,7 +6,7 @@ Hi! in case you are seeing this...
 
 Anyways have fun!
 
-My name is Mihai Culea, student at Solent Uni and i hope you wil like what you see.
+My name is Mihai Culea, student at Solent Uni and i hope you will like what you see.
 
 To easily start the node server, please use the *bat file (its just a terminal command with 'nodemon app.js') and proceed on http://localhost:5555/
 

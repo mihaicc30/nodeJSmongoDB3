@@ -7,15 +7,14 @@ const passport = require('passport');
 const User = require('../models/User')
 const { forwardAuthenticated } = require('../config/auth');
 const { db } = require('../models/User');
-const bookings = require('../config/key-bookingform').mongoURI;
-const messagesDB = require('../config/key-contactform').mongoURI;
+const hotelDB = require('../config/key-qualityhotel').mongoURI;
 
 // check bookings
 router.post('/checkbookings', function (req, res) {
   var { city, date } = req.body;
   
 
-  mongoose.createConnection(bookings, { useNewUrlParser: true, useUnifiedTopology: true }, (err, bookings) => {
+  mongoose.createConnection(hotelDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, hotelDB) => {
     if (err) { console.log(err) }
     
     // bookings.collection(city).aggregate([
@@ -23,13 +22,11 @@ router.post('/checkbookings', function (req, res) {
     //   { $match: {"stringDate":date}},
     //   { $project:{"stringDate":0}}
     //   ]).sort({ date: -1 }).toArray(function(err, result) {
-    //     if (err) { console.log(err) }  // new version of command, searches by date CREATED !important
+    //     if (err) { console.log(err) }  // new version of command, searches by date CREATED !important but prefder to use the other one
       
-
-    bookings.collection(city).find({ fromDate: date }).sort({ date: -1 }).toArray(function(err, result) {
+    hotelDB.collection("bookings").find({ fromDate: date, hotel: { $eq:city  } }).sort({ date: -1 }).toArray(function(err, result) {
       if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important
       the_data = {}
-
       if (!result) { the_data={"found_data":false, "fromDate":date, "hotel":city} }
       if (result.length === 0) { the_data={"found_data":false, "fromDate":date, "hotel":city} }
       if (result.length > 0) { the_data=result }
@@ -47,10 +44,9 @@ router.post('/checkbookings', function (req, res) {
 router.post('/checkmessages', function (req, res) {
   var { city, date } = req.body;
 
-  mongoose.createConnection(messagesDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, messagesDB) => {
+  mongoose.createConnection(hotelDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, hotelDB) => {
     if (err) { console.log(err) }
-
-    messagesDB.collection(city).find({ date: date }).sort({ date: -1 }).toArray(function(err, result) {
+    hotelDB.collection("messages").find({ "date": date, "location":city  }).sort({ date: -1 }).toArray(function(err, result) {
       if (err) { console.log(err) }
       the_data = {}
       if (!result) { the_data={"found_data":false, "date":date, "location":city} }

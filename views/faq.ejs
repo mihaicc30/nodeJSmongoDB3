@@ -1,6 +1,6 @@
 <% include ./partials/header %> 
 <% const x=typeof user;%>
-<div class="card card-body text-start align-items-center" style="margin-top: 25vh;">
+<div class="text-start align-items-center" style="margin-top: 25vh;">
   <div class="card card-body align-items-left" id="faqbody">
     <div class="text-center fs-1" style="cursor: pointer" onclick="showDiv(0)"><h1>F.A.Q.</h1></div>
     <div  style="display: none" id="faqp0"><h3 class="text-center">Frequently Asked Questions :D</h3></div>
@@ -25,12 +25,12 @@
     <% if (faq_data) { %>
       
       <% faq_data.forEach(function(data) { %>
-        <div class="d-flex flex-column m-3 <% if(counter>3){ %>hideme<%}%> " style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.1em;font-weight: bold;">
+        <div class="d-flex flex-column my-3 <% if(counter>3){ %>hideme<%}%> " style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.1em;font-weight: bold;">
 
-          <div style="color:black;font-size: 1.5em;" id="q<%= counter %>" class="d-flex flex-row m-3">
+          <div style="color:black;font-size: 1.5em;max-width: 65vw;" id="q<%= counter %>" class="d-flex flex-row m-3">
             <p onclick="showDiv('<%= counter %>')" style=" cursor: pointer;">&#9759; <%= data.question %></p>
-             <i class="fa-solid fa-thumbs-up mx-1" onclick="addlike('<%= counter%>')"></i>
-              <div id="likess<%= counter %>" name="likess<%= counter %>"><%= data.likes %></div> 
+            
+              <div onclick="addlike('<%= counter%>')" id="likess<%= counter %>" name="likess<%= counter %>" class="d-flex flex-row fa-solid fa-thumbs-up" style="position:absolute;right:7%"><%= data.likes %></div> 
               
           </div>
           <div id="faqp<%= counter%>" style="color:black;display: none" class="m-3"><%= data.response %>
@@ -91,6 +91,7 @@ function showDiv(number) {
 
 function addlike(count){
   currentLikes = document.getElementById('likess'+count).innerHTML;
+  console.log(currentLikes)
   currentLikes++;
   document.getElementById('likess'+count).innerHTML =currentLikes;
   // console.log(currentLikes);
