@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const mongoose = require('mongoose');
-const db = require('../config/key-faqform').mongoURI;
+const db = require('../config/key-qualityhotel').mongoURI;
 var nodemailer = require('nodemailer');
 const { Int32 } = require('mongodb');
 
