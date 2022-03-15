@@ -5,7 +5,6 @@
             <div class="d-flex flex-column">
                 <div style="height:80vh;width: 100%;background-image: url(/imgs/landscape/3.jpg);background-repeat: no-repeat;
     background-position: center;background-size: cover;text-align: center;" id="headPic">
-
                     <% if(typeof user=="object" ) { %>
 
                         <div id="welcomeMsg" class="welcomeMsg rounded" style="
@@ -25,7 +24,8 @@
 
 
                             <h1 style="color: white;margin-top: 1em;"> Welcome back <%= user.name %>!</h1>
-                            <% if(welcomeMsg.hotel === "0") { %>
+                            
+                            <% if(welcomeMsg.hotel === "0" ) { %>
 
                                 <h1 style="color: white;margin-top: 1em;"> You have no active bookings. <br>Maybe try <a href="/findaroom">one</a>? </h1>
 

@@ -291,7 +291,7 @@ tbody, td, tfoot, th, thead, tr {
 #modalMessage{
     height: 100px;
 }
-#detailsDiv {
+#detailsDiv1, #detailsDiv2, #detailsDiv3 {
     display: none;
 }
 #detailsDiv.show {

@@ -1,12 +1,12 @@
 <% include ./partials/header %>
 
-    <div class="card card-body align-items-center" style="margin-top: 25vh;">
+    <div class="d-flex justify-content-center" style="margin-top: 25vh;">
         <div class="card card-body d-flex flex-column align-items-center fs-4" style="max-width: 700px;">
 
 
             <form action="/users/update" method="POST">
                 <br>
-                <div class="d-flex flex-row gap-3 align-items-center">
+                <div class="d-flex flex-row gap-3 align-items-center justify-content-center">
                     <div><i class="fa fa-user p-3 rounded"
                             style="font-size: 3em;box-shadow: 6px 8px 13px 3px black;"></i></div>
                     <div>
@@ -31,8 +31,28 @@
                 </div>
 
 
-                <h2 class="mt-5 text-center" style="cursor: pointer;" onclick="toggleDetails()">Change details? <i class="fa fa-chevron-down"></i></h2>
-                <div id="detailsDiv">
+                
+
+                <h2 class="mt-5 text-center" style="cursor: pointer;" onclick="toggleDetails(1)">View bookings? <i class="fa fa-chevron-down"></i></h2>
+                <div id="detailsDiv1" style="overflow: overlay; max-height: 200px;">
+                    <% if(user_bookings_data.customer === "Nothing booked yet!" ) { %>
+                        <p style="text-align: center;"> <%= user_bookings_data.customer %> </p>
+                        <% } else { %>
+                            <table style="width: 500px;margin:1em;">
+                    <% user_bookings_data.forEach(function(data) { %>
+                        <tr>
+                            <td> <i class="fa fa-location-pin"></i> <%= data.hotel %> </td>
+                            <td><%= data.fromDate %> </td>
+                            <td><%= data.toDate %> </td>
+                            <td> £<%= data.total %> </td>
+                        </tr>
+                    <% }) %>
+                </table>
+                <% } %>
+                </div>
+
+                <h2 class="mt-5 text-center" style="cursor: pointer;" onclick="toggleDetails(2)">Change details? <i class="fa fa-chevron-down"></i></h2>
+                <div id="detailsDiv2">
                     <div class="card card-body mt-2 py-2 px-1 " style="box-shadow: 6px 8px 13px 3px black;">
                         <label for="name">Name</label>
                         <input type="text" name="name" placeholder="changing name?" value="<%-user.name %>" required minlength="6">
@@ -57,24 +77,24 @@
 
             </form>
 
-            <h2 class="mt-3 text-center">Delete account?</h2>
+            <h2 class="mt-5 text-center" style="cursor: pointer;" onclick="toggleDetails(3)">Delete account? <i class="fa fa-chevron-down"></i></h2>
+            <div id="detailsDiv3" class="text-center">
+                <button class="py-1 px-5 mt-1" type="button" style="box-shadow: 6px 8px 13px 3px black;background: rgb(240, 64, 64);"
+                    onclick="tog()">DELETE!</button>
+                <div id="confirmDelete" class="card card-body mt-2 py-2 px-1" style="box-shadow: 6px 8px 13px 3px black;visibility: hidden;">
+                    <form action="/users/delete" method="POST">
 
-            <button class="py-1 px-5 mt-1" type="button" style="box-shadow: 6px 8px 13px 3px black;background: rgb(240, 64, 64);"
-                onclick="tog()">DELETE!</button>
-            <div id="confirmDelete" class="card card-body mt-2 py-2 px-1" style="box-shadow: 6px 8px 13px 3px black;visibility: hidden;">
-                <form action="/users/delete" method="POST">
+                        <div class="card card-body mt-2 py-2 px-1 visually-hidden">
+                            <label for="email">Phone</label>
+                            <input type="text" name="email" placeholder="changing phone?" value="<%-user.email %>" readonly>
+                        </div>
 
-                    <div class="card card-body mt-2 py-2 px-1 visually-hidden">
-                        <label for="email">Phone</label>
-                        <input type="text" name="email" placeholder="changing phone?" value="<%-user.email %>" readonly>
-                    </div>
-
-                    <button class="py-3 px-4 mt-1 " type="submit"
-                        style="background: rgb(201, 28, 28); font-size: 1.4em; font-weight: bold;">Click again to confirm!
-                        <br> Action can not be undone! </button>
-                </form>
+                        <button class="py-3 px-4 mt-1 " type="submit"
+                            style="background: rgb(201, 28, 28); font-size: 1.4em; font-weight: bold;">Click again to confirm!
+                            <br> Action can not be undone! </button>
+                    </form>
+                </div>
             </div>
-
         </div>
     </div>
 
@@ -84,11 +104,11 @@
         };
 
 
-        function toggleDetails() {
-            if ((document.getElementById("detailsDiv").style.display) == "block")
-                {document.getElementById("detailsDiv").style.display = "none";
+        function toggleDetails(x) {
+            if ((document.getElementById("detailsDiv"+x).style.display) == "block")
+                {document.getElementById("detailsDiv"+x).style.display = "none";
             } else {
-                document.getElementById("detailsDiv").style.display = "block"; }
+                document.getElementById("detailsDiv"+x).style.display = "block"; }
             
         }
 

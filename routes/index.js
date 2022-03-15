@@ -112,7 +112,7 @@ router.post('/bookingdelete', ensureAuthenticated, function (req, res) {
     if (err) { console.log(err) }
 
     else {
-      console.log(modalname2, modalemail2, modalcheckin2, modalcheckout2, modaltotal2)
+      // console.log(modalname2, modalemail2, modalcheckin2, modalcheckout2, modaltotal2)
       db.collection("bookings").deleteOne(
         { customer: { $eq: modalname2 }, customerEmail: { $eq: modalemail2 }, fromDate: { $eq: modalcheckin2 }, toDate: { $eq: modalcheckout2 }, total: { $eq: modaltotal2 } })
       res.redirect('/bookings')
@@ -240,7 +240,8 @@ router.get('/', (req, res) => //, ensureAuthenticated
         })
       } else {
         res.render('index', {
-          user: req.user
+          user: req.user,
+          welcomeMsg: { "hotel": "0" }
         })
       }
     }
@@ -272,24 +273,25 @@ mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true 
     
     if (user) {
       
-      db.collection("bookings").find({ "customer": { $eq:user.name }}).sort({ fromDate: 1 }).toArray(function (err, result) {
+       db.collection("bookings").find({ "customer": { $eq:user.name }}).sort({ fromDate: -1 }).toArray(function (err, result) {
         if (err) { console.log(err) } else {
-          console.log(result)
           if (result.length > 0) {
             res.render('myprofile', {
-              user: req.user
+              user: req.user,
+              user_bookings_data: result
             })
           } else {
-            res.render('index', {
+            res.render('myprofile', {
               user: req.user,
-              welcomeMsg: { "myprofile": "0" } // saying that i dont have a booking later on when checking
+              user_bookings_data: { "customer":"Nothing booked yet!" }
             })
           }
         }
       })
     } else {
       res.render('myprofile', {
-        user: req.user
+        user: req.user,
+        user_bookings_data: { "customer":"Nothing booked yet!" }
       })
     }
   }
