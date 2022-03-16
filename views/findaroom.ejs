@@ -244,8 +244,8 @@
         showTotalPrice();
 
         document.getElementById('themChoicesText').innerHTML="<h3 style='font-weight:100;'>\
-            To sum up you have chosen <span style='font-weight:bold'>"+theChoicesCopy.hotel+" Hotel</span>\
-            in a room type <span style='font-weight:bold'>"+theChoicesCopy.roomType+"</span> for <span style='font-weight:bold'>"+daysToPay+" day(s)</span>\
+            Dear <%= user.name %>, you have chosen <span style='font-weight:bold'>"+theChoicesCopy.hotel+" Hotel</span>\
+            in a room type <span style='font-weight:bold'>"+theChoicesCopy.roomType+"</span> for <span style='font-weight:bold'>"+daysToPay+" night(s)</span>\
             </h3>"
     };
     function showTotalPrice() {
