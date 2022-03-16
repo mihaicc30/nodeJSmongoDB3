@@ -1,14 +1,14 @@
 {
-  "name": "node_passport_login",
-  "version": "2.0.0",
-  "description": "Node.js authentication with Passport",
+  "name": "qualityhotel",
+  "version": "3.1.2",
+  "description": "nodejs+mongodb app",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mihai Culea",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

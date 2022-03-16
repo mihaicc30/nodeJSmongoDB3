@@ -3,7 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const mongoose = require('mongoose');
 const db = require('../config/key-qualityhotel').mongoURI;
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
 
 // Admin - Bookings

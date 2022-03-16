@@ -2,6 +2,10 @@
   <div class="col-md-6 m-auto">
     <div class="card card-body">
       <h1 class="text-center mb-3">
+        <div style="display: flex;" class="justify-content-center">
+          <h1 style="color:rgb(10, 7, 7);transform: translateY(-10px);cursor: pointer;" id="loggo" onclick="window.location='../index'">Quality<br>Hotel</h1>
+          <a href="/index"><img src="/imgs/logo.png" id="myLogo2" class="myLogo rounded" name="myLogo" style="height:50px; width:50px"></a>
+        </div>
         <i class="fas fa-user-plus"></i> <a href="/users/register">Register</a></h1>
       <% include ./partials/messages %>
         <form action="/users/register" method="POST">
