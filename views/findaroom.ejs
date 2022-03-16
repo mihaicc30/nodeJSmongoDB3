@@ -123,6 +123,7 @@
     <!-- <button onclick="showchoices()" >show me the stuff</button> -->
     <div class="results card card-body align-items-center hideme"> 
         <table id="results" border="1px"></table>
+        <div id="themChoicesText" ></div>
         <table id="resultsTOTAL" border="1px" class="fs-2 fw-bold">
             <div class="spinnerContainer" id="spinnerContainer">
                 <div class="spinMe">
@@ -130,9 +131,11 @@
                 </div>
             </div>
         </table>
+        
         <!-- <button type="button" onclick="console.log(theChoicesCopy)">theChoicesCopy</button>
         <button type="button" onclick="console.log(theChoices)">theChoices</button> -->
         <div class="confirmButton p-4 mt-1" id="confirmButton">
+            
             <form action="/successfullbooking" method="post" id="confirmationButtonFORM">
                 <div style="display: none;">
                 <input type="text" class="" id="hotelUserName" name="hotelUserName" value="<%- user.name %>">
@@ -159,6 +162,7 @@
         var errors=[];
 
         if (!theChoicesCopy.hotel || !theChoicesCopy.from_date || !theChoicesCopy.to_date || !theChoicesCopy.roomType) {
+            
             console.log("missing fields")
 
         } else {
@@ -238,6 +242,13 @@
         theChoicesCopy = theChoices;
         theChoicesCopy.TOTAL = theChoices.TOTAL;
         showTotalPrice();
+
+        document.getElementById('themChoicesText').innerHTML="<h3 style='font-weight:100;'>\
+            To sum up you have chosen <span style='font-weight:bold'>"+theChoicesCopy.hotel+" Hotel</span>\
+            in a room type <span style='font-weight:bold'>"+theChoicesCopy.roomType+"</span> for <span style='font-weight:bold'>"+daysToPay+" day(s)</span> \
+             \
+             \
+            </h3>"
     };
     function showTotalPrice() {
 
