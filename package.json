@@ -7,7 +7,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "keywords": [],
+  "keywords": ["full stack app"],
   "author": "Mihai Culea",
   "license": "ISC",
   "dependencies": {

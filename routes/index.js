@@ -267,34 +267,34 @@ router.get('/contact', (req, res) =>   // , ensureAuthenticated  - leaving this 
 );
 // MyProfile
 router.get('/myprofile', ensureAuthenticated, (req, res) =>
-mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
-  user = req.user;
-  if (err) { console.log(err) } else {
-    
-    if (user) {
-      
-       db.collection("bookings").find({ "customer": { $eq:user.name }}).sort({ fromDate: -1 }).toArray(function (err, result) {
-        if (err) { console.log(err) } else {
-          if (result.length > 0) {
-            res.render('myprofile', {
-              user: req.user,
-              user_bookings_data: result
-            })
-          } else {
-            res.render('myprofile', {
-              user: req.user,
-              user_bookings_data: { "customer":"Nothing booked yet!" }
-            })
+  mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
+    user = req.user;
+    if (err) { console.log(err) } else {
+
+      if (user) {
+
+        db.collection("bookings").find({ "customer": { $eq: user.name } }).sort({ fromDate: -1 }).toArray(function (err, result) {
+          if (err) { console.log(err) } else {
+            if (result.length > 0) {
+              res.render('myprofile', {
+                user: req.user,
+                user_bookings_data: result
+              })
+            } else {
+              res.render('myprofile', {
+                user: req.user,
+                user_bookings_data: { "customer": "Nothing booked yet!" }
+              })
+            }
           }
-        }
-      })
-    } else {
-      res.render('myprofile', {
-        user: req.user,
-        user_bookings_data: { "customer":"Nothing booked yet!" }
-      })
+        })
+      } else {
+        res.render('myprofile', {
+          user: req.user,
+          user_bookings_data: { "customer": "Nothing booked yet!" }
+        })
+      }
     }
-  }
-}))
+  }))
 
 module.exports = router;

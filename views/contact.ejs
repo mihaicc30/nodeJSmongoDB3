@@ -3,31 +3,36 @@
   <div class="d-flex justify-content-center rounded" style="margin-top: 25vh;">
     <form method="post" action="/contact" autocomplete="off">
       <% include ./partials/messages %>
-      <div class="contactDiv card mt-1 p-3" style="max-width: 70vh; margin: 0 auto;">
+        <div class="contactDiv card mt-1 p-3" style="max-width: 70vh; margin: 0 auto;">
 
-        <label for="name" class="cfl name mx-1 px-1" id="cflname"><i class="fa fa-user"></i> Name</label> <!-- cfl = contact form label -->
-        <input name="name" type="text" class="cfi m-1 p-1 rounded" required>                                      <!-- cfi = contact form input -->
+          <label for="name" class="cfl name mx-1 px-1" id="cflname"><i class="fa fa-user"></i> Name</label>     <!-- cfl = contact form label -->
+          <input name="name" type="text" class="cfi m-1 p-1 rounded" required>                                  <!-- cfi = contact form input -->
 
-        <label for="email" class="cfl email mx-1 px-1" id="cflemail"><i class="fa fa-envelope"></i> Email</label>
-        <input name="email" type="text" class="cfi m-1 p-1 rounded" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+          <label for="email" class="cfl email mx-1 px-1" id="cflemail"><i class="fa fa-envelope"></i> Email</label>
+          <input name="email" type="text" class="cfi m-1 p-1 rounded" required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 
-        <i class="cfl fa fa-hotel mx-1 px-1"></i>
-        <select name="city" id="city" class="m-1 py-2 fs-4 rounded" style="background-color: transparent;">
-          <option value="Gloucester">Gloucester</option>
-          <option value="London">London</option>
-          <option value="Birmingham">Birmingham</option>
-          <option value="Manchester">Manchester</option>
-        </select>
+          <i class="cfl fa fa-hotel mx-1 px-1"></i>
+          <select name="city" id="city" class="m-1 py-2 fs-4 rounded" style="background-color: transparent;">
+            <option value="Gloucester">Gloucester</option>
+            <option value="London">London</option>
+            <option value="Birmingham">Birmingham</option>
+            <option value="Manchester">Manchester</option>
+          </select>
 
-        <label for="telephone" class="cfl telephone mx-1 px-1" id="cfltelephone"><i class="fa fa-phone"></i>Telephone</label>
-        <input name="telephone" type="text" class="cfi m-1 p-1 rounded" required>
-        
-        <label for="comment" class="cfl textarea mx-1 px-1" id="cfltextarea"><i class="fa fa-comment"></i>Message</label>
-        <textarea name="comment" class="cfi m-1 p-1 rounded" id="" cols="30" rows="2" required></textarea>
+          <label for="telephone" class="cfl telephone mx-1 px-1" id="cfltelephone"><i
+              class="fa fa-phone"></i>Telephone</label>
+          <input name="telephone" type="text" class="cfi m-1 p-1 rounded" required>
 
-        <div class="m-1 px-1 fs-3 text-center"><button type="submit" value="submit" class="px-5 rounded" id="contactSubmit">Submit</button></div>
-        <p class="text-center align-items-center">Or just call us on <br> 📞 <br> <a id="contactPhone" href="tel:01235%12312345" role="button">01234 012 01234</a> </p>
-      </div>
+          <label for="comment" class="cfl textarea mx-1 px-1" id="cfltextarea"><i
+              class="fa fa-comment"></i>Message</label>
+          <textarea name="comment" class="cfi m-1 p-1 rounded" id="" cols="30" rows="2" required></textarea>
+
+          <div class="m-1 px-1 fs-3 text-center"><button type="submit" value="submit" class="px-5 rounded"
+              id="contactSubmit">Submit</button></div>
+          <p class="text-center align-items-center">Or just call us on <br> 📞 <br> <a id="contactPhone"
+              href="tel:01235%12312345" role="button">01234 012 01234</a> </p>
+        </div>
     </form>
   </div>
 

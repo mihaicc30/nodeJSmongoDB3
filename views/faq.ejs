@@ -1,80 +1,79 @@
-<% include ./partials/header %> 
-<% const x=typeof user;%>
-<div class="text-start align-items-center" style="margin-top: 25vh;">
-  <div class="card card-body align-items-left" id="faqbody">
-    <div class="text-center fs-1" style="cursor: pointer" onclick="showDiv(0)"><h1>F.A.Q.</h1></div>
-    <div  style="display: none" id="faqp0"><h3 class="text-center">Frequently Asked Questions :D</h3></div>
-    <div class="text-center">
-      <button onclick="this.style.display='none'; document.getElementById('postfaqmsgForm').style.display='block';">Ask a question!</button> <br>
-      <form action="/postfaqmsg" method="post" style="display:none" id="postfaqmsgForm">
-        <% if (x==="object") { %> 
-        <input type="text" name="userEmail" value="<%= user.email %>" style="display:none">
-        <% } %>
-        <input type="text" name="questionnn">
-        <button>Submit your question!</button> <br>
-      </form>
-      
-    </div>
-    
-
-  <!-- <form action="/faqdata" method="post">
-    <input type="text" value="4" name="next" id="name" onclick="this.form.submit()">Next
-  </form> -->
-    
-    <% var counter=1;%>
-    <% if (faq_data) { %>
-      
-      <% faq_data.forEach(function(data) { %>
-        <div class="d-flex flex-column my-3 <% if(counter>4){ %>hideme<%}%> " style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.1em;font-weight: bold;">
-
-          <div style="color:black;font-size: 1.5em;max-width: 65vw;" id="q<%= counter %>" class="d-flex flex-row m-3">
-            <p onclick="showDiv('<%= counter %>')" style=" cursor: pointer;">&#9759; <%= data.question %></p>
-            
-              <div onclick="addlike('<%= counter%>')" id="likess<%= counter %>" name="likess<%= counter %>" class="d-flex flex-row fa-solid fa-thumbs-up" style="position:absolute;right:7%"><%= data.likes %></div> 
-              
-          </div>
-          <div id="faqp<%= counter%>" style="color:black;display: none" class="m-3"><%= data.response %>
-            <% if (x==="object" && user.name==="ADMIN" ) { %> 
-              <div>
-                <form method="post" id="anotherFormSaddly<%= counter%>">Want to reply?
-                  <input type="text" name="thequestion" value="<%= data.question %>" style="display:none">
-                  <input type="text" name="theresponse">
-                  <input type="text" name="theoneresponding" value="<%= user.email %>" style="display:none">
-                  <button type="submit" value="submit" formaction="/adminpostfaqmsg">Submit</button>
-                  <button type="submit" value="submit" formaction="/admindeletefaqmsg">Delete Question</button>
-                </form>
-              <div>
-                  
-              </div></div>
-              <% } %></div>
-          
-          <iframe name="myframe" style="display:none;"></iframe> <!--  😉😜 -->
-          <form action="/sendlike" method="post" id="form<%= counter %>" style="display:none" target="myframe">
-            <input name="questionn" value="<%= data.question %>">
-            <input name="likee" value="<%= data.likes %>">
+<% include ./partials/header %>
+  <% const x=typeof user;%>
+    <div class="text-start align-items-center" style="margin-top: 25vh;">
+      <div class="card card-body align-items-left" id="faqbody">
+        <div class="text-center fs-1" style="cursor: pointer" onclick="showDiv(0)">
+          <h1>F.A.Q.</h1>
+        </div>
+        <div style="display: none" id="faqp0">
+          <h3 class="text-center">Frequently Asked Questions :D</h3>
+        </div>
+        <div class="text-center">
+          <button
+            onclick="this.style.display='none'; document.getElementById('postfaqmsgForm').style.display='block';">Ask a
+            question!</button> <br>
+          <form action="/postfaqmsg" method="post" style="display:none" id="postfaqmsgForm">
+            <% if (x==="object" ) { %>
+              <input type="text" name="userEmail" value="<%= user.email %>" style="display:none">
+              <% } %>
+                <input type="text" name="questionnn">
+                <button>Submit your question!</button> <br>
           </form>
         </div>
-        <% counter++ %>
-        <% }) %>
-        
-      
-      <%}%>
+        <% let counter=1;%>
+          <% if (faq_data) { %>
+            <% faq_data.forEach(function(data) { %>
+              <div class="d-flex flex-column my-3 <% if(counter>4){ %>hideme<%}%> "
+                style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.1em;font-weight: bold;">
+                <div style="color:black;font-size: 1.5em;max-width: 65vw;" id="q<%= counter %>"
+                  class="d-flex flex-row m-3">
+                  <p onclick="showDiv('<%= counter %>')" style=" cursor: pointer;">&#9759; <%= data.question %>
+                  </p>
+                  <div onclick="addlike('<%= counter%>')" id="likess<%= counter %>" name="likess<%= counter %>"
+                    class="d-flex flex-row fa-solid fa-thumbs-up" style="position:absolute;right:7%; cursor: pointer;"><%= data.likes %></div>
+                </div>
+                <div id="faqp<%= counter%>" style="color:black;display: none" class="m-3">
+                  <%= data.response %>
+                    <% if (x==="object" && user.name==="ADMIN" ) { %>
+                      <div>
+                        <form method="post" id="anotherFormSaddly<%= counter%>">Want to reply?
+                          <input type="text" name="thequestion" value="<%= data.question %>" style="display:none">
+                          <input type="text" name="theresponse">
+                          <input type="text" name="theoneresponding" value="<%= user.email %>" style="display:none">
+                          <button type="submit" value="submit" formaction="/adminpostfaqmsg">Submit</button>
+                          <button type="submit" value="submit" formaction="/admindeletefaqmsg">Delete Question</button>
+                        </form>
+                      </div>
+                      <% } %>
+                </div>
 
-    <!-- <ul>
+                <iframe name="myframe" style="display:none;"></iframe> <!--  😉😜 -->  <!-- just to not refresh the page, also stops click spam on the like button -->
+                <form action="/sendlike" method="post" id="form<%= counter %>" style="display:none" target="myframe">
+                  <input name="questionn" value="<%= data.question %>">
+                  <input name="likee" value="<%= data.likes %>">
+                </form>
+              </div>
+              <% counter++ %>
+                <% }) %>
+
+
+                  <%}%>
+
+                    <!-- <ul>
       <li class="faqli card fs-3 flex-row" style="cursor: pointer" onclick="showDiv(1)"><div>&#9759;</div>&#8239; Who are we and how long have we been on the market ?</li>
       <h2 class="fs-4" id="faqp1" style="display: none">Established in 2022 QualityHotel provides a restful and inspiring place to stay where guests can share our passion for food, music, art and design.</h2>
-    </ul> -->
-    
-    
+    </ul> -->   <!-- changing this later to be changed dynamically from the database -->
 
-  </div>
-</div>
 
-<script>
+
+      </div>
+    </div>
+<% include ./partials/footer %>
+<script defer>
 
 function showDiv(number) {
-  var answer = document.getElementById("faqp"+number)
-  var displayAttribute = answer.style.display
+  let answer = document.getElementById("faqp" + number)
+  let displayAttribute = answer.style.display
   if (displayAttribute === "none") {
     answer.style.display = "block"
   } else {
@@ -82,19 +81,14 @@ function showDiv(number) {
   }
 }
 
-</script>
-
-<% include ./partials/footer %>
-
-
-<script defer>
-
-function addlike(count){
-  let currentLikes = document.getElementById('likess'+count).innerHTML;
-  console.log(currentLikes)
-  document.getElementById('likess'+count).innerHTML =currentLikes++;
+function addlike(count) {
+  let currentLikes = document.getElementById('likess' + count).innerHTML;
+  // console.log(currentLikes)
+  document.getElementById('likess' + count).innerHTML = currentLikes++;
+  document.getElementById('likess' + count).innerText = currentLikes;
   // console.log(currentLikes);
-  document.getElementById('form'+count).submit();
+  document.getElementById('form' + count).submit();
+  document.getElementById('likess' + count).onclick=null;  //  disabling adding likes after 1 click until the page is refreshed
 }
 
 </script>

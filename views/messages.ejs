@@ -1,6 +1,6 @@
 <% include ./partials/header %>
   <script>var bookings_data = {};</script>
- 
+
   <div class="card d-flex flex-column align-items-center text-center" style="margin-top: 25vh;">
     <form action="/users/checkmessages" method="post" id="myMessages">
       <div class="dropdown">
@@ -21,152 +21,173 @@
     </form>
 
 
-    <div class="table-responsive-xxl fs-4 m-auto text-center">  
-    <table class="dataTableDB table text-center align-items-center" id="messagesTable" style="display: none;">
-      <tr class="dataTableDBth">
-        <td>User Data</td>
-        <td>Message</td>
-        <td>Status</td>
-      </tr>
-      
-      <% var counter=1;%>
-        <% bookings_data.forEach(function(data) { %>
-          <% if(counter <= 1) { %> <h1 id="messageLocation"> <%= bookings_data[0]['location'] %> </h1><% }     %> 
-        
-        <div class="d-flex flex-row gap-1 justify-content-center">
-          <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1><% }     %> 
-          <% if(counter <= 1) { %> <h1 id="SelectedDate"> <%= bookings_data[0]['date']; %> </h1><% }     %> 
-          <% if(counter <= 1) { %> <h1 id="messageLocation"> <button type="button" id="tomorrow"> ▶ </button> </h1><% }     %> 
-          
-          <script>
-            document.getElementById('city').value = "<%= bookings_data[0]['location']; %>"
-          </script>
-        </div>
-          <% if(data.found_data==false) {%>
+    <div class="table-responsive-xxl fs-4 m-auto text-center">
+      <table class="dataTableDB table text-center align-items-center" id="messagesTable" style="display: none;">
+        <tr class="dataTableDBth">
+          <td>User Data</td>
+          <td>Message</td>
+          <td>Status</td>
+        </tr>
 
-    </table>
-    <h1> no data found </h1>
-    <% } else {%>
-      <script>document.getElementById('messagesTable').style.display="flex" </script>
-      
-      <tr id="row<%=counter%>">
-        <td>
-          <div id="name<%=counter%>">
-            <%= data.name %>
-          </div>
-          <div id="email<%=counter%>">
-            <%= data.email %>
-          </div>
-          <div id="telephone<%=counter%>">
-            <%= data.telephone %>
-          </div>
-          <div id="date<%=counter%>">
-            <%= data.date.slice(0,10) %>
-          </div>
-        </td>
-        <td>
-          <div id="message<%=counter%>">
-            <%= data.comment%>
-          </div>
-        </td>
-        <td>
-          <div id="status<%=counter%>">
-            <%= data.status%>
-          </div>
-        </td>
-        
-        <td><i class="fa fa-edit" style="cursor: pointer;" onclick="editMessage('<%=counter%>');"></i><% if(data.status =="unread"){%><br> NEW! <script>document.getElementById('row<%=counter%>').style.background="#dd3838a8"; </script> <% }%></td>
+        <% var counter=1;%>
+          <% bookings_data.forEach(function(data) { %>
+            <% if(counter <=1) { %>
+              <h1 id="messageLocation">
+                <%= bookings_data[0]['location'] %>
+              </h1>
+              <% } %>
 
-        
-      </tr>
-      <% } counter+=1; })%>
-        </table>
-      </div> 
+                <div class="d-flex flex-row gap-1 justify-content-center">
+                  <% if(counter <=1) { %>
+                    <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1>
+                    <% } %>
+                      <% if(counter <=1) { %>
+                        <h1 id="SelectedDate">
+                          <%= bookings_data[0]['date']; %>
+                        </h1>
+                        <% } %>
+                          <% if(counter <=1) { %>
+                            <h1 id="messageLocation"> <button type="button" id="tomorrow"> ▶ </button> </h1>
+                            <% } %>
+
+                              <script>
+                                document.getElementById('city').value = "<%= bookings_data[0]['location']; %>"
+                              </script>
+                </div>
+                <% if(data.found_data==false) {%>
+
+      </table>
+      <h1> no data found </h1>
+      <% } else {%>
+        <script>document.getElementById('messagesTable').style.display = "flex" </script>
+
+        <tr id="row<%=counter%>">
+          <td>
+            <div id="name<%=counter%>">
+              <%= data.name %>
+            </div>
+            <div id="email<%=counter%>">
+              <%= data.email %>
+            </div>
+            <div id="telephone<%=counter%>">
+              <%= data.telephone %>
+            </div>
+            <div id="date<%=counter%>">
+              <%= data.date.slice(0,10) %>
+            </div>
+          </td>
+          <td>
+            <div id="message<%=counter%>">
+              <%= data.comment%>
+            </div>
+          </td>
+          <td>
+            <div id="status<%=counter%>">
+              <%= data.status%>
+            </div>
+          </td>
+
+          <td><i class="fa fa-edit" style="cursor: pointer;" onclick="editMessage('<%=counter%>');"></i>
+            <% if(data.status=="unread" ){%><br> NEW!
+              <script>document.getElementById('row<%=counter%>').style.background = "#dd3838a8"; </script>
+              <% }%>
+          </td>
+
+
+        </tr>
+        <% } counter+=1; })%>
+          </table>
+    </div>
   </div>
-<div class="myModal" id="myModal" style="color: rgba(238, 53, 53, 0.678);">
+  <div class="myModal" id="myModal" style="color: rgba(238, 53, 53, 0.678);">
 
-  <form method="post">
-    <input type="text" id="modalName2" name="modalName2" style="display: none;">
-    <input type="text" id="modalEmail2" name="modalEmail2" style="display: none;">
-    <input type="text" id="modalTelephone2" name="modalTelephone2" style="display: none;">
-    <input type="text" id="modalDate2" name="modalDate2" style="display: none;">
-    <input type="text" id="modalMessage2" name="modalMessage2" style="display: none;">
-    <input type="text" id="modalStatus2" name="modalStatus2" style="display: none;">
-    <input type="text" id="messageLocation2" name="messageLocation2" style="display: none;">
-    <div class="container d-flex flex-column">
-    <input type="text" id="modalName" name="modalName">
-    <input type="text" id="modalEmail" name="modalEmail">
-    <input type="text" id="modalTelephone" name="modalTelephone">
-    <input type="text" id="modalDate" name="modalDate">
-    <input type="text" id="modalStatus" name="modalStatus">
-    <input type="text" id="modalMessage" name="modalMessage">
-    </div>
-    <div class="d-flex flex-row mt-2" style="height:100px; background: transparent; justify-content: center; gap:1em; padding-left: 0px!important;">
-      <button type="button" class="fs-5" style="padding: 1em 2em 1em 2em;" onclick="document.getElementById('myModal').style.display='none';"> Close </button>
-      <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(212, 63, 63);" formaction="/messagesdelete" > Delete </button>
-      <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(61, 189, 72);" formaction="/messagesedit" > Save </button>
-    </div>
-  </form>
-</div>
+    <form method="post">
+      <input type="text" id="modalName2" name="modalName2" style="display: none;">
+      <input type="text" id="modalEmail2" name="modalEmail2" style="display: none;">
+      <input type="text" id="modalTelephone2" name="modalTelephone2" style="display: none;">
+      <input type="text" id="modalDate2" name="modalDate2" style="display: none;">
+      <input type="text" id="modalMessage2" name="modalMessage2" style="display: none;">
+      <input type="text" id="modalStatus2" name="modalStatus2" style="display: none;">
+      <input type="text" id="messageLocation2" name="messageLocation2" style="display: none;">
+      <div class="container d-flex flex-column">
+        <input type="text" id="modalName" name="modalName">
+        <input type="text" id="modalEmail" name="modalEmail">
+        <input type="text" id="modalTelephone" name="modalTelephone">
+        <input type="text" id="modalDate" name="modalDate">
+        <input type="text" id="modalStatus" name="modalStatus">
+        <input type="text" id="modalMessage" name="modalMessage">
+      </div>
+      <div class="d-flex flex-row mt-2"
+        style="height:100px; background: transparent; justify-content: center; gap:1em; padding-left: 0px!important;">
+        <button type="button" class="fs-5" style="padding: 1em 2em 1em 2em;"
+          onclick="document.getElementById('myModal').style.display='none';"> Close </button>
+        <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(212, 63, 63);"
+          formaction="/messagesdelete"> Delete </button>
+        <button type="submit" class="fs-5" style="padding: 1em 2em 1em 2em;background: rgb(61, 189, 72);"
+          formaction="/messagesedit"> Save </button>
+      </div>
+    </form>
+  </div>
 
-<script defer>
-function editMessage(counter) {
-  modalName = document.getElementById("name" + counter).innerText;
-  modalEmail = document.getElementById("email" + counter).innerText;
-  modalTelephone = document.getElementById("telephone" + counter).innerText;
-  modalDate = document.getElementById("date" + counter).innerText;
-  modalStatus = document.getElementById("status" + counter).innerText;
-  modalMessage = document.getElementById("message" + counter).innerText;
-  document.getElementById("modalName").value = modalName;
-  document.getElementById("modalEmail").value = modalEmail;
-  document.getElementById("modalTelephone").value = modalTelephone;
-  document.getElementById("modalDate").value = modalDate;
-  document.getElementById("modalStatus").value = modalStatus;
-  document.getElementById("modalMessage").value = modalMessage;
+  <script defer>
+    function editMessage(counter) {
+      modalName = document.getElementById("name" + counter).innerText;
+      modalEmail = document.getElementById("email" + counter).innerText;
+      modalTelephone = document.getElementById("telephone" + counter).innerText;
+      modalDate = document.getElementById("date" + counter).innerText;
+      modalStatus = document.getElementById("status" + counter).innerText;
+      modalMessage = document.getElementById("message" + counter).innerText;
+      document.getElementById("modalName").value = modalName;
+      document.getElementById("modalEmail").value = modalEmail;
+      document.getElementById("modalTelephone").value = modalTelephone;
+      document.getElementById("modalDate").value = modalDate;
+      document.getElementById("modalStatus").value = modalStatus;
+      document.getElementById("modalMessage").value = modalMessage;
 
-  
-  document.getElementById("modalName2").value = modalName;
-  document.getElementById("modalEmail2").value = modalEmail;
-  document.getElementById("modalTelephone2").value = modalTelephone;
-  document.getElementById("modalDate2").value = modalDate;
-  document.getElementById("modalStatus2").value = modalStatus;
-  document.getElementById("modalMessage2").value = modalMessage;
-  document.getElementById("messageLocation2").value = document.getElementById("messageLocation").innerHTML.trim();
-  document.getElementById('myModal').style.display='block'
-}
 
-document.addEventListener('keydown', function(e) {
-  if (e.keyCode == 27) {
-    document.getElementById('myModal').style.display='none';
-  }
-})
-</script>
+      document.getElementById("modalName2").value = modalName;
+      document.getElementById("modalEmail2").value = modalEmail;
+      document.getElementById("modalTelephone2").value = modalTelephone;
+      document.getElementById("modalDate2").value = modalDate;
+      document.getElementById("modalStatus2").value = modalStatus;
+      document.getElementById("modalMessage2").value = modalMessage;
+      document.getElementById("messageLocation2").value = document.getElementById("messageLocation").innerHTML.trim();
+      document.getElementById('myModal').style.display = 'block'
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.keyCode == 27) {
+        document.getElementById('myModal').style.display = 'none';
+      }
+    })
+  </script>
   </div>
   <% include ./partials/footer %>
 
 
-<script defer>
-if((document.getElementById('yesterday')) != undefined){
-  document.getElementById('yesterday').addEventListener("click", function() {
-    var selectArea = document.getElementById('SelectedDate').innerHTML
-    var d = new Date(selectArea)
-    d.setDate(d.getDate() - 1)
-    d.setTime(d.getTime() + (12*60*60*1000)) // UTC SUCKS!
-    d = d.toISOString()
-    document.getElementById('date').value = d.substring(0,10);
-    document.getElementById('myMessages').submit();
-  })
+    <script defer>
+      if ((document.getElementById('yesterday')) != undefined) {
+        document.getElementById('yesterday').addEventListener("click", function () {
+          var selectArea = document.getElementById('SelectedDate').innerHTML
+          var d = new Date(selectArea)
+          d.setDate(d.getDate() - 1)
+          d.setTime(d.getTime() + (12 * 60 * 60 * 1000)) // UTC SUCKS!
+          d = d.toISOString()
+          document.getElementById('date').value = d.substring(0, 10);
+          document.getElementById('myMessages').submit();
+        })
 
 
-  document.getElementById('tomorrow').addEventListener("click", function() {
-    var selectArea = document.getElementById('SelectedDate').innerHTML
-    console.log(selectArea)
-    var d = new Date(selectArea)
-    d.setDate(d.getDate() + 1)
-    d.setTime(d.getTime() + (12*60*60*1000)) // UTC SUCKS!
-    // console.log(d)
-    d = d.toISOString()
-    document.getElementById('date').value = d.substring(0,10);
-    document.getElementById('myMessages').submit();
-  })}
-</script>
+        document.getElementById('tomorrow').addEventListener("click", function () {
+          var selectArea = document.getElementById('SelectedDate').innerHTML
+          console.log(selectArea)
+          var d = new Date(selectArea)
+          d.setDate(d.getDate() + 1)
+          d.setTime(d.getTime() + (12 * 60 * 60 * 1000)) // UTC SUCKS!
+          // console.log(d)
+          d = d.toISOString()
+          document.getElementById('date').value = d.substring(0, 10);
+          document.getElementById('myMessages').submit();
+        })
+      }
+    </script>

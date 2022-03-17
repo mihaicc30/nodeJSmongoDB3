@@ -12,29 +12,28 @@ const hotelDB = require('../config/key-qualityhotel').mongoURI;
 // check bookings
 router.post('/checkbookings', function (req, res) {
   var { city, date } = req.body;
-  
 
   mongoose.createConnection(hotelDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, hotelDB) => {
     if (err) { console.log(err) }
-    
+
     // bookings.collection(city).aggregate([
     //   { $addFields: {stringDate: { $dateToString: { format: "%Y-%m-%d", date: "$date" } } } },
     //   { $match: {"stringDate":date}},
     //   { $project:{"stringDate":0}}
     //   ]).sort({ date: -1 }).toArray(function(err, result) {
     //     if (err) { console.log(err) }  // new version of command, searches by date CREATED !important but prefder to use the other one
-      
-    hotelDB.collection("bookings").find({ fromDate: date, hotel: { $eq:city  } }).sort({ date: -1 }).toArray(function(err, result) {
-      if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important
+
+    hotelDB.collection("bookings").find({ fromDate: date, hotel: { $eq: city } }).sort({ date: -1 }).toArray(function (err, result) {
+      if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important // works better with my website and the way i want it to be
       the_data = {}
-      if (!result) { the_data={"found_data":false, "fromDate":date, "hotel":city} }
-      if (result.length === 0) { the_data={"found_data":false, "fromDate":date, "hotel":city} }
-      if (result.length > 0) { the_data=result }
+      if (!result) { the_data = { "found_data": false, "fromDate": date, "hotel": city } }
+      if (result.length === 0) { the_data = { "found_data": false, "fromDate": date, "hotel": city } }
+      if (result.length > 0) { the_data = result }
       req.flash(
         'bookings_data',
         the_data
       );
-      
+
       res.redirect('/bookings');
     });
   });
@@ -46,13 +45,13 @@ router.post('/checkmessages', function (req, res) {
 
   mongoose.createConnection(hotelDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, hotelDB) => {
     if (err) { console.log(err) }
-    hotelDB.collection("messages").find({ "date": date, "location":city  }).sort({ date: -1 }).toArray(function(err, result) {
+    hotelDB.collection("messages").find({ "date": date, "location": city }).sort({ date: -1 }).toArray(function (err, result) {
       if (err) { console.log(err) }
       the_data = {}
-      if (!result) { the_data={"found_data":false, "date":date, "location":city} }
-      if (result.length === 0) { the_data={"found_data":false, "date":date, "location":city} }
-      
-      if (result.length > 0) { the_data=result;}
+      if (!result) { the_data = { "found_data": false, "date": date, "location": city } }
+      if (result.length === 0) { the_data = { "found_data": false, "date": date, "location": city } }
+
+      if (result.length > 0) { the_data = result; }
       req.flash('bookings_data', the_data);
       res.redirect('/messages');
     });
@@ -118,11 +117,11 @@ router.post('/register', (req, res) => {
             newUser.date = date_created;
             newUser.name = name.toUpperCase();
             newUser
-            .save()
-            .then(user => {
-              req.flash('success_msg', 'You are now registered and can log in' );
-              res.redirect('/users/login');
-             })
+              .save()
+              .then(user => {
+                req.flash('success_msg', 'You are now registered and can log in');
+                res.redirect('/users/login');
+              })
               .catch(err => console.log(err));
           });
         });
@@ -207,9 +206,5 @@ router.post('/delete', (req, res) => {
   );
   res.redirect('/users/login');
 })
-
-
-
-
 
 module.exports = router;

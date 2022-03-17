@@ -19,24 +19,25 @@
                     z-index: 9999;
                     opacity: 0;
                     ">
-                            <i  class="fa fa-close someicon" id="hidewelcomemsg"
+                            <i class="fa fa-close someicon" id="hidewelcomemsg"
                                 style="background-color: rgb(185, 184, 184); font-size: 1.5em; padding: 5px;border-radius: 25%; cursor: pointer"></i>
 
 
                             <h1 style="color: white;margin-top: 1em;"> Welcome back <%= user.name %>!</h1>
-                            
-                            <% if(welcomeMsg.hotel === "0" ) { %>
 
-                                <h1 style="color: white;margin-top: 1em;"> You have no active bookings. <br>Maybe try <a href="/findaroom">one</a>? </h1>
+                            <% if(welcomeMsg.hotel==="0" ) { %>
 
-                                
+                                <h1 style="color: white;margin-top: 1em;"> You have no active bookings. <br>Maybe try <a
+                                        href="/findaroom">one</a>? </h1>
+
+
                                 <% } else { %>
-                                    <h1 style="color: white;margin-top: 1em;"> You soon have a trip planned at <%= welcomeMsg.hotel
-                                        %> from <%= welcomeMsg.fromDate %> to <%= welcomeMsg.toDate %> in a <%=
-                                                    welcomeMsg.roomType %> room. Payable at the hotel £<%= welcomeMsg.total
-                                                        %>.</h1>
+                                    <h1 style="color: white;margin-top: 1em;"> You soon have a trip planned at <%=
+                                            welcomeMsg.hotel %> from <%= welcomeMsg.fromDate %> to <%= welcomeMsg.toDate
+                                                    %> in a <%= welcomeMsg.roomType %> room. Payable at the hotel £<%=
+                                                            welcomeMsg.total %>.</h1>
                                     <% } %>
-                           
+
 
                         </div>
                         <% } %>
@@ -92,7 +93,7 @@
                         <h2>Support</h2>
                         <h5>Around the clock support.</h5>
                     </div>
-                    <div class="slide hideme" >
+                    <div class="slide hideme">
                         <h1><i class="fa-solid fa-user-shield" style="color: #f5af34;"></i></h1>
                         <h2>Private data</h2>
                         <h5>We dont share your data with anyone.</h5>
@@ -111,7 +112,7 @@
                     <i class="fa-solid fa-chevron-right" style="color: #f5af34;"></i>
                 </button>
             </div>
-              
+
             <div class="text-center" loading="lazy">
 
                 <div class="index card card-body flex-wrap flex-md-row gap-2 justify-content-center m-auto">
@@ -182,33 +183,33 @@
                 }
             </script>
 
-<% include ./partials/footer %>
+            <% include ./partials/footer %>
 
-            <script>
-                window.onload = () => {
-                    var todaysDate = new Date().toISOString().slice(0, 10);
-                    document.getElementById('start').value = todaysDate;
-                    var tomorrow = new Date();
-                    tomorrow.setDate(tomorrow.getDate() + 1);
-                    document.getElementById('end').value = tomorrow.toISOString().slice(0, 10);
-                }
-            </script>
+                <script>
+                    window.onload = () => {
+                        var todaysDate = new Date().toISOString().slice(0, 10);
+                        document.getElementById('start').value = todaysDate;
+                        var tomorrow = new Date();
+                        tomorrow.setDate(tomorrow.getDate() + 1);
+                        document.getElementById('end').value = tomorrow.toISOString().slice(0, 10);
+                    }
+                </script>
 
-<% if(typeof user=="object" ) { %>
-    <script>
-        document.addEventListener('DOMContentLoaded', loadModal, false);
-        
-        function loadModal() {
-          setTimeout(showModal,500);
-        }
-        
-        function showModal() {
-          document.querySelector('.welcomeMsg').classList.add('show');
-        }
-        
-        document.querySelector('#hidewelcomemsg').addEventListener('click', function() {
-          document.querySelector('.welcomeMsg').classList.remove('show');
-          document.querySelector('.welcomeMsg').classList.add('hide');
-        })
-        </script>
-    <% } %>
+                <% if(typeof user=="object" ) { %>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', loadModal, false);
+
+                        function loadModal() {
+                            setTimeout(showModal, 500);
+                        }
+
+                        function showModal() {
+                            document.querySelector('.welcomeMsg').classList.add('show');
+                        }
+
+                        document.querySelector('#hidewelcomemsg').addEventListener('click', function () {
+                            document.querySelector('.welcomeMsg').classList.remove('show');
+                            document.querySelector('.welcomeMsg').classList.add('hide');
+                        })
+                    </script>
+                    <% } %>

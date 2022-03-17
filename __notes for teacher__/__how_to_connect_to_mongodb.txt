@@ -12,3 +12,7 @@ Step 2: Login with email address "alemihai25@gmail.com" password "MyDBpassMihai1
 For Database Access (that i use from nodeJS) i have created a separate user to connect with:
 username: mihaiapp
 pass: MyDBpassMihai123
+
+
+GitHub:
+https://github.com/mihaicc30/nodeJSmongoDB3
