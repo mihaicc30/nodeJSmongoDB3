@@ -24,6 +24,8 @@ Download the zip package folder, unzip it, open it in your favorite editor (Visu
 In the root folder, execute in the terminal " node app.js " and proceed in the browser at http://localhost:5555/  (but then to edit the content and it to show the changes you need to restart the app)
 
 
+More instructions on how to login into my MongoDB database account in the folder "_notes for teacher_"
+
 
 
 
