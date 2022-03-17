@@ -67,7 +67,7 @@ router.post('/adminpostfaqmsg', (req, res) => //, ensureAuthenticated
 router.post('/admindeletefaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenticated
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     // console.log(req.body);
-    var { thequestion,theoneresponding } = req.body;
+    var { thequestion, theoneresponding } = req.body;
     if (err) {
       console.log(err)
     } else {
@@ -115,7 +115,7 @@ router.post('/postfaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenti
           pass: 'mihaisolentmihaisolent'
         }
       });
-      var emailMsg = "  \n  \n  Dear admin,\n \nThis is a email to notify you that someone had the courage to put a question!\n  \n\""+questionnn+"\"\n \nby "+userEmail+"\nPlease visit https://qualityhotel.herokuapp.com/faq to answer \n \nKind Regards\nReceptionTeam";
+      var emailMsg = "  \n  \n  Dear admin,\n \nThis is a email to notify you that someone had the courage to put a question!\n  \n\"" + questionnn + "\"\n \nby " + userEmail + "\nPlease visit https://qualityhotel.herokuapp.com/faq to answer \n \nKind Regards\nReceptionTeam";
       var mailOptions = {
         from: 'mihaisolent@gmail.com',
         to: 'mihaisolent@gmail.com',
@@ -129,12 +129,12 @@ router.post('/postfaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenti
           console.log('Email sent: ' + info.response);
         }
       });
-      
+
       res.redirect('/faq');
     }
   }))
 
-  // user likeing the faq question
+// user likeing the faq question
 router.post('/sendlike', (req, res) => //, ensureAuthenticated
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     var { questionn, likee } = req.body;
