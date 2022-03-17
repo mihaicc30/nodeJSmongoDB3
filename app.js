@@ -1,10 +1,4 @@
-const dev_mode = true;
-
-/////////////////////
-/////////////////////   to fix>>no results on bookings + messages
-/////////////////////
-/////////////////////
-/////////////////////
+const PORT = 5555;
 
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
@@ -71,8 +65,6 @@ app.use('/users', require('./routes/users.js'));
 app.use('/imgs', express.static('./imgs'))
 app.use('/config', express.static('./config'))
 
-
-const PORT = process.env.PORT || 5555;
 app.listen(PORT, console.log(`Server running on ${PORT}`));
 
-// if (dev_mode == true) { require('child_process').exec('start http://localhost:'+PORT);}
+// if (dev_mode == true) { require('child_process').exec('start http://localhost:'+PORT);}  // only if you want the browser to open automatically 

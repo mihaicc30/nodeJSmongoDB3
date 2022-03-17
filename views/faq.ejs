@@ -25,7 +25,7 @@
     <% if (faq_data) { %>
       
       <% faq_data.forEach(function(data) { %>
-        <div class="d-flex flex-column my-3 <% if(counter>3){ %>hideme<%}%> " style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.1em;font-weight: bold;">
+        <div class="d-flex flex-column my-3 <% if(counter>4){ %>hideme<%}%> " style="box-shadow: 0 0 0px 5px #00000054;font-size: 1.1em;font-weight: bold;">
 
           <div style="color:black;font-size: 1.5em;max-width: 65vw;" id="q<%= counter %>" class="d-flex flex-row m-3">
             <p onclick="showDiv('<%= counter %>')" style=" cursor: pointer;">&#9759; <%= data.question %></p>
@@ -39,7 +39,7 @@
                 <form method="post" id="anotherFormSaddly<%= counter%>">Want to reply?
                   <input type="text" name="thequestion" value="<%= data.question %>" style="display:none">
                   <input type="text" name="theresponse">
-                  <input type="text" name="theoneresponding" value="<%= user.name %>" style="display:none">
+                  <input type="text" name="theoneresponding" value="<%= user.email %>" style="display:none">
                   <button type="submit" value="submit" formaction="/adminpostfaqmsg">Submit</button>
                   <button type="submit" value="submit" formaction="/admindeletefaqmsg">Delete Question</button>
                 </form>
@@ -90,10 +90,9 @@ function showDiv(number) {
 <script defer>
 
 function addlike(count){
-  currentLikes = document.getElementById('likess'+count).innerHTML;
+  let currentLikes = document.getElementById('likess'+count).innerHTML;
   console.log(currentLikes)
-  currentLikes++;
-  document.getElementById('likess'+count).innerHTML =currentLikes;
+  document.getElementById('likess'+count).innerHTML =currentLikes++;
   // console.log(currentLikes);
   document.getElementById('form'+count).submit();
 }

@@ -118,8 +118,7 @@ font-family: 'Lora', serif; */
 }
 .findaRoomHotelCard > img:hover, .hotelnames > img:hover {
     z-index: 99;
-    border-radius: 25%;
-    transform: scale(1.4);
+    transform: scale(1.1);
     transition: .5s ease-in-out;
 }
 #toTheTopBtn {

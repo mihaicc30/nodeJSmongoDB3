@@ -183,7 +183,7 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
 
       db.collection("bookings").insertOne({ customer: hotelUserName, customerEmail: hotelUserEmail, customerPhone: hotelUserPhone, hotel: hotelFORM, fromDate: from_dateFORM, toDate: to_dateFORM, roomType: roomTypeFORM, extras: { breakfast: needBreakfast, champagne: needChampagne, car: needCar }, total: TOTALFORM, date: new Date() })
 
-      req.flash('success_msg', '\nDear guest, \n \nThank you ' + hotelUserName + ' for booking with us! Check your email for a confirmation! Kind regards, QualityHotel');
+      req.flash('success_msg', '\nDear ' + hotelUserName + ', \n \nThank you for booking with us! Check your email for a confirmation! Kind regards, QualityHotel');
       res.redirect('/successfullbooking')
 
       var transporter = nodemailer.createTransport({

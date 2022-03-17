@@ -22,6 +22,7 @@ router.get('/faq', (req, res) => //, ensureAuthenticated
     }
   }))
 
+// Admin responding to FAQ question
 router.post('/adminpostfaqmsg', (req, res) => //, ensureAuthenticated
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     var { thequestion, theresponse, theoneresponding } = req.body;
@@ -41,7 +42,7 @@ router.post('/adminpostfaqmsg', (req, res) => //, ensureAuthenticated
               pass: 'mihaisolentmihaisolent'
             }
           });
-          var emailMsg = " Email for " + result[0]["questionFrom"] + "\nDear guest,\n \n This is a email to notify you that your question has been answered! \n \nKind Regards\nReceptionTeam";
+          var emailMsg = " Email for " + result[0]["questionFrom"] + "\n  \n  \n  Dear guest,\n \nThis is a email to notify you that your question has been answered!\n  \nYou should visit https://qualityhotel.herokuapp.com/faq to view the answer \n \nKind Regards\nReceptionTeam";
           var mailOptions = {
             from: 'mihaisolent@gmail.com',
             to: result[0]["questionFrom"],
@@ -62,19 +63,43 @@ router.post('/adminpostfaqmsg', (req, res) => //, ensureAuthenticated
   })
 )
 
+// Admin deleting FAQ question
 router.post('/admindeletefaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenticated
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     // console.log(req.body);
-    var { thequestion } = req.body;
+    var { thequestion,theoneresponding } = req.body;
     if (err) {
       console.log(err)
     } else {
       db.collection("FAQ").deleteOne({ "question": thequestion });
+
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'mihaisolent@gmail.com',
+          pass: 'mihaisolentmihaisolent'
+        }
+      });
+      var emailMsg = " Email for " + theoneresponding + "\n  \nDear guest,\n  \nThis is a email to notify you that your question has been deleted!\n  \nSorry for the inconvenience, maybe it was not appropriate...\n  \nKind Regards\nReceptionTeam";
+      var mailOptions = {
+        from: 'mihaisolent@gmail.com',
+        to: theoneresponding,
+        subject: 'QualityHotel - FAQ Message Deleted ' + (new Date().toISOString().slice(0, 10)),
+        text: emailMsg
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
       res.redirect('/faq');
     }
   }))
 
-
+// user putting a question on FAQ page
 router.post('/postfaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenticated
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     var { questionnn, userEmail } = req.body;
@@ -82,10 +107,34 @@ router.post('/postfaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenti
       console.log(err)
     } else {
       db.collection("FAQ").insertOne({ "question": questionnn, "likes": Int32(0), "response": String("Not yet replied."), "date": new Date().toISOString().slice(0, 10), "questionFrom": String(userEmail) });
+
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'mihaisolent@gmail.com',
+          pass: 'mihaisolentmihaisolent'
+        }
+      });
+      var emailMsg = "  \n  \n  Dear admin,\n \nThis is a email to notify you that someone had the courage to put a question!\n  \n\""+questionnn+"\"\n \nby "+userEmail+"\nPlease visit https://qualityhotel.herokuapp.com/faq to answer \n \nKind Regards\nReceptionTeam";
+      var mailOptions = {
+        from: 'mihaisolent@gmail.com',
+        to: 'mihaisolent@gmail.com',
+        subject: 'QualityHotel - FAQ Message ' + (new Date().toISOString().slice(0, 10)),
+        text: emailMsg
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+      
       res.redirect('/faq');
     }
   }))
 
+  // user likeing the faq question
 router.post('/sendlike', (req, res) => //, ensureAuthenticated
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     var { questionn, likee } = req.body;
@@ -94,7 +143,7 @@ router.post('/sendlike', (req, res) => //, ensureAuthenticated
       console.log(err)
     } else {
       db.collection("FAQ").updateOne({ "question": questionn }, { $set: { "likes": Int32(likee) } });
-      // res.redirect('/faq');
+      // res.redirect('/faq');  // disabled to prevent spam clicking :)
     }
   }))
 
