@@ -16,3 +16,9 @@ pass: MyDBpassMihai123
 
 GitHub:
 https://github.com/mihaicc30/nodeJSmongoDB3
+
+
+Hotel Email Service Account:
+
+user: mihaisolent@gmail.com
+pass: mihaisolentmihaisolent
