@@ -21,7 +21,7 @@ Download the zip package folder, unzip it, open it in your favorite editor (Visu
 
  or 
  
-In the root folder, execute in the terminal " node app.js " and proceed in the browser at http://localhost:5555/
+In the root folder, execute in the terminal " node app.js " and proceed in the browser at http://localhost:5555/  (but then to edit the content and it to show the changes you need to restart the app)
 
 
 
