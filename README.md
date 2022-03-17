@@ -18,8 +18,11 @@ Proceed to https://qualityhotel.herokuapp.com
 
 
 Download the zip package folder, unzip it, open it in your favorite editor (Visual studio code for me), run in the terminat in the root folder of this project the command " npm i " to instal all the modules, then to easily start the node server, please use the *bat file (its just a terminal command with 'nodemon app.js') and proceed on http://localhost:5555/  *assuming the port is free
-- or -
+
+ or 
+ 
 In the root folder, execute in the terminal " node app.js " and proceed in the browser at http://localhost:5555/
+
 
 
 
