@@ -34,7 +34,8 @@ app.use(
   session({
     secret: '1234567890qwertpoiuyasdflkjzxcvmnQWEOPIUASDFLKHZXCMn',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours, a number representing the milliseconds from Date.now() for expiry
   })
 );
 
