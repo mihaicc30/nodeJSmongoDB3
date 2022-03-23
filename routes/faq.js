@@ -143,7 +143,6 @@ router.post('/sendlike', (req, res) => //, ensureAuthenticated
       console.log(err)
     } else {
       db.collection("FAQ").updateOne({ "question": questionn }, { $set: { "likes": Int32(likee) } });
-      // res.redirect('/faq');  // disabled to prevent spam clicking :)
     }
   }))
 

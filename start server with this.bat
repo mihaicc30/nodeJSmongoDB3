@@ -1,1 +1,1 @@
-nodemon app.js
+nodemon --signal SIGHUP app.js

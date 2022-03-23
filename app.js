@@ -64,6 +64,13 @@ app.use('/users', require('./routes/users.js'));
 app.use('/imgs', express.static('./imgs'))
 app.use('/config', express.static('./config'))
 
+process.on("SIGHUP", function () {
+  console.log("Stopping NodeJS server.");
+  setTimeout(function() {
+    process.exit();
+ }, 2000);
+})
+
 const PORT = process.env.PORT || 5555;
 app.listen(PORT, console.log(`Server running on ${PORT}`));
 
