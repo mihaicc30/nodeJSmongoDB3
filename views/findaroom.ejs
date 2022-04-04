@@ -218,6 +218,8 @@
 
 
             let price = 0;
+            let daysToPay = days_between(theChoices.from_date, theChoices.to_date);
+            if (daysToPay <= 1) { daysToPay = 1 }
             for (i = 0; i < Object.keys(theChoices).length; i++) {
                 // let tr = document.createElement("tr");
 
@@ -236,8 +238,7 @@
                 // tr.appendChild(td2);
                 // document.getElementById('results').appendChild(tr)
 
-                let daysToPay = days_between(theChoices.from_date, theChoices.to_date);
-                if (daysToPay <= 1) { daysToPay = 1 }
+                
                 // console.log(daysToPay)
 
 
