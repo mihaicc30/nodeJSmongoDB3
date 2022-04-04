@@ -64,6 +64,10 @@ app.use('/users', require('./routes/users.js'));
 app.use('/imgs', express.static('./imgs'))
 app.use('/config', express.static('./config'))
 
+app.all('*', (req, res) => {
+  res.render("./invalid_page.ejs")
+})
+
 process.on("SIGHUP", function () {
   console.log("Stopping NodeJS server.");
   setTimeout(function() {
