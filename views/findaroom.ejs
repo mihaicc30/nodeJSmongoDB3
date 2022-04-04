@@ -306,12 +306,14 @@
                     // console.log("empty"); 
                     let todaysDate = new Date().toISOString().slice(0, 10);
                     document.getElementById('start').value = todaysDate;
+                    document.getElementById("start").setAttribute('min', todaysDate);
                     theChoices.from_date = todaysDate;
 
 
                     let tomorrow = new Date();
                     tomorrow.setDate(tomorrow.getDate() + 1);
                     document.getElementById('end').value = tomorrow.toISOString().slice(0, 10);
+                    document.getElementById("end").setAttribute('min', tomorrow.toISOString().slice(0, 10));
                     theChoices.to_date = tomorrow.toISOString().slice(0, 10)
                     setTimeout(1000, document.getElementById("choice1").scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' }))
 
