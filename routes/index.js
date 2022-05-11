@@ -142,8 +142,8 @@ router.post('/bookingedit', ensureAuthenticated, function (req, res) {
         }
       }));
       var emailMsg = "Dear " + modalname2 + "\n  \nThis is a an update on your booking for " + modalcheckin2 + " in " + modalhotel2 + "\n   \nWe hope you are happy with the changes!\n " +
-      ""+modalname2+" "+modalemail2+" "+modalcheckin2+" "+modalcheckout2+" "+modalroomtype2+" "+modaltotal2+"\n"+
-      ""+modalname+" "+modalemail+" "+modalhotel+" "+modalcheckin+" "+modalcheckout+" "+modalroomtype+" "+modaltotal+" "+
+      ""+modalname2+" "+modalemail2+" "+modalcheckin2+" "+modalcheckout2+" "+modalroomtype2+" £"+modaltotal2+"\n"+
+      ""+modalname+" "+modalemail+" "+modalhotel+" "+modalcheckin+" "+modalcheckout+" "+modalroomtype+" £"+modaltotal+" "+
       "   \nKind Regards,\nReception Team " + modalhotel;
 
       var mailOptions = {

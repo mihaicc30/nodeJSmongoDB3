@@ -23,3 +23,10 @@ Hotel Email Service Account:
 https://mail.google.com/mail
 user: mihaisolent@gmail.com
 pass: mihaisolentmihaisolent
+
+
+Hotel Admin Email :            <- to be able see all the features
+user: admin@qualityhotel.co.uk
+pass: admin@qualityhotel.co.uk
+
+as for a customer account, please create & use a real email to receive all the confirmations :) fun fun

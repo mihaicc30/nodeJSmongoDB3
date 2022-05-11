@@ -66,22 +66,22 @@
                 <div id="detailsDiv2">
                     <div class="card card-body mt-2 py-2 px-1 " style="box-shadow: 6px 8px 13px 3px black;">
                         <label for="name">Name</label>
-                        <input type="text" name="name" placeholder="changing name?" value="<%-user.name %>" required
+                        <input type="text" name="name" placeholder="changing name?" value="<%-user.name %>" autocomplete="username" required
                             minlength="6">
                     </div>
                     <div class="card card-body mt-2 py-2 px-1 " style="box-shadow: 6px 8px 13px 3px black;">
                         <label for="email">Email</label>
-                        <input type="email" name="email" placeholder="changing email?" value="<%-user.email %>" required
+                        <input type="email" name="email" placeholder="changing email?" value="<%-user.email %>" autocomplete="email" required
                             minlength="6" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                     </div>
                     <div class="card card-body mt-2 py-2 px-1 " style="box-shadow: 6px 8px 13px 3px black;">
                         <label for="phone">Phone</label>
-                        <input type="text" name="phone" placeholder="changing phone?" value="<%-user.phone %>" required
+                        <input type="text" name="phone" placeholder="changing phone?" value="<%-user.phone %>" autocomplete="current-telephone" required
                             minlength="2">
                     </div>
                     <div class="card card-body mt-2 py-2 px-1 " style="box-shadow: 6px 8px 13px 3px black;">
                         <label for="password">Password</label>
-                        <input type="password" name="password" placeholder="changing password?" required minlength="6">
+                        <input type="password" name="password" placeholder="changing password?" required minlength="6" autocomplete="current-password">
                     </div>
                     <div class="mt-2 py-2 px-1 text-center">
                         <button class="py-1 px-5 bg-success" type="submit"
