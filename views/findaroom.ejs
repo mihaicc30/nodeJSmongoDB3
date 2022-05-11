@@ -65,7 +65,13 @@
                     <input type="date" id="end" name="trip-end" value=""
                         onchange="scrollzTo('3');theChoices.to_date=value">
                 </div>
-
+                <script>
+                    var todaysDate = new Date().toISOString().slice(0, 10);
+                    document.getElementById("start").setAttribute('min', todaysDate);
+                    var tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    document.getElementById("end").setAttribute('min', tomorrow.toISOString().slice(0, 10));
+                </script>
             </div>
 
 
@@ -181,7 +187,9 @@
 
             if (!theChoicesCopy.hotel || !theChoicesCopy.from_date || !theChoicesCopy.to_date || !theChoicesCopy.roomType) {
 
-                console.log("missing fields")
+                // console.log("missing hotel pick")
+                scrollzTo('1');
+                document.getElementById('choice1').style="border:5px solid red;"
 
             } else {
                 document.getElementById('hotelFORM').value = theChoicesCopy.hotel;
