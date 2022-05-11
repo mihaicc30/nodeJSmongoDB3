@@ -1,4 +1,4 @@
-<% include ./partials/header %>
+<%- include('./partials/header'); -%>
   <script>let bookings_data = {}; </script>
 
   <div class="card d-flex flex-column align-items-center text-center" style="margin-top: 25vh;">
@@ -13,7 +13,7 @@
           <option value="Birmingham">Birmingham</option>
           <option value="Manchester">Manchester</option>
         </select>
-        <input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px" onchange="this.form.submit()">
+        From date:<input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px" onchange="this.form.submit()">
         <!-- <script>
           let todaysDate = new Date().toISOString().slice(0, 10);
           document.getElementById('date').value = todaysDate;
@@ -47,7 +47,7 @@
                     <% } %>
                       <% if(counter <=1) { %>
                         <h1 id="SelectedDate">
-                          <%= data['fromDate']; %>
+                          <%= searchedDate.searchedDate %>
                         </h1>
                         <% } %>
                           <% if(counter <=1) { %>
@@ -156,16 +156,16 @@
   <script defer>
     function editMessage(counter) {
       // grab original data
-      modalname = document.getElementById("name" + counter).innerHTML;
-      modalemail = document.getElementById("email" + counter).innerHTML;
-      modalhotel = document.getElementById("hotel" + counter).innerHTML;
-      modalcheckin = document.getElementById("checkin" + counter).innerHTML;
-      modalcheckout = document.getElementById("checkout" + counter).innerHTML;
-      modalroomtype = document.getElementById("roomtype" + counter).innerHTML;
-      modalbreakfast = document.getElementById("breakfast" + counter).innerHTML;
-      modalchampagne = document.getElementById("champagne" + counter).innerHTML;
-      modalcar = document.getElementById("car" + counter).innerHTML;
-      modaltotal = document.getElementById("total" + counter).innerHTML;
+      modalname = document.getElementById("name" + counter).innerHTML.trim();
+      modalemail = document.getElementById("email" + counter).innerHTML.trim();
+      modalhotel = document.getElementById("hotel" + counter).innerHTML.trim();
+      modalcheckin = document.getElementById("checkin" + counter).innerHTML.trim();
+      modalcheckout = document.getElementById("checkout" + counter).innerHTML.trim();
+      modalroomtype = document.getElementById("roomtype" + counter).innerHTML.trim();
+      modalbreakfast = document.getElementById("breakfast" + counter).innerHTML.trim();
+      modalchampagne = document.getElementById("champagne" + counter).innerHTML.trim();
+      modalcar = document.getElementById("car" + counter).innerHTML.trim();
+      modaltotal = document.getElementById("total" + counter).innerHTML.trim();
       // //set modal data to edit
       document.getElementById("modalname").value = modalname;
       document.getElementById("modalemail").value = modalemail;
@@ -198,7 +198,7 @@
       }
     })
   </script>
-  <% include ./partials/footer %>
+  <%- include('./partials/footer') -%>
 
 
     <script defer>

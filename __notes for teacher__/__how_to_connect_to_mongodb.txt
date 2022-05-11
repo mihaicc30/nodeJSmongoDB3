@@ -20,5 +20,6 @@ https://github.com/mihaicc30/nodeJSmongoDB3
 
 Hotel Email Service Account:
 
+https://mail.google.com/mail
 user: mihaisolent@gmail.com
 pass: mihaisolentmihaisolent

@@ -10,7 +10,7 @@
         </div>
         <i class="fas fa-user-plus"></i> <a href="/users/register">Register</a>
       </h1>
-      <% include ./partials/messages %>
+      <%- include('./partials/messages'); -%>
         <form action="/users/register" method="POST">
           <div class="form-group">
             <label for="name">Name</label>

@@ -1,4 +1,4 @@
-<% include ./partials/header %>
+<%- include('./partials/header'); -%>
     <% const x=typeof user;%>
 
         <div>
@@ -81,13 +81,13 @@
                 <div class="carousel" id="carousel">
                     <div class="slide hideme">
                         <h1><i class="fa-solid fa-star" style="color: #f5af34;"></i></h1>
-                        <h2>Adaptability</h2>
-                        <h5>Lorem ipsum dolor sit amet.</h5>
+                        <h2>High Rating</h2>
+                        <h5>4.5 on TripAdvisor from over 10000 reviews!</h5>
                     </div>
                     <div class="slide hideme">
                         <h1><i class="fa-solid fa-ear-listen" style="color: #f5af34;"></i></h1>
                         <h2>Adaptability</h2>
-                        <h5>Lorem ipsum dolor sit amet.</h5>
+                        <h5>We adapt to any situation!</h5>
                     </div>
                     <div class="slide hideme">
                         <h1><i class="fa-solid fa-clock-rotate-left" style="color: #f5af34;"></i></h1>
@@ -184,7 +184,7 @@
                 }
             </script>
 
-            <% include ./partials/footer %>
+<%- include('./partials/footer') -%>
 
                 <script>
                     window.onload = () => {

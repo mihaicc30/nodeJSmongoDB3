@@ -1,4 +1,4 @@
-<% include ./partials/header %>
+<%- include('./partials/header'); -%>
   <script>var bookings_data = {};</script>
 
   <div class="card d-flex flex-column align-items-center text-center" style="margin-top: 25vh;">
@@ -10,7 +10,7 @@
           <option value="Birmingham">Birmingham</option>
           <option value="Manchester">Manchester</option>
         </select>
-        <input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px" onchange="this.form.submit()">
+        From date:<input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px" onchange="this.form.submit()">
         <!-- <script>
           var todaysDate = new Date().toISOString().slice(0, 10);
           document.getElementById('date').value = todaysDate;
@@ -30,29 +30,27 @@
         </tr>
 
         <% var counter=1;%>
-          <% bookings_data.forEach(function(data) { %>
-            <% if(counter <=1) { %>
-              <h1 id="messageLocation">
-                <%= bookings_data[0]['location'] %>
-              </h1>
+        <% bookings_data.forEach(function(data) { %>
+          <% if(counter <=1) { %>
+            <h1 id="messageLocation"><%= bookings_data[0]['location'] %></h1>
               <% } %>
 
-                <div class="d-flex flex-row gap-1 justify-content-center">
+        <div class="d-flex flex-row gap-1 justify-content-center">
+          <% if(counter <=1) { %>
+            <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1>
+            <% } %>
+              <% if(counter <=1) { %>
+                <h1 id="SelectedDate">
+                  <%= searchedDate.searchedDate %>
+                </h1>
+                <% } %>
                   <% if(counter <=1) { %>
-                    <h1 id="messageLocation"> <button type="button" id="yesterday"> ◀ </button> </h1>
+                    <h1 id="messageLocation"> <button type="button" id="tomorrow"> ▶ </button> </h1>
                     <% } %>
-                      <% if(counter <=1) { %>
-                        <h1 id="SelectedDate">
-                          <%= bookings_data[0]['date']; %>
-                        </h1>
-                        <% } %>
-                          <% if(counter <=1) { %>
-                            <h1 id="messageLocation"> <button type="button" id="tomorrow"> ▶ </button> </h1>
-                            <% } %>
 
-                              <script>
-                                document.getElementById('city').value = "<%= bookings_data[0]['location']; %>"
-                              </script>
+                      <script>
+                        document.getElementById('city').value = "<%= bookings_data[0]['location']; %>"
+                      </script>
                 </div>
                 <% if(data.found_data==false) {%>
 
@@ -162,7 +160,7 @@
     })
   </script>
   </div>
-  <% include ./partials/footer %>
+  <%- include('./partials/footer') -%>
 
 
     <script defer>

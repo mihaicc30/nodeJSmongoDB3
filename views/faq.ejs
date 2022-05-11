@@ -1,4 +1,4 @@
-<% include ./partials/header %>
+<%- include('./partials/header'); -%>
   <% const x=typeof user;%>
     <div class="text-start align-items-center" style="margin-top: 25vh;">
       <div class="card card-body align-items-left" id="faqbody">
@@ -62,7 +62,7 @@
     </ul> -->   <!-- changing this later to be changed dynamically from the database -->
       </div>
     </div>
-<% include ./partials/footer %>
+    <%- include('./partials/footer') -%>
 <script defer>
 
 function showDiv(number) {

@@ -1,8 +1,8 @@
-<% include ./partials/header %>
+<%- include('./partials/header'); -%>
 
   <div class="d-flex justify-content-center rounded" style="margin-top: 25vh;">
     <form method="post" action="/contact" autocomplete="off">
-      <% include ./partials/messages %>
+      <%- include('./partials/messages'); -%>
         <div class="contactDiv card card-body mt-1 p-3" style="max-width: 70vh; margin: 0 auto;">
 
           <label for="name" class="cfl name mx-1 px-1" id="cflname"><i class="fa fa-user"></i> Name</label>     <!-- cfl = contact form label -->
@@ -22,7 +22,7 @@
 
           <label for="telephone" class="cfl telephone mx-1 px-1" id="cfltelephone"><i
               class="fa fa-phone"></i>Telephone</label>
-          <input name="telephone" type="text" class="cfi m-1 p-1 rounded" required>
+          <input name="telephone" type="text" class="cfi m-1 p-1 rounded" onkeypress="return /[0-9]/i.test(event.key)" required>
 
           <label for="comment" class="cfl textarea mx-1 px-1" id="cfltextarea"><i
               class="fa fa-comment"></i>Message</label>
@@ -36,4 +36,4 @@
     </form>
   </div>
 
-  <% include ./partials/footer %>
+  <%- include('./partials/footer') -%>

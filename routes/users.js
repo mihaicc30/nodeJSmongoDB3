@@ -8,6 +8,7 @@ const User = require('../models/User')
 const { forwardAuthenticated } = require('../config/auth');
 const { db } = require('../models/User');
 const hotelDB = require('../config/key-qualityhotel').mongoURI;
+const nodemailer = require('nodemailer');
 
 // check bookings
 router.post('/checkbookings', function (req, res) {
@@ -23,12 +24,13 @@ router.post('/checkbookings', function (req, res) {
     //   ]).sort({ date: -1 }).toArray(function(err, result) {
     //     if (err) { console.log(err) }  // new version of command, searches by date CREATED !important but prefder to use the other one
 
-    hotelDB.collection("bookings").find({ fromDate: date, hotel: { $eq: city } }).sort({ date: -1 }).toArray(function (err, result) {
+    hotelDB.collection("bookings").find({ fromDate: { $gte : date}, hotel: { $eq: city } }).sort({ date: -1 }).toArray(function (err, result) {
       if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important // works better with my website and the way i want it to be
       the_data = {}
-      if (!result) { the_data = { "found_data": false, "fromDate": date, "hotel": city } }
-      if (result.length === 0) { the_data = { "found_data": false, "fromDate": date, "hotel": city } }
-      if (result.length > 0) { the_data = result }
+      searchedDate = {"searchedDate" : date }
+      if (!result)              { searchedDate, the_data = { "found_data": false, "fromDate": date, "hotel": city } }
+      if (result.length === 0)  { searchedDate, the_data = { "found_data": false, "fromDate": date, "hotel": city } }
+      if (result.length > 0)    { searchedDate, the_data = result }
       req.flash(
         'bookings_data',
         the_data
@@ -45,14 +47,15 @@ router.post('/checkmessages', function (req, res) {
 
   mongoose.createConnection(hotelDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, hotelDB) => {
     if (err) { console.log(err) }
-    hotelDB.collection("messages").find({ "date": date, "location": city }).sort({ date: -1 }).toArray(function (err, result) {
+    hotelDB.collection("messages").find({ "date": { $gte: date }, "location": city }).sort({ date: -1 }).toArray(function (err, result) {
       if (err) { console.log(err) }
       the_data = {}
-      if (!result) { the_data = { "found_data": false, "date": date, "location": city } }
-      if (result.length === 0) { the_data = { "found_data": false, "date": date, "location": city } }
+      searchedDate = {"searchedDate" : date }
+      if (!result)             { searchedDate, the_data = { "found_data": false, "date": date, "location": city } }
+      if (result.length === 0) { searchedDate, the_data = { "found_data": false, "date": date, "location": city } }
 
-      if (result.length > 0) { the_data = result; }
-      req.flash('bookings_data', the_data);
+      if (result.length > 0)   { searchedDate, the_data = result }
+      req.flash('bookings_data', the_data );
       res.redirect('/messages');
     });
   });
@@ -123,6 +126,36 @@ router.post('/register', (req, res) => {
                 res.redirect('/users/login');
               })
               .catch(err => console.log(err));
+                      ///////////////// sending email //////////////////////
+
+              var transporter = nodemailer.createTransport(({
+                service: 'gmail',
+                host: 'smtp.gmail.com',
+                auth: {
+                  user: 'mihaisolent@gmail.com',
+                  pass: 'mihaisolentmihaisolent'
+                }
+              }));
+              var emailMsg = "Dear "+name+",\n\n\n"+
+              "Thank you for registering with us \n"+"Hope you will have a pleasant stay with us!\n"+
+              "Otherwise, please do tell! :D\n\n\n"+
+              "Kind regards\nQualityHotel Team"
+
+              var mailOptions = {
+                from: 'mihaisolent@gmail.com',
+                to: email,
+                subject: 'QualityHotel - Welcome abord! ' + (new Date().toISOString().slice(0, 10)),
+                text: emailMsg
+              };
+
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+              });  
+              ///////////////////////////////////////
           });
         });
       }

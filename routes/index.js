@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const db = require('../config/key-qualityhotel').mongoURI;
 const nodemailer = require('nodemailer');
 
-
 // Admin - Bookings
 router.get('/bookings', ensureAuthenticated, (req, res) => // 
   res.render('bookings', {
@@ -44,6 +43,36 @@ router.post('/contact', function (req, res) {
       db.collection("messages").insertOne({ name: name, email: email, telephone: telephone, comment: comment.trim(), location: city, date: new Date().toISOString().slice(0, 10), status: "unread" })
       req.flash('success_msg', 'Thank you for contacting us. You message has been successfully sent to QualityB&B in ' + city + '!');
       res.redirect('/contact')
+      ///////////////// sending email //////////////////////
+
+      var transporter = nodemailer.createTransport(({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        auth: {
+          user: 'mihaisolent@gmail.com',
+          pass: 'mihaisolentmihaisolent'
+        }
+      }));
+      var emailMsg = "Dear QualityHotel "+city+",\n\n\n"+
+                      "You have a new message from "+name+" who can be contacted on this email: "+email+" . Message is:"+
+                      "\n\n"+comment.trim()+
+                      "\n\nKind regards\nFrom the Automated Emailing System!"
+
+      var mailOptions = {
+        from: 'mihaisolent@gmail.com',
+        to: 'mihaisolent@gmail.com',
+        subject: 'QualityHotel - New Message Received ' + (new Date().toISOString().slice(0, 10)),
+        text: emailMsg
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });  
+      ///////////////////////////////////////
     }
   })
 })
@@ -93,12 +122,45 @@ router.post('/bookingedit', ensureAuthenticated, function (req, res) {
 
     else {
       db.collection("bookings").updateOne(
-        { customer: { $eq: modalname2 }, customerEmail: { $eq: modalemail2 }, fromDate: { $eq: modalcheckin2 }, toDate: { $eq: modalcheckout2 }, roomType: { $eq: modalroomtype2 }, total: { $eq: modaltotal2 } },
+        { customer: { $eq: modalname2 }, customerEmail: { $eq: modalemail2 }, fromDate: { $eq: modalcheckin2 },
+         toDate: { $eq: modalcheckout2 }, roomType: { $eq: modalroomtype2 }, total: { $eq: modaltotal2 } },
         {
           $set:
-            { customer: modalname, customerEmail: modalemail, hotel: modalhotel, fromDate: modalcheckin, toDate: modalcheckout, roomType: modalroomtype, extras: { breakfast: modalbreakfast, champagne: modalchampagne, car: modalcar }, total: modaltotal }
+            { customer: modalname, customerEmail: modalemail, hotel: modalhotel, fromDate: modalcheckin, toDate: modalcheckout,
+               roomType: modalroomtype, extras: { breakfast: modalbreakfast, champagne: modalchampagne, car: modalcar }, total: modaltotal }
         })
+        
       res.redirect('/bookings')
+      ///////////////// sending email //////////////////////
+
+      var transporter = nodemailer.createTransport(({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        auth: {
+          user: 'mihaisolent@gmail.com',
+          pass: 'mihaisolentmihaisolent'
+        }
+      }));
+      var emailMsg = "Dear " + modalname2 + "\n  \nThis is a an update on your booking for " + modalcheckin2 + " in " + modalhotel2 + "\n   \nWe hope you are happy with the changes!\n " +
+      ""+modalname2+" "+modalemail2+" "+modalcheckin2+" "+modalcheckout2+" "+modalroomtype2+" "+modaltotal2+"\n"+
+      ""+modalname+" "+modalemail+" "+modalhotel+" "+modalcheckin+" "+modalcheckout+" "+modalroomtype+" "+modaltotal+" "+
+      "   \nKind Regards,\nReception Team " + modalhotel;
+
+      var mailOptions = {
+        from: 'mihaisolent@gmail.com',
+        to: modalemail,
+        subject: 'QualityHotel - Booking Update ' + (new Date().toISOString().slice(0, 10)),
+        text: emailMsg
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });  
+      ///////////////////////////////////////
     }
   })
 })
@@ -118,34 +180,33 @@ router.post('/bookingdelete', ensureAuthenticated, function (req, res) {
       res.redirect('/bookings')
       // send cancelation email
       console.log("canceling email", modalemail2)
-      var transporter = nodemailer.createTransport({
+       ///////////////// sending email //////////////////////
+
+       var transporter = nodemailer.createTransport(({
         service: 'gmail',
+        host: 'smtp.gmail.com',
         auth: {
           user: 'mihaisolent@gmail.com',
           pass: 'mihaisolentmihaisolent'
         }
-      });
-
+      }));
       var emailMsg = "Dear " + modalname2 + "\n  \nThis is a cancelation email of your booking on " + modalcheckin2 + " in " + modalhotel2 + "\n   \nWe are sorry for any inconvenience and hope to see you again!\n   \nKind Regards,\nReception Team " + modalhotel2;
-
 
       var mailOptions = {
         from: 'mihaisolent@gmail.com',
         to: modalemail2,
-        subject: 'QualityHotel - Booking Cancelation Executed ' + (new Date().toISOString().slice(0, 10)),
+        subject: 'QualityHotel - Booking Cancelation ' + (new Date().toISOString().slice(0, 10)),
         text: emailMsg
       };
 
-      transporter.sendMail(mailOptions, function (error, info) {
+      transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
         } else {
           console.log('Email sent: ' + info.response);
         }
-      });
-
-
-
+      });  
+      ///////////////////////////////////////
       //end of cancelation email
     }
   })
@@ -181,21 +242,21 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
       if (champagneFORM.valueOf() == "true") { var needChampagne = "champagne" } else { var needChampagne = "" };
       if (rentcarFORM.valueOf() == "true") { var needCar = "car" } else { var needCar = "" };
 
-      db.collection("bookings").insertOne({ customer: hotelUserName, customerEmail: hotelUserEmail, customerPhone: hotelUserPhone, hotel: hotelFORM, fromDate: from_dateFORM, toDate: to_dateFORM, roomType: roomTypeFORM, extras: { breakfast: needBreakfast, champagne: needChampagne, car: needCar }, total: TOTALFORM, date: new Date() })
+      db.collection("bookings").insertOne({ customer: hotelUserName, customerEmail: hotelUserEmail, customerPhone: hotelUserPhone,
+         hotel: hotelFORM, fromDate: from_dateFORM, toDate: to_dateFORM, roomType: roomTypeFORM,
+          extras: { breakfast: needBreakfast, champagne: needChampagne, car: needCar }, total: TOTALFORM, date: new Date() })
 
-      req.flash('success_msg', '\nDear ' + hotelUserName + ', \n \nThank you for booking with us! Check your email for a confirmation! Kind regards, QualityHotel');
-      res.redirect('/successfullbooking')
+      ///////////////// sending email //////////////////////
 
-      var transporter = nodemailer.createTransport({
+      var transporter = nodemailer.createTransport(({
         service: 'gmail',
+        host: 'smtp.gmail.com',
         auth: {
           user: 'mihaisolent@gmail.com',
           pass: 'mihaisolentmihaisolent'
         }
-      });
-
+      }));
       var emailMsg = " Email for " + hotelUserEmail + "\n \n \nThis is a confirmation email.\nThank you for booking with QualityHotel " + (hotelFORM.toUpperCase()) + "! \n \nJust to confirm, your stay will be from " + from_dateFORM + " until " + to_dateFORM + " in our " + roomTypeFORM + " room.\nMore details will be provided at the reception and we apologize we only take payments on arrival.\n \nWishing you a pleasant stay and let us know if you require anything else!\n \n \nKind regards,\nQualityHotel Reception\n" + hotelFORM.toUpperCase();
-
 
       var mailOptions = {
         from: 'mihaisolent@gmail.com',
@@ -204,13 +265,18 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
         text: emailMsg
       };
 
-      transporter.sendMail(mailOptions, function (error, info) {
+      transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
         } else {
           console.log('Email sent: ' + info.response);
         }
-      });
+      });  
+      ///////////////////////////////////////
+      
+      req.flash('success_msg', '\nDear ' + hotelUserName + ', \n \nThank you for booking with us! Check your email for a confirmation! Kind regards, QualityHotel');
+      res.redirect('/successfullbooking')
+
     }
   })
 })

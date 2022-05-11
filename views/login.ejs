@@ -11,7 +11,7 @@
         </div>
         <i class="fas fa-sign-in-alt"></i><a href="/users/login">Login</a>
       </h1>
-      <% include ./partials/messages %>
+      <%- include('./partials/messages'); -%>
         <form action="/users/login" method="POST">
           <div class="form-group mt-1">
             <label for="email">Email</label>
