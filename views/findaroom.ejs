@@ -18,34 +18,34 @@
             </div>
         </div>   -->
                 <div class="card">
-                    <div class="hotelnames p-2 flex-grow-1 bd-highlight">
+                    <div class="hotelnames p-2 flex-grow-1 bd-highlight rounded">
                         <h2>London</h2>
                         <img src="/imgs/fronthotel/london.jpg" onclick="scrollzTo('2'); theChoices.hotel='London' "
-                            style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh;">
+                            style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh; border-radius: 10%;">
                     </div>
                 </div>
                 <div class="card">
-                    <div class="hotelnames p-2 flex-grow-1 bd-highlight">
+                    <div class="hotelnames p-2 flex-grow-1 bd-highlight rounded">
                         <h2>Gloucester</h2>
                         <img src="/imgs/fronthotel/gloucester.jpg"
                             onclick="scrollzTo('2'); theChoices.hotel='Gloucester'"
-                            style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh;">
+                            style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh;border-radius: 10%;">
                     </div>
                 </div>
                 <div class="card">
-                    <div class="hotelnames p-2 flex-grow-1 bd-highlight">
+                    <div class="hotelnames p-2 flex-grow-1 bd-highlight rounded">
                         <h2>Birmingham</h2>
                         <img src="/imgs/fronthotel/birmingham.jpg"
                             onclick="scrollzTo('2'); theChoices.hotel='Birmingham'"
-                            style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh;">
+                            style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh;border-radius: 10%;">
                     </div>
                 </div>
                 <div class="card">
-                    <div class="hotelnames p-2 flex-grow-1 bd-highlight">
+                    <div class="hotelnames p-2 flex-grow-1 bd-highlight rounded">
                         <h2>Manchester</h2>
                         <img src="/imgs/fronthotel/manchester.jpg"
                             onclick="scrollzTo('2'); theChoices.hotel='Manchester'"
-                            style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh;">
+                            style="cursor: pointer; max-width: 100%; height:auto; max-height:25vh;border-radius: 10%;">
                     </div>
                 </div>
 
@@ -58,11 +58,11 @@
                 <div>
 
                     <label for="start">Start date:</label>
-                    <input type="date" id="start" name="trip-start" value="" onchange="theChoices.from_date=value">
+                    <input type="date" id="start" name="trip-start" value="" onchange="theChoices.from_date=value" class="rounded">
                 </div>
                 <div>
                     <label for="end">End date:</label>
-                    <input type="date" id="end" name="trip-end" value=""
+                    <input type="date" id="end" name="trip-end" value=""  class="rounded"
                         onchange="scrollzTo('3');theChoices.to_date=value">
                 </div>
                 <script>
@@ -82,7 +82,7 @@
                     <div class="findaRoomHotelCard p-2 d-flex bd-highlight text-center gap-2 p-1">
 
                         <img src="/imgs/rooms/1 (4).jpg" loading="lazy" class=""
-                            style="max-width: 100%; height:auto; max-height:25vh;">
+                            style="max-width: 100%; height:auto; max-height:25vh;border-radius: 5%;">
                         <ul class="findaRoomHotelCardList">
                             <h2>Single Room</h2>
                             <li>Free Toiletries</li>
@@ -101,7 +101,7 @@
                     </div>
                     </h2>
                     </li>
-                    <button type="submit" value="submit" class="py-2 px-4" onclick="scrollzTo('4');theChoices.roomType='single'; theChoices.breakfast=document.getElementById('breakfast').checked;
+                    <button style="border-radius: 10%;" type="submit" value="submit" class="py-2 px-4" onclick="scrollzTo('4');theChoices.roomType='single'; theChoices.breakfast=document.getElementById('breakfast').checked;
                     theChoices.champagne=document.getElementById('champagne').checked;
                     theChoices.rentcar=document.getElementById('rentcar').checked;showchoices()
                     ">Choose!</button>
@@ -113,7 +113,7 @@
                 <div class="findaRoomHotelCard p-2 d-flex bd-highlight text-center gap-2 p-1">
 
                     <img src="/imgs/rooms/1 (3).jpg" loading="lazy" class="m-auto"
-                        style="max-width: 100%; height:auto; max-height:25vh;">
+                        style="max-width: 100%; height:auto; max-height:25vh;border-radius: 5%;">
                     <ul class="findaRoomHotelCardList">
                         <h2>Double Room</h2>
                         <li>Free Toiletries</li>
@@ -132,7 +132,7 @@
                 </div>
                 </h2>
                 </li>
-                <button type="submit" value="submit" class="py-2 px-4" onclick="scrollzTo('4');theChoices.roomType='double'; theChoices.breakfast=document.getElementById('breakfast2').checked;
+                <button style="border-radius: 10%;" type="submit" value="submit" class="py-2 px-4" onclick="scrollzTo('4');theChoices.roomType='double'; theChoices.breakfast=document.getElementById('breakfast2').checked;
                         theChoices.champagne=document.getElementById('champagne2').checked;
                         theChoices.rentcar=document.getElementById('rentcar2').checked;showchoices()
                         ">Choose!</button>
@@ -175,7 +175,7 @@
                     <input type="text" class="" id="rentcarFORM" name="rentcarFORM" value="theChoiceCopy">
                     <input type="text" class="" id="TOTALFORM" name="TOTALFORM" value="theChoiceCopy">
                 </div>
-                <button onclick="putValuesInForm()" type="button" class="fs-1 fw-bold p-3">CONFIRM</button>
+                <button onclick="putValuesInForm()" type="button" class="fs-1 fw-bold p-3 rounded">CONFIRM</button>
             </form>
         </div>
 
