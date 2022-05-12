@@ -22,7 +22,7 @@
               <li><a href="/messages" class="btn naviBtn">Messages</a></li>
               <% } %>
                 </li>
-                <li><a href="/index" class="btn naviBtn mt-3" id="indexNaviBtn">Home</a></li>
+                <li><a href="/index" class="btn naviBtn mt-3" id="indexNaviBtn2">Home</a></li>
                 <li><a href="/findaroom" class="btn naviBtn">Book Room</a></li>
                 <li><a href="/about" class="btn naviBtn">About</a></li>
                 <li><a href="/faq" class="btn naviBtn">FAQ</a></li>
@@ -68,7 +68,7 @@
         </div>
       </div>
       <div style="white-space: nowrap;position: fixed;top: 13%;">
-        <a href="/index" class="btn naviBtn" id="indexNaviBtn">Home</a>
+        <a href="/index" class="btn naviBtn" id="indexNaviBtn3">Home</a>
         <a href="/findaroom" class="btn naviBtn" style="white-space: nowrap;">Book Room</a>
         <a href="/about" class="btn naviBtn">About</a>
         <a href="/faq" class="btn naviBtn">FAQ</a>
@@ -87,11 +87,13 @@
     var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
     $('.naviBtn').each(function () {
       if (this.href === path) {
+        console.log(this.href)
         $(this).addClass('active');
-      };
-      if (path == "http://localhost:5555/" || path == "https://qualityhotel.herokuapp.com/") {
-        document.querySelector('#indexNaviBtn').classList.add('active');
-      }
+      } else {
+        if (window.location.pathname.length < 2) {
+        document.querySelector('#indexNaviBtn2').classList.add('active');
+        document.querySelector('#indexNaviBtn3').classList.add('active');}
+      } 
     });
   });
 </script>

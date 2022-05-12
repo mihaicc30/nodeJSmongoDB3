@@ -3,7 +3,8 @@
 
         <div>
             <div class="d-flex flex-column">
-                <div style="height:80vh;width: 100%;background-image: url(/imgs/landscape/3.jpg);background-repeat: no-repeat;background-position: center;background-size: cover;text-align: center;" id="headPic">
+                <div style="height:80vh;width: 100%;background-image: url(/imgs/landscape/3.jpg);background-repeat: no-repeat;background-position: center;background-size: cover;text-align: center;"
+                    id="headPic">
                     <% if(typeof user=="object" ) { %>
 
                         <div id="welcomeMsg" class="welcomeMsg rounded" style="
@@ -24,19 +25,19 @@
 
                             <h1 style="color: white;margin-top: 1em;"> Welcome back <%= user.name %>!</h1>
 
-                            <% if(welcomeMsg.hotel==="0" && user.name != "ADMIN") { %>
+                            <% if(welcomeMsg.hotel==="0" && user.name !="ADMIN" ) { %>
 
                                 <h1 style="color: white;margin-top: 1em;"> You have no active bookings.</h1>
 
 
                                 <% } else { %>
-                                    <%  if(user.name != "ADMIN") {%>
-                                    <h1 style="color: white;margin-top: 1em;"> You soon have a trip planned at <%=
-                                            welcomeMsg.hotel %> from <%= welcomeMsg.fromDate %> to <%= welcomeMsg.toDate
-                                                    %> in a <%= welcomeMsg.roomType %> room. Payable at the hotel £<%=
-                                                            welcomeMsg.total %>.</h1>
-                                                            <%}%>
-                                    <% } %>
+                                    <% if(user.name !="ADMIN" ) {%>
+                                        <h1 style="color: white;margin-top: 1em;"> You soon have a trip planned at <%=
+                                                welcomeMsg.hotel %> from <%= welcomeMsg.fromDate %> to <%=
+                                                        welcomeMsg.toDate %> in a <%= welcomeMsg.roomType %> room.
+                                                            Payable at the hotel £<%= welcomeMsg.total %>.</h1>
+                                        <%}%>
+                                            <% } %>
 
 
                         </div>
@@ -67,7 +68,7 @@
                                         </select>
                                     </form>
                                     <script>
-                                        
+
                                         function validateAndSubmit() {
                                             document.getElementById('indexBookingsForm').submit();
                                         };
@@ -184,7 +185,7 @@
                 }
             </script>
 
-<%- include('./partials/footer') -%>
+            <%- include('./partials/footer') -%>
 
                 <script>
                     window.onload = () => {
