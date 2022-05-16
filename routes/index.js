@@ -402,7 +402,7 @@ router.post('/myprofile_cancel', ensureAuthenticated, (req, res) => //
         }
       });  
       ///////////////////////////////////////
-
+      req.flash('success_msg', 'You have successfully canceled your booking.');
       res.redirect('/myprofile')
     }
   }))

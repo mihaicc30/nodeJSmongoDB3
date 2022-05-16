@@ -3,9 +3,13 @@
     var counter = 1;
 %> 
     <div class="d-flex justify-content-center" style="margin-top: 25vh;">
+        
+
         <div class="card card-body d-flex flex-column align-items-center fs-4" style="max-width: 700px;">
 
-
+            <div class="d-flex justify-content-center">
+                <%- include('./partials/messages'); -%>
+            </div>
             <form action="/users/update" method="POST" id="updateForm">
                 <br>
                 <div class="d-flex flex-row gap-3 align-items-center justify-content-center">
