@@ -1,12 +1,15 @@
 
 // fixing errors #1 // nodemon error: FullyQualifiedErrorId : UnauthorizedAccess.
 
+#1
 powershell > open as admin >
 Select Start > All Programs > Windows PowerShell version > Windows PowerShell.
 Type Set-ExecutionPolicy RemoteSigned to set the policy to RemoteSigned.
 Type Set-ExecutionPolicy Unrestricted to set the policy to Unrestricted.
 Type Get-ExecutionPolicy to verify the current settings for the execution policy.
 Type Exit.
+
+#2
 npm install -g nodemon
 
 

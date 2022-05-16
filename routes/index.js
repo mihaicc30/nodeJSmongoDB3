@@ -4,6 +4,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const mongoose = require('mongoose');
 const db = require('../config/key-qualityhotel').mongoURI;
 const nodemailer = require('nodemailer');
+var ObjectId = require('mongodb').ObjectID;
 
 // Admin - Bookings
 router.get('/bookings', ensureAuthenticated, (req, res) => // 
@@ -370,4 +371,39 @@ router.get('/myprofile', ensureAuthenticated, (req, res) =>
     }
   }))
 
+router.post('/myprofile_cancel', ensureAuthenticated, (req, res) => //  
+  mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
+    var { cancelationName, cancelationEmail, cancelationID } = req.body;
+    if (err) { console.log(err) } else {
+      db.collection("bookings").deleteOne({ _id: new ObjectId(cancelationID) })
+      ///////////////// customer canceling booking // sending email //////////////////////
+      var transporter = nodemailer.createTransport(({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        auth: {
+          user: 'mihaisolent@gmail.com',
+          pass: 'mihaisolentmihaisolent'
+        }
+      }));
+      var emailMsg = " Email for hotel & customer\n" + cancelationEmail + ' + ' + 'mihaisolent@gmail.com' + "\n \n \nThis is a cancelation email.\nThe booking has been successfully canceled by " + cancelationName + " \n \n \nKind regards,\n \n QualityHotel Automated System";
+
+      var mailOptions = {
+        from: 'mihaisolent@gmail.com',
+        to: [cancelationEmail,'mihaisolent@gmail.com'],
+        subject: 'QualityHotel - Booking Cancelation ' + (new Date().toISOString().slice(0, 10)),
+        text: emailMsg
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });  
+      ///////////////////////////////////////
+
+      res.redirect('/myprofile')
+    }
+  }))
 module.exports = router;

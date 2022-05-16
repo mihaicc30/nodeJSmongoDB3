@@ -1,10 +1,12 @@
 <%- include('./partials/header'); -%>
-
+<%  var todaysDate = new Date().toISOString().slice(0, 10);
+    var counter = 1;
+%> 
     <div class="d-flex justify-content-center" style="margin-top: 25vh;">
         <div class="card card-body d-flex flex-column align-items-center fs-4" style="max-width: 700px;">
 
 
-            <form action="/users/update" method="POST">
+            <form action="/users/update" method="POST" id="updateForm">
                 <br>
                 <div class="d-flex flex-row gap-3 align-items-center justify-content-center">
                     <div><i class="fa fa-user p-3 rounded"
@@ -33,30 +35,27 @@
 
 
 
-                <h2 class="mt-5 text-center" style="cursor: pointer;" onclick="toggleDetails(1)">View bookings? <i
-                        class="fa fa-chevron-down"></i></h2>
+                <h2 class="mt-5 text-center" style="cursor: pointer;" onclick="toggleDetails(1)">View bookings? <i class="fa fa-chevron-down"></i></h2>
                 <div id="detailsDiv1" style="overflow: overlay; max-height: 200px;">
                     <% if(user_bookings_data.customer==="Nothing booked yet!" ) { %>
                         <p style="text-align: center;">
                             <%= user_bookings_data.customer %>
                         </p>
                         <% } else { %>
-                            <table style="width: 500px;margin:1em;">
+                            <table style="width: 500px;margin:1em; text-align: center;">
                                 <% user_bookings_data.forEach(function(data) { %>
                                     <tr>
-                                        <td> <i class="fa fa-location-pin"></i>
-                                            <%= data.hotel %>
-                                        </td>
-                                        <td>
-                                            <%= data.fromDate %>
-                                        </td>
-                                        <td>
-                                            <%= data.toDate %>
-                                        </td>
-                                        <td> £<%= data.total %>
-                                        </td>
+                                        <td><i class="fa fa-location-pin"></i><%= data.hotel %><br>£<%= data.total %></td>
+                                        <td><%= data.fromDate %> /<br><%= data.toDate %></td>
+                                        
+                                        <% if(data.fromDate >= todaysDate) { %>
+                                           
+                                            <td><button type="button" name="id<%=counter%>" onclick="cancelBooking('<%=data._id%>')">Cancel</button></td>
+                                        <% } else { %>
+                                            <td>Completed</td>
+                                            <% } %>
                                     </tr>
-                                    <% }) %>
+                                    <% counter++}) %>
                             </table>
                             <% } %>
                 </div>
@@ -124,6 +123,19 @@
         </div>
     </div>
 
+<form action="/myprofile_cancel" method="post" id="cancelationForm" hidden>
+    <input type="text" name="cancelationName" value="<%=user.name%>">
+    <input type="text" name="cancelationEmail" value="<%=user.email%>">
+    <input type="text" name="cancelationID" id="cancelationID" value="" hidden>
+</form>
+
+<script>
+     function cancelBooking(idd) {
+            document.getElementById('cancelationID').value = idd;
+            document.getElementById('cancelationForm').submit();
+
+        }
+</script>
     <script defer>
         function tog() {
             document.getElementById("confirmDelete").style.visibility = "visible";
@@ -136,7 +148,6 @@
             } else {
                 document.getElementById("detailsDiv" + x).style.display = "block";
             }
-
         }
     </script>
 <%- include('./partials/footer') -%>

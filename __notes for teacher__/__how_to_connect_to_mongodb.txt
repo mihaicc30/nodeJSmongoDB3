@@ -1,32 +1,33 @@
-Hi! This is a guide on how to connect remotely to my database.
+    
+    
+    Hi! This is a guide on how to connect remotely to my database, deployment website, github and website email account.
+
 
 The main database is based on a non-relationship db like mongodb
 
-To connect/manage it:
+> To connect/manage it:
+    Step 1: Visit https://account.mongodb.com/account/login
+    Step 2: Login with email address "alemihai25@gmail.com" password "MyDBpassMihai123"
 
-Step 1: Visit https://account.mongodb.com/account/login
-Step 2: Login with email address "alemihai25@gmail.com" password "MyDBpassMihai123"
 
-
-Hotel Admin Email login:            <- to be able see all the features
-https://qualityhotel.herokuapp.com/users/login
-user: admin@qualityhotel.co.uk
-pass: admin@qualityhotel.co.uk
+> Hotel Admin Email login:            <- to be able see all the features
+    https://qualityhotel.herokuapp.com/users/login
+    user: admin@qualityhotel.co.uk
+    pass: admin@qualityhotel.co.uk
 
 as for a customer account, please create & use a real email to receive all the confirmations :) fun fun
 
-For Database Access (that i use from nodeJS) i have created a separate user to connect with:
-username: mihaiapp
-pass: MyDBpassMihai123
+> For Database Access (that i use from nodeJS) i have created a separate user to connect with:
+    username: alemihai25@gmail.com
+    pass: MyDBpassMihai123
 
 
-GitHub:
-https://github.com/mihaicc30/nodeJSmongoDB3
+> GitHub:
+    https://github.com/mihaicc30/nodeJSmongoDB3
 
 
-Hotel Email Service Account:
-
-https://mail.google.com/mail
-user: mihaisolent@gmail.com
-pass: mihaisolentmihaisolent
+> Hotel Email Service Account:
+    https://mail.google.com/mail
+    user: mihaisolent@gmail.com
+    pass: mihaisolentmihaisolent
 
