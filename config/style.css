@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Dela+Gothic+One&family=Festive&family=Grand+Hotel&family=Josefin+Sans:wght@300&family=Lora:ital@1&display=swap');/* font-family: 'Dela Gothic One', cursive;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Dela+Gothic+One&family=Festive&family=Grand+Hotel&family=Josefin+Sans:wght@300&family=Lora:ital@1&display=swap');
+
+/* font-family: 'Dela Gothic One', cursive;
 font-family: 'Festive', cursive;
 font-family: 'Grand Hotel', cursive;
 font-family: 'Lora', serif; */
@@ -8,15 +10,18 @@ font-family: 'Lora', serif; */
     font-family: 'Josefin Sans', sans-serif;
     color: var(--bs-dark);
 }
-.card a{
-    color:rgb(37, 37, 37);
+
+.card a {
+    color: rgb(37, 37, 37);
 }
+
 .alert {
     color: black;
     font-size: 1.2em;
 }
-.topNavBar{
-    top:0%;
+
+.topNavBar {
+    top: 0%;
     width: 100vw;
     padding: 0px;
     margin: 0px;
@@ -26,24 +31,27 @@ font-family: 'Lora', serif; */
     z-index: 995;
     justify-content: center;
 }
+
 .naviBtn {
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-size: .8em;
-    text-transform:uppercase;
-    height:50px;
+    text-transform: uppercase;
+    height: 50px;
     background-color: #8039fb;
     box-shadow: -3px 3px black;
 }
+
 .naviBtn:hover {
     transform: scale(1.05) translate(-3px, 3px);
     background-color: #5719c2;
     color: white;
     box-shadow: inset -3px 3px black;
     text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.75),
-    -2px 2px 2px rgba(0, 0, 0, 0.75),
-    -3px 3px 3px rgba(0, 0, 0, 0.75);
+        -2px 2px 2px rgba(0, 0, 0, 0.75),
+        -3px 3px 3px rgba(0, 0, 0, 0.75);
 }
+
 .naviBtn:focus {
     background-color: #32087a;
     box-shadow: inset -8px 8px black;
@@ -53,36 +61,42 @@ font-family: 'Lora', serif; */
     background-color: #fb8039;
     /* box-shadow: inset -3px 3px black; */
     text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.75),
-    -2px 2px 2px rgba(0, 0, 0, 0.75),
-    -3px 3px 3px rgba(0, 0, 0, 0.75);
+        -2px 2px 2px rgba(0, 0, 0, 0.75),
+        -3px 3px 3px rgba(0, 0, 0, 0.75);
 }
+
 .naviBtn.active:hover {
     transform: scale(1.05) translate(-3px, 3px);
     background-color: #be5d24;
     color: white;
     box-shadow: inset -3px 3px black;
     text-shadow: -1px 1px 1px rgba(0, 0, 0, 0.75),
-    -2px 2px 2px rgba(0, 0, 0, 0.75),
-    -3px 3px 3px rgba(0, 0, 0, 0.75);
+        -2px 2px 2px rgba(0, 0, 0, 0.75),
+        -3px 3px 3px rgba(0, 0, 0, 0.75);
 }
+
 .naviBtn.active:focus {
     background-color: #853d13;
     box-shadow: inset -8px 8px black;
 }
+
 #faqbody {
     width: 95vw;
     margin: 0 auto;
 }
+
 .faqli {
     font-weight: bold;
     color: black;
     list-style: none;
     padding: 1em;
 }
+
 .faqp {
     font-weight: bold;
     color: rgb(255, 255, 255);
 }
+
 .otherhalf {
     font-size: 2em;
     font-weight: bold;
@@ -90,41 +104,51 @@ font-family: 'Lora', serif; */
     color: black;
 
 }
-.hotelimg > img{
+
+.hotelimg>img {
     filter: grayscale(60%);
     transform: rotate(10deg) translateX(-20%);
     max-height: 70vh;
-    width:100%;
+    width: 100%;
     border: 2px solid black;
     box-shadow: 11px 11px 3px rgb(80, 80, 80);
 }
+
 .cfl {
     margin-top: 1em;
     z-index: -1;
     font-size: 1.5em;
-    transform:translate(-2%, 40%);
+    transform: translate(-2%, 40%);
 }
+
 .cfi {
     font-size: 2em;
     background-color: transparent;
 }
-.findaRoomHotelCardList > li {
+
+.findaRoomHotelCardList>li {
     /* list-style: none; */
     text-align: left;
 }
-.findaRoomHotelCardList2 > li {
+
+.findaRoomHotelCardList2>li {
     list-style: none;
     text-align: left;
 }
-.findaRoomHotelCard > img, .hotelnames > img {
+
+.findaRoomHotelCard>img,
+.hotelnames>img {
     box-shadow: 5px 5px 5px rgb(54, 54, 54);
     /* z-index: 56; */
 }
-.findaRoomHotelCard > img:hover, .hotelnames > img:hover {
+
+.findaRoomHotelCard>img:hover,
+.hotelnames>img:hover {
     z-index: 99;
     transform: scale(1.1);
     transition: .5s ease-in-out;
 }
+
 #toTheTopBtn {
     display: none;
     position: fixed;
@@ -132,34 +156,44 @@ font-family: 'Lora', serif; */
     right: 30px;
     z-index: 99;
     border: none;
-    outline: none; 
-    background-color: rgb(47, 196, 255); 
-    color: white; 
+    outline: none;
+    background-color: rgb(47, 196, 255);
+    color: white;
     cursor: pointer;
     padding: 15px;
     border-radius: 50% 50% 5px 5px;
     font-size: 18px;
 }
+
 .datepicker {
     flex-direction: row;
 }
+
 .spinnerContainer {
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
 }
+
 .spinMe {
     margin: 0 auto;
     width: 4em;
     height: 4em;
     animation: spinMe 2s infinite cubic-bezier(0.18, 0.89, 0.01, 1.31);
 }
+
 .dataTableDB {
     font-size: 1em;
     font-weight: 800;
 }
-tbody, td, tfoot, th, thead, tr {
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
     border-width: 1px;
     border: 1px solid black;
 }
@@ -170,34 +204,56 @@ tbody, td, tfoot, th, thead, tr {
     }
 }
 
-#spinnER{
+#navDiv {
+    justify-content: space-around;
+    margin-top: 20px;
+    width: 100vw;
+    height: 100px;
+    padding-top: 1em;
+    background-color: rgba(49, 49, 49, 0.527);
+}
+
+#spinnER {
     font-size: 4em;
     animation: spinMe 2s infinite cubic-bezier(0.18, 0.89, 0.01, 1.31);
 }
-#confirmButton{
+
+#confirmButton {
     visibility: hidden;
 }
+
 .dropdownFAQ {
     height: 50px;
 }
-.contactDiv > input,.contactDiv >  select,.contactDiv >  textarea,.contactDiv >  button {
+
+.contactDiv>input,
+.contactDiv>select,
+.contactDiv>textarea,
+.contactDiv>button {
     box-shadow: 5px 5px 5px black;
 }
-.contactDiv > input:focus,.contactDiv > select:focus,.contactDiv > textarea:focus,.contactDiv > button:focus {
+
+.contactDiv>input:focus,
+.contactDiv>select:focus,
+.contactDiv>textarea:focus,
+.contactDiv>button:focus {
     transform: scale(1.03);
     transition: 1s ease-in-out;
 }
-.index > img {
+
+.index>img {
     margin: 5px;
     max-height: 250px;
     max-width: 250px;
     border: 2px solid rgba(0, 0, 0, 0.486);
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.459);
 }
-.index > img:hover {
+
+.index>img:hover {
     transform: scale(1.6);
     transition: .4s ease-in-out;
 }
+
 .info {
     vertical-align: super;
     cursor: pointer;
@@ -210,7 +266,8 @@ tbody, td, tfoot, th, thead, tr {
     display: inline-block;
     transform: translateY(-7px);
 }
-.info > li {
+
+.info>li {
     visibility: hidden;
     width: 11em;
     background-color: black;
@@ -222,54 +279,73 @@ tbody, td, tfoot, th, thead, tr {
     bottom: 200%;
     margin-left: -60px;
 }
-.info, .info>li::after {
+
+.info,
+.info>li::after {
     content: "";
     border-width: 3px;
     border-style: solid;
     border-color: black transparent transparent transparent;
-  }
-.info:hover, .info:hover > li {
+}
+
+.info:hover,
+.info:hover>li {
     visibility: visible;
 }
-#resultsTOTAL tr td,#resultsTOTAL tr, #resultsTOTAL {
+
+#resultsTOTAL tr td,
+#resultsTOTAL tr,
+#resultsTOTAL {
     border: none;
 }
+
 #resultsTOTAL tr td:nth-child(2) {
     font-size: 2em;
 }
+
 #contactSubmit:hover {
     transition: .5s ease-in-out;
     background-color: rgb(81, 130, 236);
 }
+
 #contactPhone:hover {
     transition: .5s ease-in-out;
     font-size: 1.4em;
 }
+
 .logoP {
     line-height: 15px;
     font-size: 1em;
 }
-.logoP > p:nth-child(1) {
+
+.logoP>p:nth-child(1) {
     letter-spacing: -2px;
 }
-.logoP > p:nth-child(2) {
+
+.logoP>p:nth-child(2) {
     letter-spacing: 6px;
 }
+
 .myModal {
     display: none;
     position: fixed;
     width: 100vw;
     height: 100vh;
-    top:20%; right:0; bottom:0; left:0;
+    top: 20%;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background-color: rgba(0, 0, 0, 0.75);
     animation: fadein 1s;
     text-align: center;
     padding-top: 10vh;
 }
-.myModal>form>input:first-child{
+
+.myModal>form>input:first-child {
     margin-top: 100px;
 }
-.myModal>input{
+
+.myModal>input {
     background-color: rgba(0, 0, 0, 0.507);
     display: flex;
     flex-direction: column;
@@ -278,7 +354,8 @@ tbody, td, tfoot, th, thead, tr {
     height: 100vh;
     align-items: center;
 }
-.myModal > form > input {
+
+.myModal>form>input {
     padding-top: 9px;
     margin: 10px;
     padding-left: 1em;
@@ -287,19 +364,26 @@ tbody, td, tfoot, th, thead, tr {
     height: 50px;
     width: 600px;
 }
-.myModal > form > input:focus {
+
+.myModal>form>input:focus {
     transition: 1s ease-in-out;
     transform: scale(1.1);
 }
-#modalMessage{
+
+#modalMessage {
     height: 100px;
 }
-#detailsDiv1, #detailsDiv2, #detailsDiv3 {
+
+#detailsDiv1,
+#detailsDiv2,
+#detailsDiv3 {
     display: none;
 }
+
 #detailsDiv.show {
     display: block;
 }
+
 /* // */
 .carousel-container {
     overflow: hidden;
@@ -309,6 +393,7 @@ tbody, td, tfoot, th, thead, tr {
     margin-top: 2rem;
     overflow-y: hidden;
 }
+
 .carousel {
     display: flex;
     position: absolute;
@@ -344,9 +429,11 @@ tbody, td, tfoot, th, thead, tr {
     font-size: 1.5rem;
     text-shadow: 3px 3px 2px rgb(117, 117, 117);
 }
-.slide > a:hover {
-    transform:translateY(-50%) scale(2);
+
+.slide>a:hover {
+    transform: translateY(-50%) scale(2);
 }
+
 .arrow {
     background-color: transparent;
     border: 0;
@@ -369,20 +456,24 @@ tbody, td, tfoot, th, thead, tr {
     right: 0rem;
     margin-top: 73px;
 }
+
 /* // */
 
-.hideme, .fade-right, .fade-left{
-    opacity:0;
+.hideme,
+.fade-right,
+.fade-left {
+    opacity: 0;
 }
 
 .show {
     -webkit-animation: show-modal 1s both;
-    animation: show-modal 1s both;	
+    animation: show-modal 1s both;
     opacity: 1;
 }
+
 .show2 {
     -webkit-animation: show-modal 2s both;
-    animation: show-modal 2s both;	
+    animation: show-modal 2s both;
     opacity: 1;
 }
 
@@ -390,11 +481,13 @@ tbody, td, tfoot, th, thead, tr {
     -webkit-animation: hide-modal .5s ease-in-out both;
     animation: hide-modal .5s ease-in-out both;
 }
-.saveBookin:hover{
+
+.saveBookin:hover {
     display: block;
     font-size: 2em;
 }
-#burgerMenuBtn{
+
+#burgerMenuBtn {
     display: none;
     z-index: 99999;
     background-color: purple;
@@ -408,10 +501,12 @@ tbody, td, tfoot, th, thead, tr {
     border-radius: 20%;
     box-shadow: 0px 4px 20px 3px black;
 }
+
 .showMenu {
-    transform: translateX(0%)!important;
+    transform: translateX(0%) !important;
 }
-#burgerHiddenMenu{
+
+#burgerHiddenMenu {
     z-index: 99998;
     position: fixed;
     top: 0;
@@ -423,37 +518,46 @@ tbody, td, tfoot, th, thead, tr {
     transition: transform 0.3s ease;
     list-style: none;
 }
-.burgerMenuUL{
+
+.burgerMenuUL {
     margin-top: 4em;
     list-style: none;
 }
-.burgerMenuUL > li {
+
+.burgerMenuUL>li {
     width: 200px;
     margin: 5px auto;
 }
-.burgerMenuUL > li > a, .burgerMenuUL > li > div {
+
+.burgerMenuUL>li>a,
+.burgerMenuUL>li>div {
     width: 200px;
     gap: 1em;
 }
+
 @keyframes show-modal {
     0% {
-        transform: scale(0) ;
+        transform: scale(0);
         opacity: 0;
     }
+
     100% {
         transform: scale(1);
         opacity: 1;
     }
-  }
+}
+
 @keyframes hide-modal {
     0% {
         transform: scale(1);
         opacity: 1;
     }
+
     25% {
         transform: scale(1.2);
         opacity: 1;
-}
+    }
+
     100% {
         transform: scale(0);
         opacity: 1;
@@ -462,73 +566,93 @@ tbody, td, tfoot, th, thead, tr {
 
 @media (max-width: 767px) {
     .burgerMenuBtnDiv {
-        display: block!important;
+        display: block !important;
     }
-    #welcomeMsg{
-        top: 20%!important;
+
+    #welcomeMsg {
+        top: 20% !important;
     }
-    #headPic{
-        margin-top:5vh!important;
+
+    #headPic {
+        margin-top: 5vh !important;
     }
-    #burgerMenuBtn{
-        display: block!important;
+
+    #burgerMenuBtn {
+        display: block !important;
     }
-    #loggo{
-        color: black!important;
+
+    #loggo {
+        color: black !important;
     }
+
     .head1 {
         display: flex;
         flex-direction: column;
     }
+
     .datepicker {
         flex-direction: column;
     }
+
     #headz {
-        flex-direction: column-reverse!important;
+        flex-direction: column-reverse !important;
     }
-    #navElems{
+
+    #navElems {
         flex-direction: column;
     }
+
     #headPic {
         margin-top: 30vh;
     }
-    #navDiv{
-        flex-direction: column!important;
+
+    #navDiv {
+        flex-direction: column !important;
     }
-    #callBtn{
+
+    #callBtn {
         display: none;
     }
-    #indexBookingsForm{
+
+    #indexBookingsForm {
         flex-direction: column;
     }
-    .carousel-container{
+
+    .carousel-container {
         display: none;
     }
-    #footz{
-        flex-direction: column!important;
+
+    #footz {
+        flex-direction: column !important;
     }
+
     .topNavBar {
         display: none;
     }
 }
+
 @media (max-width: 991px) {
-    
+
     .findaRoomHotelCard {
         display: flex;
         flex-direction: column;
     }
+
     .findaRoomHotelCardList {
         padding-left: 2.6em;
     }
+
     .aboutcard {
         flex-direction: column;
     }
 }
+
 @keyframes fadein {
-	from {
-		opacity:0;
-	}
-	to {
-		opacity:1;
-	}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

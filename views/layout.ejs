@@ -31,7 +31,7 @@
 </body>
 
 </html>
-<script defer>
+<script defer> // fade in effects + logo rotation animation
     $(document).ready(function () {
         $(window).scroll(function () {
             $('.hideme').each(function (i) {
@@ -63,4 +63,19 @@
             });
         });
     });
+</script>
+
+<script>
+    function checkBannedChars(param) {
+        // console.log("checking >>> : ", document.getElementById(param).value)
+        var banned_Chars = ['<', '>', '-', '{', '}', '[', ']', '(', ')', 'script', 'prompt', 'alert', 'write', 'send', '?', '!', '$', '#','\`','\"','\'','\;','\\','\/'];
+        var textvalue = document.getElementById(param).value;
+        for (var i = 0; i < banned_Chars.length; i++) {
+            if (~textvalue.indexOf(banned_Chars[i])) {
+                console.log('you have entered a banned word: ' + banned_Chars[i]);
+                document.getElementById(param).value = String(textvalue).replace(banned_Chars[i], "");
+               
+            }
+        }
+    }
 </script>

@@ -315,8 +315,15 @@ router.get('/', (req, res) => //, ensureAuthenticated
 
 // Find a Room
 router.get('/findaroom', ensureAuthenticated, (req, res) => // , ensureAuthenticated
-  res.render('findaroom', {
-    user: req.user
+  mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
+    db.collection("rates").find().sort({ "hotel": 1 }).toArray(function (err, result) {
+      if (err) { console.log(err) } else {
+        res.render('findaroom', {
+          user: req.user,
+          rates_data: result
+        })
+      }
+    })
   })
 );
 // About

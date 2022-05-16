@@ -97,7 +97,10 @@
                             <li><input type="checkbox" name="rentcar" id="rentcar"> Rent a car?</li>
                             <li>
                                 <h3>Price/day: £24.95<br>+Location Rate<div class="info">i
-                            <li>£19.95 London<br>£14.95 Manchester<br>£14.95 Birmingham<br>£9.95 Gloucester</li>
+                            <li>£<%= rates_data[0]["rate"]%> <%= rates_data[0]["hotel"]%><br>
+                                £<%= rates_data[1]["rate"]%> <%= rates_data[1]["hotel"]%><br>
+                                £<%= rates_data[2]["rate"]%> <%= rates_data[2]["hotel"]%><br>
+                                £<%= rates_data[3]["rate"]%> <%= rates_data[3]["hotel"]%></li>
                     </div>
                     </h2>
                     </li>
@@ -128,7 +131,10 @@
                         <li><input type="checkbox" name="rentcar2" id="rentcar2"> Rent a car?</li>
                         <li>
                             <h3 class="mt-3">Price/day: £34.95 <br>+Location Rate<div class="info">i
-                        <li>£19.95 London<br>£14.95 Manchester<br>£14.95 Birmingham<br>£9.95 Gloucester</li>
+                                <li>£<%= rates_data[0]["rate"]%> <%= rates_data[0]["hotel"]%><br>
+                                    £<%= rates_data[1]["rate"]%> <%= rates_data[1]["hotel"]%><br>
+                                    £<%= rates_data[2]["rate"]%> <%= rates_data[2]["hotel"]%><br>
+                                    £<%= rates_data[3]["rate"]%> <%= rates_data[3]["hotel"]%></li>
                 </div>
                 </h2>
                 </li>
@@ -251,11 +257,12 @@
 
 
                 // if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "test") {console.log("1a");price += (19.69*daysToPay)}; //testing purposes :)
-                if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "London") { price += (19.95 * daysToPay) };
-                if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "Gloucester") { price += (9.95 * daysToPay) };
-                if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "Manchester") { price += (14.95 * daysToPay) };
-                if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === "Birmingham") { price += (14.95 * daysToPay) };
+                if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === '<%= rates_data[0]["hotel"]%>') { price += ('<%= rates_data[0]["rate"]%>' * daysToPay) };
+                if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === '<%= rates_data[1]["hotel"]%>') { price += ('<%= rates_data[1]["rate"]%>' * daysToPay) };
+                if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === '<%= rates_data[2]["hotel"]%>') { price += ('<%= rates_data[2]["rate"]%>' * daysToPay) };
+                if (Object.keys(theChoices)[i] == "hotel" && Object.values(theChoices)[i] === '<%= rates_data[3]["hotel"]%>') { price += ('<%= rates_data[3]["rate"]%>' * daysToPay) };
 
+                // could have done the same for room rate/ extras rate but i will limit my project here due to time constraints :(
                 if (Object.keys(theChoices)[i] == "roomType" && Object.values(theChoices)[i] === "single") { price += (24.95 * daysToPay) };
                 if (Object.keys(theChoices)[i] == "roomType" && Object.values(theChoices)[i] === "double") { price += (34.95 * daysToPay) };
 

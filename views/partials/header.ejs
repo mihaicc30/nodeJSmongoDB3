@@ -20,12 +20,14 @@
               <li><a href="/users/logout" class="btn naviBtn">Logout</a></li>
               <li><a href="/bookings" class="btn naviBtn">Bookings</a></li>
               <li><a href="/messages" class="btn naviBtn">Messages</a></li>
+              <li><a href="/controller" class="btn naviBtn">Admin Rate Controller</a></li>
+              
               <% } %>
                 </li>
                 <li><a href="/index" class="btn naviBtn mt-3" id="indexNaviBtn2">Home</a></li>
+                <li><a href="/faq" class="btn naviBtn">FAQ</a></li>
                 <li><a href="/findaroom" class="btn naviBtn">Book Room</a></li>
                 <li><a href="/about" class="btn naviBtn">About</a></li>
-                <li><a href="/faq" class="btn naviBtn">FAQ</a></li>
                 <li><a href="/contact" class="btn naviBtn">Contact</a></li>
                 <li>
                   <div class="btn naviBtn mt-3" onclick="location.href='tel:01235%12312345';">
@@ -36,14 +38,7 @@
     </ul>
   </div>
   <div class="topNavBar" id="topNavBar">
-    <div class="d-flex" id="navDiv" style="
-      justify-content: space-around;
-      margin-top: 20px;
-      width: 100vw;
-      height: 100px;
-      padding-top: 1em;
-      background-color: rgba(49, 49, 49, 0.527);
-       ">
+    <div class="d-flex" id="navDiv">
       <div class="d-flex mb-4" style="height: 100px;" id="navElems">
         <div style="display: flex;" class="">
           <h1 style="color:white;transform: translateY(-10px);cursor: pointer;" id="loggo"
@@ -68,11 +63,33 @@
         </div>
       </div>
       <div style="white-space: nowrap;position: fixed;top: 13%;">
+        
         <a href="/index" class="btn naviBtn" id="indexNaviBtn3">Home</a>
-        <a href="/findaroom" class="btn naviBtn" style="white-space: nowrap;">Book Room</a>
-        <a href="/about" class="btn naviBtn">About</a>
+
+        <%if(typeof user) { %> 
+          <% if(!user || user.name != "ADMIN") {%>
+            <a href="/findaroom" class="btn naviBtn" style="white-space: nowrap;">Book Room</a>
+           <%}%>
+            <% if(user && user.name =="ADMIN" ) {%>
+
+              <a href="/controller" class="btn naviBtn" style="white-space: nowrap;">Admin Rate Controller</a>
+              <%}%>
+          
+        <%}%>
+
         <a href="/faq" class="btn naviBtn">FAQ</a>
-        <a href="/contact" class="btn naviBtn">Contact</a>
+
+        <%if(typeof user) { %>
+          <% if(user && user.name != "ADMIN") {%>
+            <a href="/about" class="btn naviBtn">About</a>
+          <a href="/contact" class="btn naviBtn">Contact</a>
+          <%} else {%>
+            <% if(!user || user.name != "ADMIN") {%>
+            <a href="/about" class="btn naviBtn">About</a>
+          <a href="/contact" class="btn naviBtn">Contact</a>
+          <%}%>
+          <%}%>
+        <%}%>
       </div>
       <div id="callBtn" style="height: 50px;white-space: nowrap;" class="btn naviBtn"
         onclick="location.href='tel:01235%12312345';">

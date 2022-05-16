@@ -8,6 +8,12 @@ Step 1: Visit https://account.mongodb.com/account/login
 Step 2: Login with email address "alemihai25@gmail.com" password "MyDBpassMihai123"
 
 
+Hotel Admin Email login:            <- to be able see all the features
+https://qualityhotel.herokuapp.com/users/login
+user: admin@qualityhotel.co.uk
+pass: admin@qualityhotel.co.uk
+
+as for a customer account, please create & use a real email to receive all the confirmations :) fun fun
 
 For Database Access (that i use from nodeJS) i have created a separate user to connect with:
 username: mihaiapp
@@ -24,9 +30,3 @@ https://mail.google.com/mail
 user: mihaisolent@gmail.com
 pass: mihaisolentmihaisolent
 
-
-Hotel Admin Email :            <- to be able see all the features
-user: admin@qualityhotel.co.uk
-pass: admin@qualityhotel.co.uk
-
-as for a customer account, please create & use a real email to receive all the confirmations :) fun fun

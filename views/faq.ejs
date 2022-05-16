@@ -16,7 +16,7 @@
             <% if (x==="object" ) { %>
               <input type="text" name="userEmail" value="<%= user.email %>" style="display:none">
               <% } %>
-                <input type="text" name="questionnn">
+                <input type="text" name="questionnn" id="questionnn" onkeypress="checkBannedChars('questionnn')" onkeyup="checkBannedChars('questionnn')">
                 <button>Submit your question!</button> <br>
           </form>
         </div>

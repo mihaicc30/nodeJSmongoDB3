@@ -1,0 +1,32 @@
+<%- include('./partials/header'); -%>
+<div class="card card-body" style="max-width: 90%;margin: 0 auto;margin-top: 20vh;">
+    <h1 style="text-align: center;">Admin Panel</h1>
+    <table style="text-align: center;">
+        <tr style="background-color: #c9c9c9b3;">
+            <th>Hotel</th>
+            <th colspan="2">Base £Rate</th>
+        </tr>
+    <% counter = 1 %>
+    <% rates_data.forEach(function(data) { %>
+        <% if (counter % 2 === 0 ) {%>
+        <tr style="background-color: #c9c9c9b3;" >
+            <%} else {%>
+                <tr>
+                <%}%>
+            <form action="/controller" method="post" id="form<%=counter%>">
+                <td hidden><input id="idd" name="idd" readonly value="<%=data._id%>"></td>
+                <td><input name="hotel" value="<%=data.hotel%>"> </td>
+                <td><input name="rate" value="<%=data.rate%>"></td>
+                <td><i class="fa fa-save" style="cursor: pointer;font-size: 1.6em;" onclick="checkAndSubmit('<%=counter%>')"></i></td>
+            </form>
+    </tr>
+        <% counter++%>
+    <%})%>
+    </table>
+</div>
+<script>
+    function checkAndSubmit(form){
+        document.getElementById('form'+form).submit();
+    }
+</script>
+<%- include('./partials/footer') -%>

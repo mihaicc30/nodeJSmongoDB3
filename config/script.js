@@ -58,3 +58,13 @@ btn.addEventListener("click", () => {
     btn.classList.toggle("showMenu");
 });
   
+
+// password field type
+function changeInputType() {
+  field = document.getElementById("password");
+  if (field.type === "password") {
+      field.type = "text";
+  } else {
+      field.type = "password";
+  }
+}
