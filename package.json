@@ -4,8 +4,7 @@
   "description": "nodejs+mongodb app",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "nodemon --signal SIGHUP app.js"
   },
   "keywords": [
     "full stack app"

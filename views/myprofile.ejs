@@ -40,8 +40,8 @@
 
 
                 <h2 class="mt-5 text-center" style="cursor: pointer;" onclick="toggleDetails(1)">View bookings? <i class="fa fa-chevron-down"></i></h2>
-                <div id="detailsDiv1" style="overflow: overlay; max-height: 400px;">
-                    <div  class="card card-body mt-2 py-2 px-1" style="box-shadow: 6px 8px 13px 3px black; max-width: 95vw;align-items: center">
+                <div id="detailsDiv1" style="overflow: overlay; max-height: 400px;box-shadow: 6px 8px 13px 3px black;">
+                    <div  class="card card-body py-2 px-1 rounded" style="box-shadow: 6px 8px 13px 3px black; max-width: 95vw;align-items: center">
                     <% if(user_bookings_data.customer==="Nothing booked yet!" ) { %>
                         <p style="text-align: center;">
                             <%= user_bookings_data.customer %>
