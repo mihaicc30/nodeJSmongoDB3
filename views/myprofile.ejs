@@ -40,30 +40,31 @@
 
 
                 <h2 class="mt-5 text-center" style="cursor: pointer;" onclick="toggleDetails(1)">View bookings? <i class="fa fa-chevron-down"></i></h2>
-                <div id="detailsDiv1" style="overflow: overlay; max-height: 200px;">
+                <div id="detailsDiv1" style="overflow: overlay; max-height: 400px;">
+                    <div  class="card card-body mt-2 py-2 px-1" style="box-shadow: 6px 8px 13px 3px black; max-width: 95vw;align-items: center">
                     <% if(user_bookings_data.customer==="Nothing booked yet!" ) { %>
                         <p style="text-align: center;">
                             <%= user_bookings_data.customer %>
                         </p>
                         <% } else { %>
-                            <table style="width: 500px;margin:1em; text-align: center;">
+                            <table style="text-align: center;max-width: 35vw;min-width: 300px;">
                                 <% user_bookings_data.forEach(function(data) { %>
                                     <tr>
-                                        <td><i class="fa fa-location-pin"></i><%= data.hotel %><br>£<%= data.total %></td>
-                                        <td><%= data.fromDate %> /<br><%= data.toDate %></td>
+                                        <td><i class="fa fa-location-pin"></i><%= data.hotel %><br>£<%= data.total %><br>
+                                        <%= data.fromDate %> /<br><%= data.toDate %><br>
                                         
                                         <% if(data.fromDate >= todaysDate) { %>
                                            
-                                            <td><button type="button" name="id<%=counter%>" onclick="cancelBooking('<%=data._id%>')">Cancel</button></td>
+                                            <button class="rounded" type="button" name="id<%=counter%>" onclick="cancelBooking('<%=data._id%>')">Cancel</button><br>
                                         <% } else { %>
-                                            <td>Completed</td>
+                                            <button class="rounded" disabled>Completed</button></td>
                                             <% } %>
                                     </tr>
                                     <% counter++}) %>
                             </table>
                             <% } %>
                 </div>
-
+            </div>
                 <h2 class="mt-5 text-center" style="cursor: pointer;" onclick="toggleDetails(2)">Change details? <i
                         class="fa fa-chevron-down"></i></h2>
                 <div id="detailsDiv2">
