@@ -4,7 +4,9 @@
   "description": "nodejs+mongodb app",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --signal SIGHUP app.js"
+    "start": "nodemon app.js",
+    "devStart":"nodemon --signal SIGHUP app.js",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [
     "full stack app"
