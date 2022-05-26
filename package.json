@@ -4,8 +4,8 @@
   "description": "nodejs+mongodb app",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "devStart":"nodemon --signal SIGHUP app.js",
+    "start": "node app.js",
+    "devStart": "nodemon --signal SIGHUP app.js",
     "heroku-postbuild": "npm run build"
   },
   "keywords": [
@@ -23,6 +23,7 @@
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.15.6",
     "mongodb": "^4.4.0",
+    "nodemon": "^2.0.16",
     "mongoose": "^5.7.5",
     "nodemailer": "^6.7.5",
     "passport": "^0.4.0",
