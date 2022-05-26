@@ -13,7 +13,6 @@ const nodemailer = require('nodemailer');
 // check bookings
 router.post('/checkbookings', function (req, res) {
   var { city, date } = req.body;
-
   mongoose.createConnection(hotelDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, hotelDB) => {
     if (err) { console.log(err) }
 
@@ -22,7 +21,7 @@ router.post('/checkbookings', function (req, res) {
     //   { $match: {"stringDate":date}},
     //   { $project:{"stringDate":0}}
     //   ]).sort({ date: -1 }).toArray(function(err, result) {
-    //     if (err) { console.log(err) }  // new version of command, searches by date CREATED !important but prefder to use the other one
+    //     if (err) { console.log(err) }  // new version of command, searches by date CREATED !important but prefer to use the other one
 
     hotelDB.collection("bookings").find({ fromDate: { $gte : date}, hotel: { $eq: city } }).sort({ date: -1 }).toArray(function (err, result) {
       if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important // works better with my website and the way i want it to be
