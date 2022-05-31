@@ -1,4 +1,4 @@
-<% const x=typeof user;%>
+<% var x = typeof user %>
 
 <div class="d-flex flex-column">
   <button id="burgerMenuBtn">☰</button>
@@ -8,15 +8,15 @@
   <div id="burgerHiddenMenu">
     <ul class="burgerMenuUL">
       <li>
-        <% if (x==="object" && user.name !="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
+        <% if (typeof user == "object" && user._id != "62967a945a6839275c4256cb" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
       </li>
       <li><a href="/myprofile" class="btn naviBtn">My Profile</a></li>
       <% } %>
-        <% if (x !="object" ) { %>
+        <% if (typeof user != "object" ) { %>
           <li><a href="/users/register" class="btn naviBtn">Register</a></li>
           <li><a href="/users/login" class="btn naviBtn">Login</a></li>
           <% } %>
-            <% if (x==="object" && user.name==="ADMIN" ) { %>
+            <% if (typeof user=="object" && user._id=="62967a945a6839275c4256cb" ) { %>
               <li><a href="/users/logout" class="btn naviBtn">Logout</a></li>
               <li><a href="/bookings" class="btn naviBtn">Bookings</a></li>
               <li><a href="/messages" class="btn naviBtn">Messages</a></li>
@@ -48,13 +48,13 @@
         </div>
         <div class="">
           <div class="navBar d-flex flex-row gap-1" style="justify-content: start; ">
-            <% if (x==="object" && user.name !="ADMIN" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
+            <% if (x=="object" && user._id != "62967a945a6839275c4256cb" ) { %> <a href="/users/logout" class="btn naviBtn">Logout</a>
               <a href="/myprofile" class="btn naviBtn" style="white-space: nowrap;">My Profile</a>
               <% } %>
                 <% if (x !="object" ) { %> <a href="/users/register" class="btn naviBtn">Register</a>
                   <a href="/users/login" class="btn naviBtn">Login</a>
                   <% } %>
-                    <% if (x==="object" && user.name==="ADMIN" ) { %> <a href="/users/logout"
+                    <% if (x=="object" && user.id=="62967a945a6839275c4256cb" ) { %> <a href="/users/logout"
                         class="btn naviBtn">Logout</a>
                       <a href="/bookings" class="btn naviBtn">Bookings</a>
                       <a href="/messages" class="btn naviBtn">Messages</a>
@@ -65,12 +65,14 @@
       <div style="white-space: nowrap;position: fixed;top: 13%;">
         
         <a href="/index" class="btn naviBtn" id="indexNaviBtn3">Home</a>
-
-        <%if(typeof user) { %> 
-          <% if(!user || user.name != "ADMIN") {%>
+        <% if(typeof user == "undefined")  {%>
+        <a href="/findaroom" class="btn naviBtn">Book Room</a>
+        <%}%>
+        <%if(typeof user == "object") { %> 
+          <% if(user._id != "62967a945a6839275c4256cb") {%>
             <a href="/findaroom" class="btn naviBtn" style="white-space: nowrap;">Book Room</a>
            <%}%>
-            <% if(user && user.name =="ADMIN" ) {%>
+            <% if(user && user._id =="62967a945a6839275c4256cb" ) {%>
 
               <a href="/controller" class="btn naviBtn" style="white-space: nowrap;">Admin Rate Controller</a>
               <%}%>
@@ -80,11 +82,11 @@
         <a href="/faq" class="btn naviBtn">FAQ</a>
 
         <%if(typeof user) { %>
-          <% if(user && user.name != "ADMIN") {%>
+          <% if(user && user.name !== "ADMIN") {%>
             <a href="/about" class="btn naviBtn">About</a>
           <a href="/contact" class="btn naviBtn">Contact</a>
           <%} else {%>
-            <% if(!user || user.name != "ADMIN") {%>
+            <% if(!user || user.name !== "ADMIN") {%>
             <a href="/about" class="btn naviBtn">About</a>
           <a href="/contact" class="btn naviBtn">Contact</a>
           <%}%>

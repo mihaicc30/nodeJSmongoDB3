@@ -1,4 +1,6 @@
 <%- include('./partials/header'); -%>
+<% if( user.id == "62967a945a6839275c4256cb" ) { %>
+  
   <script>let bookings_data = {}; </script>
 
   <div class="card d-flex flex-column align-items-center text-center" style="margin-top: 25vh;">
@@ -7,18 +9,12 @@
         <select name="city" id="city" class="m-1 fs-3" style="padding: 18px" onchange="
           document.getElementById('date').select();
           ">
-          <!-- <option disabled selected value> -- select city -- </option> -->
           <option value="London">London</option>
           <option value="Gloucester">Gloucester</option>
           <option value="Birmingham">Birmingham</option>
           <option value="Manchester">Manchester</option>
         </select>
         From date:<input type="date" name="date" id="date" class="m-1 fs-3" style="padding: 11px" onchange="this.form.submit()">
-        <!-- <script>
-          let todaysDate = new Date().toISOString().slice(0, 10);
-          document.getElementById('date').value = todaysDate;
-        </script> -->
-        <!-- <button type="submit" id="xxx" class="m-1 px-4 py-1 fs-2">Search</button> -->
       </div>
     </form>
 
@@ -153,6 +149,7 @@
       </div>
     </form>
   </div>
+  
   <script defer>
     function editMessage(counter) {
       // grab original data
@@ -232,3 +229,8 @@
         })
       }
     </script>
+<%} else {%>
+  <script>
+  window.location.href = window.location.origin
+  </script>
+  <%}%>

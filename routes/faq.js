@@ -1,17 +1,20 @@
+const mongoose = require('mongoose');
+const Faq = require('../models/Faq');
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-const mongoose = require('mongoose');
-const db = require('../config/key-qualityhotel').mongoURI;
 var nodemailer = require('nodemailer');
+var ObjectId = require('mongodb').ObjectID;
 const { Int32 } = require('mongodb');
+const dotenv = require('dotenv');
+dotenv.config();
+var db = process.env.mongoURI;
 
-router.get('/faq', (req, res) => //, ensureAuthenticated
-  mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
-    if (err) { console.log(err) } else {
-      db.collection("FAQ").find().sort({ "likes": -1 }).toArray(function (err, result) {
-        // console.log(result)
-        faq_data = {}
+
+router.get('/faq', ensureAuthenticated, (req, res) => 
+mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
+  if (err) { console.log(err) } else {
+    db.collection("faq").find().sort({ "likes": -1 }).toArray(function (err, result) {
         if (err) { console.log(err) } else {
           res.render('faq', {
             user: req.user,
@@ -20,17 +23,18 @@ router.get('/faq', (req, res) => //, ensureAuthenticated
         }
       })
     }
-  }))
+  }).close)
+
 
 // Admin responding to FAQ question
-router.post('/adminpostfaqmsg', (req, res) => //, ensureAuthenticated
+router.post('/adminpostfaqmsg', ensureAuthenticated, (req, res) =>
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     var { thequestion, theresponse, theoneresponding } = req.body;
 
     if (err) {
       console.log(err)
     } else {
-      db.collection("FAQ").updateOne({ "question": thequestion }, { $set: { "response": String(theresponse + " replied by:" + theoneresponding) } });
+      db.collection("FAQ").updateOne({ "question": thequestion }, { $set: { "response": String(theresponse + " replied by: " + req.user.name) } });
 
       db.collection("FAQ").find({ "question": thequestion }).toArray(function (err, result) {
         if (err) { console.log(err) } else {
@@ -60,11 +64,11 @@ router.post('/adminpostfaqmsg', (req, res) => //, ensureAuthenticated
       })
       res.redirect('/faq');
     }
-  })
+  }).close
 )
 
 // Admin deleting FAQ question
-router.post('/admindeletefaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenticated
+router.post('/admindeletefaqmsg', ensureAuthenticated, (req, res) =>
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     // console.log(req.body);
     var { thequestion, theoneresponding } = req.body;
@@ -97,16 +101,16 @@ router.post('/admindeletefaqmsg', ensureAuthenticated, (req, res) => //, ensureA
 
       res.redirect('/faq');
     }
-  }))
+  }).close)
 
 // user putting a question on FAQ page
-router.post('/postfaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenticated
+router.post('/postfaqmsg', ensureAuthenticated, (req, res) =>
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     var { questionnn, userEmail } = req.body;
     if (err) {
       console.log(err)
     } else {
-      db.collection("FAQ").insertOne({ "question": questionnn, "likes": Int32(0), "response": String("Not yet replied."), "date": new Date().toISOString().slice(0, 10), "questionFrom": String(userEmail) });
+      db.collection("FAQ").insertOne({ "question": questionnn, "likes": Int32(0), "response": String("Not yet replied."), "date": new Date().toISOString().slice(0, 10), "questionFrom": userEmail });
 
       var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -132,10 +136,10 @@ router.post('/postfaqmsg', ensureAuthenticated, (req, res) => //, ensureAuthenti
 
       res.redirect('/faq');
     }
-  }))
+  }).close)
 
 // user likeing the faq question
-router.post('/sendlike', (req, res) => //, ensureAuthenticated
+router.post('/sendlike', (req, res) =>
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     var { questionn, likee } = req.body;
     likee++;
@@ -144,7 +148,7 @@ router.post('/sendlike', (req, res) => //, ensureAuthenticated
     } else {
       db.collection("FAQ").updateOne({ "question": questionn }, { $set: { "likes": Int32(likee) } });
     }
-  }))
+  }).close)
 
 
 module.exports = router;

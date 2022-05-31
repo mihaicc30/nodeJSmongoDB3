@@ -535,6 +535,27 @@ tr {
     gap: 1em;
 }
 
+#hidewelcomemsg {
+    background-color: rgb(185, 184, 184);
+    font-size: 1.5em;
+    padding: 5px;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+.welcomeMsg {
+    width: 70vw;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    padding: .5em;
+    background-color: rgba(0, 0, 0, 0.712);
+    position: fixed;
+    top: 50%;
+    left: 15%;
+    z-index: 9999;
+    opacity: 0;
+}
+
 @keyframes show-modal {
     0% {
         transform: scale(0);

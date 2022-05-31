@@ -10,17 +10,17 @@ const app = express();
 require('./config/passport')(passport);
 
 // DB Config
-const db = require('./config/keys').mongoURI;
+const dotenv = require('dotenv');
+dotenv.config();
+var db = process.env.mongoURI;
 
 // Connect to MongoDB
 mongoose.connect(db, {
-  useCreateIndex: true,
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
-})
+  useUnifiedTopology: true})
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err));
+
 
 // EJS
 app.use(expressLayouts);
@@ -77,6 +77,6 @@ process.on("SIGHUP", function () {
 })
 
 const PORT = process.env.PORT || 5555;
-app.listen(PORT, console.log(`Server running on ${PORT}`));
+app.listen(PORT, console.log(`--QualityHotel App-- Server running on ${PORT}`));
 
 // if (dev_mode == true) { require('child_process').exec('start http://localhost:'+PORT);}  // only if you want the browser to open automatically 

@@ -6,8 +6,9 @@ const passport = require('passport');
 // Load User model
 const User = require('../models/User')
 const { forwardAuthenticated } = require('../config/auth');
-const { db } = require('../models/User');
-const hotelDB = require('../config/key-qualityhotel').mongoURI;
+const dotenv = require('dotenv');
+dotenv.config();
+var db = process.env.mongoURI;
 const nodemailer = require('nodemailer');
 
 // check bookings

@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const mongoose = require('mongoose');
-const db = require('../config/key-qualityhotel').mongoURI;
+const dotenv = require('dotenv');
+dotenv.config();
+var db = process.env.mongoURI;
 const nodemailer = require('nodemailer');
 var ObjectId = require('mongodb').ObjectID;
 
@@ -75,7 +77,7 @@ router.post('/contact', function (req, res) {
       });  
       ///////////////////////////////////////
     }
-  })
+  }).close
 })
 
 // Admin Form - Edit Contact Messages
@@ -93,7 +95,7 @@ router.post('/messagesedit', ensureAuthenticated, function (req, res) { //
       })
       res.redirect('/messages')
     }
-  })
+  }).close
 })
 
 // Admin Form - Delete Contact Messages
@@ -109,7 +111,7 @@ router.post('/messagesdelete', ensureAuthenticated, function (req, res) {
         { name: modalName2, email: modalEmail2, telephone: modalTelephone2, comment: modalMessage2 })
       res.redirect('/messages')
     }
-  })
+  }).close
 })
 
 
@@ -163,7 +165,7 @@ router.post('/bookingedit', ensureAuthenticated, function (req, res) {
       });  
       ///////////////////////////////////////
     }
-  })
+  }).close
 })
 
 // Admin Form - Delete Bookings
@@ -210,7 +212,7 @@ router.post('/bookingdelete', ensureAuthenticated, function (req, res) {
       ///////////////////////////////////////
       //end of cancelation email
     }
-  })
+  }).close
 })
 // successfullbooking get
 router.get('/successfullbooking', ensureAuthenticated, (req, res) => //, ensureAuthenticated
@@ -279,7 +281,7 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
       res.redirect('/successfullbooking')
 
     }
-  })
+  }).close
 })
 
 // Index
@@ -312,7 +314,7 @@ router.get('/', (req, res) => //, ensureAuthenticated
         })
       }
     }
-  }))
+  }).close)
 
 // Find a Room
 router.get('/findaroom', ensureAuthenticated, (req, res) => // , ensureAuthenticated
@@ -325,7 +327,7 @@ router.get('/findaroom', ensureAuthenticated, (req, res) => // , ensureAuthentic
         })
       }
     })
-  })
+  }).close
 );
 // About
 router.get('/about', (req, res) => // , ensureAuthenticated
@@ -369,7 +371,7 @@ router.get('/myprofile', ensureAuthenticated, (req, res) =>
         })
       }
     }
-  }))
+  }).close)
 
 router.post('/myprofile_cancel', ensureAuthenticated, (req, res) => //  
   mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
@@ -405,5 +407,5 @@ router.post('/myprofile_cancel', ensureAuthenticated, (req, res) => //
       req.flash('success_msg', 'You have successfully canceled your booking.');
       res.redirect('/myprofile')
     }
-  }))
+  }).close)
 module.exports = router;
