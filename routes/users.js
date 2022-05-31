@@ -14,7 +14,7 @@ const nodemailer = require('nodemailer');
 // check bookings
 router.post('/checkbookings', function (req, res) {
   var { city, date } = req.body;
-  mongoose.createConnection(hotelDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, hotelDB) => {
+  mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     if (err) { console.log(err) }
 
     // bookings.collection(city).aggregate([
@@ -24,7 +24,7 @@ router.post('/checkbookings', function (req, res) {
     //   ]).sort({ date: -1 }).toArray(function(err, result) {
     //     if (err) { console.log(err) }  // new version of command, searches by date CREATED !important but prefer to use the other one
 
-    hotelDB.collection("bookings").find({ fromDate: { $gte : date}, hotel: { $eq: city } }).sort({ date: -1 }).toArray(function (err, result) {
+    db.collection("bookings").find({ fromDate: { $gte : date}, hotel: { $eq: city } }).sort({ date: -1 }).toArray(function (err, result) {
       if (err) { console.log(err) }  // old version of command,  searches by date of BOOKING !important // works better with my website and the way i want it to be
       the_data = {}
       searchedDate = {"searchedDate" : date }
@@ -45,9 +45,9 @@ router.post('/checkbookings', function (req, res) {
 router.post('/checkmessages', function (req, res) {
   var { city, date } = req.body;
 
-  mongoose.createConnection(hotelDB, { useNewUrlParser: true, useUnifiedTopology: true }, (err, hotelDB) => {
+  mongoose.createConnection(db, { useNewUrlParser: true, useUnifiedTopology: true }, (err, db) => {
     if (err) { console.log(err) }
-    hotelDB.collection("messages").find({ "date": { $gte: date }, "location": city }).sort({ date: -1 }).toArray(function (err, result) {
+    db.collection("messages").find({ "date": { $gte: date }, "location": city }).sort({ date: -1 }).toArray(function (err, result) {
       if (err) { console.log(err) }
       the_data = {}
       searchedDate = {"searchedDate" : date }

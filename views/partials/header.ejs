@@ -81,16 +81,13 @@
 
         <a href="/faq" class="btn naviBtn">FAQ</a>
 
-        <%if(typeof user) { %>
-          <% if(user && user.name !== "ADMIN") {%>
-            <a href="/about" class="btn naviBtn">About</a>
-          <a href="/contact" class="btn naviBtn">Contact</a>
-          <%} else {%>
-            <% if(!user || user.name !== "ADMIN") {%>
-            <a href="/about" class="btn naviBtn">About</a>
-          <a href="/contact" class="btn naviBtn">Contact</a>
-          <%}%>
-          <%}%>
+        <% if(typeof user != "undefined" && user._id != "62967a945a6839275c4256cb") {%>
+        <a href="/about" class="btn naviBtn">About</a>
+        <a href="/contact" class="btn naviBtn">Contact</a>
+        <%}%>
+        <% if(typeof user == "undefined") {%>
+        <a href="/about" class="btn naviBtn">About</a>
+        <a href="/contact" class="btn naviBtn">Contact</a>
         <%}%>
       </div>
       <div id="callBtn" style="height: 50px;white-space: nowrap;" class="btn naviBtn"
@@ -106,7 +103,6 @@
     var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
     $('.naviBtn').each(function () {
       if (this.href === path) {
-        console.log(this.href)
         $(this).addClass('active');
       } else {
         if (window.location.pathname.length < 2) {

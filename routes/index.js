@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 const mongoose = require('mongoose');
+const Messages = require('../models/Messages');
 const dotenv = require('dotenv');
 dotenv.config();
 var db = process.env.mongoURI;
@@ -43,7 +44,10 @@ router.post('/contact', function (req, res) {
     }
 
     else {
-      db.collection("messages").insertOne({ name: name, email: email, telephone: telephone, comment: comment.trim(), location: city, date: new Date().toISOString().slice(0, 10), status: "unread" })
+
+      var queryz = new Messages({ name: name, email: email, telephone: telephone, comment: comment.trim(), location: city, date: new Date().toISOString().slice(0, 10), status: "unread" })
+      queryz.save()
+      // db.collection("messages").insertOne({ name: name, email: email, telephone: telephone, comment: comment.trim(), location: city, date: new Date().toISOString().slice(0, 10), status: "unread" })
       req.flash('success_msg', 'Thank you for contacting us. You message has been successfully sent to QualityB&B in ' + city + '!');
       res.redirect('/contact')
       ///////////////// sending email //////////////////////

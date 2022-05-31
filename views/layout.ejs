@@ -67,7 +67,6 @@
 
 <script>
     function checkBannedChars(param) {
-        // console.log("checking >>> : ", document.getElementById(param).value)
         var banned_Chars = ['<', '>', '-', '{', '}', '[', ']', '(', ')', 'script', 'prompt', 'alert', 'write', 'send', '?', '!', '$', '#','\`','\"','\'','\;','\\','\/'];
         var textvalue = document.getElementById(param).value;
         for (var i = 0; i < banned_Chars.length; i++) {
