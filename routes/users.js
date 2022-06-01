@@ -10,6 +10,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 var db = process.env.mongoURI;
 const nodemailer = require('nodemailer');
+var emailuser = process.env.emailuser;
+var emailpass = process.env.emailpass;
 
 // check bookings
 router.post('/checkbookings', function (req, res) {
@@ -132,8 +134,8 @@ router.post('/register', (req, res) => {
                 service: 'gmail',
                 host: 'smtp.gmail.com',
                 auth: {
-                  user: 'mihaisolent@gmail.com',
-                  pass: 'mihaisolentmihaisolent'
+                  user: emailuser,
+                  pass: emailpass
                 }
               }));
               var emailMsg = "Dear "+name+",\n\n\n"+

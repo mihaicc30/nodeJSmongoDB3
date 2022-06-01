@@ -146,8 +146,8 @@ router.post('/bookingedit', ensureAuthenticated, function (req, res) {
         service: 'gmail',
         host: 'smtp.gmail.com',
         auth: {
-          user: 'mihaisolent@gmail.com',
-          pass: 'mihaisolentmihaisolent'
+          user: emailuser,
+          pass: emailpass
         }
       }));
       var emailMsg = "Dear " + modalname2 + "\n  \nThis is a an update on your booking for " + modalcheckin2 + " in " + modalhotel2 + "\n   \nWe hope you are happy with the changes!\n " +
@@ -195,8 +195,8 @@ router.post('/bookingdelete', ensureAuthenticated, function (req, res) {
         service: 'gmail',
         host: 'smtp.gmail.com',
         auth: {
-          user: 'mihaisolent@gmail.com',
-          pass: 'mihaisolentmihaisolent'
+          user: emailuser,
+          pass: emailpass
         }
       }));
       var emailMsg = "Dear " + modalname2 + "\n  \nThis is a cancelation email of your booking on " + modalcheckin2 + " in " + modalhotel2 + "\n   \nWe are sorry for any inconvenience and hope to see you again!\n   \nKind Regards,\nReception Team " + modalhotel2;
@@ -250,7 +250,6 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
       if (breakfastFORM.valueOf() == "true") { var needBreakfast = "breakfast" } else { var needBreakfast = "" };
       if (champagneFORM.valueOf() == "true") { var needChampagne = "champagne" } else { var needChampagne = "" };
       if (rentcarFORM.valueOf() == "true") { var needCar = "car" } else { var needCar = "" };
-      console.log(req.user._id, " THE IDDDDDDDDDDDDDDDD ")
       db.collection("bookings").insertOne({ customerID: req.user._id, customer: hotelUserName, customerEmail: hotelUserEmail, customerPhone: hotelUserPhone,
          hotel: hotelFORM, fromDate: from_dateFORM, toDate: to_dateFORM, roomType: roomTypeFORM,
           extras: { breakfast: needBreakfast, champagne: needChampagne, car: needCar }, total: TOTALFORM, date: new Date() })
@@ -261,8 +260,8 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
         service: 'gmail',
         host: 'smtp.gmail.com',
         auth: {
-          user: 'mihaisolent@gmail.com',
-          pass: 'mihaisolentmihaisolent'
+          user: emailuser,
+          pass: emailpass
         }
       }));
       var emailMsg = " Email for " + hotelUserEmail + "\n \n \nThis is a confirmation email.\nThank you for booking with QualityHotel " + (hotelFORM.toUpperCase()) + "! \n \nJust to confirm, your stay will be from " + from_dateFORM + " until " + to_dateFORM + " in our " + roomTypeFORM + " room.\nMore details will be provided at the reception and we apologize we only take payments on arrival.\n \nWishing you a pleasant stay and let us know if you require anything else!\n \n \nKind regards,\nQualityHotel Reception\n" + hotelFORM.toUpperCase();
@@ -389,8 +388,8 @@ router.post('/myprofile_cancel', ensureAuthenticated, (req, res) => //
         service: 'gmail',
         host: 'smtp.gmail.com',
         auth: {
-          user: 'mihaisolent@gmail.com',
-          pass: 'mihaisolentmihaisolent'
+          user: emailuser,
+          pass: emailpass
         }
       }));
       var emailMsg = " Email for hotel & customer\n" + cancelationEmail + ' + ' + 'mihaisolent@gmail.com' + "\n \n \nThis is a cancelation email.\nThe booking has been successfully canceled by " + cancelationName + " \n \n \nKind regards,\n \n QualityHotel Automated System";

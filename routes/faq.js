@@ -8,6 +8,8 @@ const { Int32 } = require('mongodb');
 const dotenv = require('dotenv');
 dotenv.config();
 var db = process.env.mongoURI;
+var emailuser = process.env.emailuser;
+var emailpass = process.env.emailpass;
 
 
 router.get('/faq', ensureAuthenticated, (req, res) => 
@@ -41,8 +43,8 @@ router.post('/adminpostfaqmsg', ensureAuthenticated, (req, res) =>
           var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'mihaisolent@gmail.com',
-              pass: 'mihaisolentmihaisolent'
+              user: emailuser,
+              pass: emailpass
             }
           });
           var emailMsg = " Email for " + result[0]["questionFrom"] + "\n  \n  \n  Dear guest,\n \nThis is a email to notify you that your question has been answered!\n  \nYou should visit https://qualityhotel.herokuapp.com/faq to view the answer \n \nKind Regards\nReceptionTeam";
@@ -79,8 +81,8 @@ router.post('/admindeletefaqmsg', ensureAuthenticated, (req, res) =>
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'mihaisolent@gmail.com',
-          pass: 'mihaisolentmihaisolent'
+          user: emailuser,
+          pass: emailpass
         }
       });
       var emailMsg = " Email for " + theoneresponding + "\n  \nDear guest,\n  \nThis is a email to notify you that your question has been deleted!\n  \nSorry for the inconvenience, maybe it was not appropriate...\n  \nKind Regards\nReceptionTeam";
@@ -114,8 +116,8 @@ router.post('/postfaqmsg', ensureAuthenticated, (req, res) =>
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'mihaisolent@gmail.com',
-          pass: 'mihaisolentmihaisolent'
+          user: emailuser,
+          pass: emailpass
         }
       });
       var emailMsg = "  \n  \n  Dear admin,\n \nThis is a email to notify you that someone had the courage to put a question!\n  \n\"" + questionnn + "\"\n \nby " + userEmail + "\nPlease visit https://qualityhotel.herokuapp.com/faq to answer \n \nKind Regards\nReceptionTeam";

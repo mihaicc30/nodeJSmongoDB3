@@ -8,6 +8,8 @@ var ObjectId = require('mongodb').ObjectID;
 const dotenv = require('dotenv');
 dotenv.config();
 var db = process.env.mongoURI;
+var emailuser = process.env.emailuser;
+var emailpass = process.env.emailpass;
 
 router.get('/controller', ensureAuthenticated, (req, res) => {//  , ensureAuthenticated
   var queryz = Rates.find();
@@ -35,17 +37,10 @@ router.post('/controller', (req, res) => {//  , ensureAuthenticated
       res.render('controller', {
         user: req.user,
         rates_data: result2
+      })
     })
   })
-}) })
+})
 
-//       db.collection("rates").find().sort({ "hotel": 1 }).toArray(function (err, result) {
-//         if (err) { console.log(err) } else {
-//           res.render('controller', {
-//             user: req.user,
-//             rates_data: result
-//           })}
-//       })}
-// })
 
 module.exports = router;
