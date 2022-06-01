@@ -6,6 +6,8 @@ const Messages = require('../models/Messages');
 const dotenv = require('dotenv');
 dotenv.config();
 var db = process.env.mongoURI;
+var emailuser = process.env.emailuser;
+var emailpass = process.env.emailpass;
 const nodemailer = require('nodemailer');
 var ObjectId = require('mongodb').ObjectID;
 
@@ -56,8 +58,8 @@ router.post('/contact', function (req, res) {
         service: 'gmail',
         host: 'smtp.gmail.com',
         auth: {
-          user: 'mihaisolent@gmail.com',
-          pass: 'mihaisolentmihaisolent'
+          user: emailuser,
+          pass: emailpass
         }
       }));
       var emailMsg = "Dear QualityHotel "+city+",\n\n\n"+
