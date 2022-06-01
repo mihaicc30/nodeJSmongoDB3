@@ -248,8 +248,8 @@ router.post('/successfullbooking', ensureAuthenticated, function (req, res) {
       if (breakfastFORM.valueOf() == "true") { var needBreakfast = "breakfast" } else { var needBreakfast = "" };
       if (champagneFORM.valueOf() == "true") { var needChampagne = "champagne" } else { var needChampagne = "" };
       if (rentcarFORM.valueOf() == "true") { var needCar = "car" } else { var needCar = "" };
-
-      db.collection("bookings").insertOne({ customer: hotelUserName, customerEmail: hotelUserEmail, customerPhone: hotelUserPhone,
+      console.log(req.user._id, " THE IDDDDDDDDDDDDDDDD ")
+      db.collection("bookings").insertOne({ customerID: req.user._id, customer: hotelUserName, customerEmail: hotelUserEmail, customerPhone: hotelUserPhone,
          hotel: hotelFORM, fromDate: from_dateFORM, toDate: to_dateFORM, roomType: roomTypeFORM,
           extras: { breakfast: needBreakfast, champagne: needChampagne, car: needCar }, total: TOTALFORM, date: new Date() })
 
@@ -353,7 +353,7 @@ router.get('/myprofile', ensureAuthenticated, (req, res) =>
 
       if (user) {
 
-        db.collection("bookings").find({ "customer": { $eq: user.name } }).sort({ fromDate: -1 }).toArray(function (err, result) {
+        db.collection("bookings").find({ "customerID": { $eq: req.user._id } }).sort({ fromDate: -1 }).toArray(function (err, result) {
           if (err) { console.log(err) } else {
             if (result.length > 0) {
               res.render('myprofile', {

@@ -181,10 +181,9 @@ router.get('/logout', (req, res) => {
 
 // User Account Update
 router.post('/update', (req, res) => {
-  const { email2, created2, name, email, phone, password } = req.body;
+  var { email2, created2, name, email, phone, password } = req.body;
 
   let errors = [];
-  creation_date = created2;
 
   if (!name || !email || !phone || !password) {
     errors.push({ msg: 'Please enter all fields' });
@@ -199,24 +198,15 @@ router.post('/update', (req, res) => {
       errors, name, email, phone, password
     });
   } else {
-
-    // maybe i will update to db.collection("users").updateOne({ name:name2}, {$set:{name:name} }) 
-    // but at the moment i am more relaxed with this :D
-    db.collection("users").deleteOne({ email: email2 })
-    const newUser = new User({
-      name,
-      email,
-      phone,
-      password
-    });
-
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
         if (err) throw err;
-        newUser.password = hash;
-        newUser.date = creation_date;
-        newUser.name = name.toUpperCase();
-        newUser.save().then(user => {
+        password = hash;
+        name = name.toUpperCase();
+
+        var updatedUser = User.updateOne({ _id: req.user._id}, { $set: { "name":name, "email":email, "password":hash, "lastUpdated": new Date } } )
+
+        updatedUser.then(user => {
           req.flash(
             'success_msg',
             'You profile has been updates. You can now log in with your new credentials.'
