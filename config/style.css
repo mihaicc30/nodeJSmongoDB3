@@ -588,6 +588,8 @@ tr {
 @media (max-width: 767px) {
     .burgerMenuBtnDiv {
         display: block !important;
+        position: absolute;
+        left:25%;
     }
 
     #welcomeMsg {
@@ -595,7 +597,7 @@ tr {
     }
 
     #headPic {
-        margin-top: 5vh !important;
+        margin-top: 0vh !important;
     }
 
     #burgerMenuBtn {
